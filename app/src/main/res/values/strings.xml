@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">NativeMusicSampler</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="search">Search</string>
+    <string name="samplerSlotsRelativeLayout">SamplerSlotsRelativeLayout</string>
+
+    <string-array name="effetcs_array">
+        <item>Reverb</item>
+        <item>Flanger</item>
+        <item>Equalizer</item>
+    </string-array>
+</resources>
