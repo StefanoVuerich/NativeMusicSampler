@@ -8,63 +8,87 @@ Player::Player(SLEngineItf &engine, SLObjectItf &mixer) {
 
     SLresult result;
 
+    SLDataLocator_URI fileLoc = { SL_DATALOCATOR_URI, (SLchar *) NULL };
+    SLDataFormat_MIME mime = { SL_DATAFORMAT_MIME, NULL, SL_CONTAINERTYPE_UNSPECIFIED };
+    SLDataSource audioSrcUri = { &fileLoc, &mime };
+    const SLInterfaceID ids[3] = { SL_IID_SEEK, SL_IID_VOLUME, SL_IID_PREFETCHSTATUS };
+    const SLboolean req[3] = { SL_BOOLEAN_TRUE, SL_BOOLEAN_TRUE, SL_BOOLEAN_TRUE };
+    SLDataLocator_OutputMix loc_outmix = { SL_DATALOCATOR_OUTPUTMIX,mixer };
+    SLDataSink audioSnk = { &loc_outmix, NULL };
 
-    // configure audio source
-    SLDataLocator_AndroidSimpleBufferQueue loc_bufq = {SL_DATALOCATOR_ANDROIDSIMPLEBUFFERQUEUE, 2};
-    SLDataFormat_PCM format_pcm = {SL_DATAFORMAT_PCM, 1, SL_SAMPLINGRATE_8,
-                                   SL_PCMSAMPLEFORMAT_FIXED_16, SL_PCMSAMPLEFORMAT_FIXED_16,
-                                   SL_SPEAKER_FRONT_CENTER, SL_BYTEORDER_LITTLEENDIAN};
-    SLDataSource audioSrc = {&loc_bufq, &format_pcm};
-
-    // configure audio sink
-    SLDataLocator_OutputMix loc_outmix = {SL_DATALOCATOR_OUTPUTMIX, mixer};
-    SLDataSink audioSnk = {&loc_outmix, NULL};
-
-    // create audio player
-    const SLInterfaceID ids[2] = {SL_IID_BUFFERQUEUE, SL_IID_VOLUME};
-    const SLboolean req[2] = {SL_BOOLEAN_TRUE, SL_BOOLEAN_TRUE};
-
-    result = (*engine)->CreateAudioPlayer(engine, &_bufferQueuePlayerObject, &audioSrc, &audioSnk,
-                                                        2, ids, req);
+    result = (*engine)->CreateAudioPlayer(engine,&_player, &audioSrcUri, &audioSnk, 3, ids, req);
     ErrorChecker::check(result);
-    Logger::log("Player bq creato");
 
-    // realize the player
-    result = (*_bufferQueuePlayerObject)->Realize(_bufferQueuePlayerObject, SL_BOOLEAN_FALSE);
+    result = (*_player)->Realize(_player,SL_BOOLEAN_FALSE);
     ErrorChecker::check(result);
-    Logger::log("Player bq realizzato");
 
-    // get the play interface
-    result = (*_bufferQueuePlayerObject)->GetInterface(_bufferQueuePlayerObject, SL_IID_PLAY, &_playItf);
+    result = (*_player)->GetInterface(_player,SL_IID_SEEK, (void*) &_seekInterface);
     ErrorChecker::check(result);
-    Logger::log("Got play interface");
 
-    // get the buffer queue interface
-    result = (*_bufferQueuePlayerObject)->GetInterface(_bufferQueuePlayerObject, SL_IID_BUFFERQUEUE,
-                                             &_bufferQueueItf);
+    result = (*_player)->GetInterface(_player,SL_IID_VOLUME, (void*) &_volumeInterface);
     ErrorChecker::check(result);
-    Logger::log("Got buffer interface");
 
-    // create empty buffer
-    #define BUFFER_SIZE 1024
-    short empy_buffer[BUFFER_SIZE];
-    for (int i = 0; i < BUFFER_SIZE; ++i) {
-        empy_buffer[i] = 32768 - ((i % 100) * 660);
-    }
-
-    // enqueue empty buffer
-    result = (*_bufferQueueItf)->Enqueue(_bufferQueueItf, empy_buffer, BUFFER_SIZE);
+    result = (*_player)->GetInterface(_player,SL_IID_PREFETCHSTATUS, (void*) &_prefetchStatusInterface);
     ErrorChecker::check(result);
-    Logger::log("Empty buffer enqueued");
 
-    // play buffer
-    result = (*_playItf)->SetPlayState(_playItf, SL_PLAYSTATE_PLAYING);
+    result = (*_player)->GetInterface(_player,SL_IID_PLAY, (void*) &_playInterface);
     ErrorChecker::check(result);
-    Logger::log("Played empty buffer");
+
+    Logger::log("Player created");
 }
 
 Player::~Player() { }
 
-void Player::load(string fileName) { }
+void Player::init() {}
 
-void Player::play() { }
+void Player::play() {
+
+    if(state == 0 || state == 2) {
+        (*_playInterface)->SetPlayState(_playInterface,SL_PLAYSTATE_PLAYING);
+    } else {
+        (*_playInterface)->SetPlayState(_playInterface,SL_PLAYSTATE_STOPPED);
+        (*_playInterface)->SetPlayState(_playInterface,SL_PLAYSTATE_PLAYING);
+    }
+    state = 1;
+}
+
+void Player::pause() {
+
+    if(state == 1) {
+        (*_playInterface)->SetPlayState(_playInterface,SL_PLAYSTATE_PAUSED);
+        state = 2;
+    }
+}
+
+void Player::stop() {
+
+    if(state == 1 || state == 2) {
+        (*_playInterface)->SetPlayState(_playInterface,SL_PLAYSTATE_STOPPED);
+        state = 0;
+    }
+}
+
+void Player::load(string fileName) {
+
+    SLDataLocator_URI fileLoc = { SL_DATALOCATOR_URI, (SLchar *)fileName.c_str() };
+    SLDataFormat_MIME mime = { SL_DATAFORMAT_MIME, NULL, SL_CONTAINERTYPE_UNSPECIFIED };
+    SLDataSource audioSrcUri = { &fileLoc, &mime };
+
+    loaded = true;
+}
+
+void Player::unload() {
+
+    //code to unload file
+    loaded = false;
+}
+
+bool Player::isLoaded() {
+
+    if(loaded) {
+        return true;
+    } else {
+        return false;
+    }
+}
+

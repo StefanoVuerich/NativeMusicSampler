@@ -7,12 +7,13 @@
 
 #include "interfaces/IConsole.h"
 #include "interfaces/IMixer.h"
-#include "interfaces/IPlayersController.h"
+#include "interfaces/IPlayer.h"
 #include "interfaces/IEngine.h"
 #include "Options.h"
 #include "Engine.h"
 #include "Mixer.h"
-#include "PlayersController.h"
+#include "Player.h"
+#include <vector>
 
 class Console : public IConsole {
 
@@ -24,6 +25,7 @@ private:
     IEngine *_engine;
     IMixer *_mixer;
     IPlayersController *_playerController;
+    std::vector<IPlayer*> _players;
 };
 
 #endif //JNIEXAMPLE_CONSOLE_H

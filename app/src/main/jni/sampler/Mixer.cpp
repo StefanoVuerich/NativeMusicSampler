@@ -4,7 +4,7 @@
 
 #include "Mixer.h"
 
-Mixer::Mixer(SLEngineItf &engine, short *bandLevels) {
+Mixer::Mixer(SLEngineItf &engine, int *bandLevels) {
 
     SLresult result;
 

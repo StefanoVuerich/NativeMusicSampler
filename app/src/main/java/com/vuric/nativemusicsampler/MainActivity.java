@@ -16,75 +16,44 @@ import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import com.vuric.nativemusicsampler.fragments.ConsoleFragment;
 import com.vuric.nativemusicsampler.fragments.SamplerControlsFragment;
 import com.vuric.nativemusicsampler.fragments.SamplerSlotsFragment;
+import com.vuric.nativemusicsampler.utils.Constants;
 
 public class MainActivity extends Activity implements View.OnTouchListener {
 
-    public static final String WAKE_LOCK = "WAKE_LOCK";
+
     protected PowerManager.WakeLock mWakeLock;
     private Point screenSize;
-    //private CustomSampleListView samplesList;
     private FrameLayout controlsContainer;
     private int controlsContainerWidth, controlsContainerHeight;
-    //private SamplesCursorAdapter cursorAdapter;
-    //private static final int ITEMS_LOADER_ID = 0;
-    //private CustomDrawer drawer;
-    //private boolean isDrawerVisible;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
 
-        //CustomApplicationClass.get().setMainActivity(this);
-
         View samplerBaseContainer = findViewById(R.id.samplerBaseContainer);
         samplerBaseContainer.setOnTouchListener(this);
 
         if (savedInstanceState == null) {
-            // checkForAudioLowLatency();
-            // getRateAndFrames();
+            checkForAudioLowLatency();
+            getRateAndFrames();
             getScreenSizeAndSendValueToApplicationClass();
             // checkForNewFiles();
         }
         setWakeLock();
-        setButtonsAndControls();
-
         //drawer = (CustomDrawer) findViewById(R.id.drawer);
+        setConsoleFragment();
+        setSamplerSlotsFragment();
+        setSamplerControlsFragment();
     }
 
-
-    /*public boolean isDrawerVisible() {
-        return isDrawerVisible;
-    }*/
-
-
-    private void getScreenSizeAndSendValueToApplicationClass() {
-        screenSize = new Point();
-        getWindowManager().getDefaultDisplay().getSize(screenSize);
-        CustomApplicationClass.get().setScreenSize(screenSize);
-    }
-
-    private void setWakeLock() {
-        final PowerManager pom = (PowerManager) getSystemService(Context.POWER_SERVICE);
-        this.mWakeLock = pom.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK, WAKE_LOCK);
-        this.mWakeLock.acquire();
-    }
-
-    /**
-     * Set right side fragment, set container layout listener, call check for
-     * new files
-     */
-
-    private void setButtonsAndControls() {
-        Fragment sampleButtonFragment, controlsFragment;
+    private void setSamplerControlsFragment() {
+        Fragment sampleButtonFragment = SamplerSlotsFragment.getInstance();
         FragmentTransaction ft = getFragmentManager().beginTransaction();
-        sampleButtonFragment = SamplerSlotsFragment.getInstance();
-        controlsFragment = SamplerControlsFragment.getInstance();
         ft.replace(R.id.samplerSlotsContainer, sampleButtonFragment, SamplerSlotsFragment._TAG);
-        ft.replace(R.id.samplerControlsContainer, controlsFragment, SamplerControlsFragment._TAG);
         ft.commit();
 
         controlsContainer = (FrameLayout) findViewById(R.id.samplerControlsContainer);
@@ -96,66 +65,36 @@ public class MainActivity extends Activity implements View.OnTouchListener {
                 controlsContainer.getViewTreeObserver().removeGlobalOnLayoutListener(this);
                 controlsContainerWidth = controlsContainer.getMeasuredWidth();
                 controlsContainerHeight = controlsContainer.getMeasuredHeight();
-                checkForNewFiles();
-
             }
         });
     }
 
-    private void checkForNewFiles() {
-        // FilesChecker.get().checkFiles(getApplicationContext());
-        //setEffectsList();
-        // need to set listener for new files added when application is running
+    private void setSamplerSlotsFragment() {
+        Fragment controlsFragment = SamplerControlsFragment.getInstance();
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.replace(R.id.samplerControlsContainer, controlsFragment, SamplerControlsFragment._TAG);
     }
 
-    /*private void setEffectsList() {
-
-        samplesList = (CustomSampleListView) findViewById(R.id.samplesListView);
-        samplesList.addHeaderView(LayoutInflater.from(this).inflate(R.layout.download_center_image, null));
-
-        // Set sampleList params
-        DrawerLayout.LayoutParams paramsContainer = new android.support.v4.widget.DrawerLayout.LayoutParams(
-                controlsContainerWidth, controlsContainerHeight);
-        paramsContainer.width = controlsContainerWidth;
-        paramsContainer.height = -1;
-        paramsContainer.gravity = Gravity.END;
-        paramsContainer.topMargin = findViewById(R.id.rightButtonsFragmentContainer).getMeasuredHeight();
-        samplesList.setLayoutParams(paramsContainer);
-        samplesList.requestLayout();
-
-        // Set Adapter
-        cursorAdapter = new SamplesCursorAdapter(this, null);
-        samplesList.setAdapter(cursorAdapter);
-        samplesList.setMyAdapter(cursorAdapter);
-        // cursorAdapter.initializeSampleTouchListener();
-        samplesList.setOnItemClickListener(new SampleListItemClickListener());
-        // samplesList.setOnItemLongClickListener(new
-        // SampleListItemLongClickListener());
-        getLoaderManager().initLoader(ITEMS_LOADER_ID, null, this);
-
-        final ViewGroup slotContainer = (ViewGroup) findViewById(R.string.slotCustomLayout);
-        ViewTreeObserver vto = slotContainer.getViewTreeObserver();
-        vto.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
-
-            @Override
-            public void onGlobalLayout() {
-                controlsContainer.getViewTreeObserver().removeGlobalOnLayoutListener(this);
-                controlsContainerWidth = controlsContainer.getMeasuredWidth();
-                controlsContainerHeight = controlsContainer.getMeasuredHeight();
-                samplesList.setListenerLayout(slotContainer);
-            }
-        });
-    }*/
-
-    @Override
-    public void onBackPressed() {
-        /*if (isDrawerVisible)
-            closeDrawer();*/
+    private void setConsoleFragment() {
+        ConsoleFragment consoleFragment = (ConsoleFragment) getFragmentManager().findFragmentByTag(Constants.CONSOLE_FRAGMENT);
+        if(consoleFragment == null) {
+            FragmentTransaction ft = getFragmentManager().beginTransaction();
+            ft.add(ConsoleFragment.get(), Constants.CONSOLE_FRAGMENT);
+            ft.commit();
+        }
     }
 
-    /*public void closeDrawer() {
-        drawer.closeDrawer(Gravity.END);
-    }*/
+    private void getScreenSizeAndSendValueToApplicationClass() {
+        screenSize = new Point();
+        getWindowManager().getDefaultDisplay().getSize(screenSize);
+        CustomApplicationClass.get().setScreenSize(screenSize);
+    }
+
+    private void setWakeLock() {
+        final PowerManager pom = (PowerManager) getSystemService(Context.POWER_SERVICE);
+        this.mWakeLock = pom.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK, Constants.WAKE_LOCK);
+        this.mWakeLock.acquire();
+    }
 
     private void getRateAndFrames() {
         AudioManager am = (AudioManager) getSystemService(MainActivity.this.AUDIO_SERVICE);
@@ -190,10 +129,7 @@ public class MainActivity extends Activity implements View.OnTouchListener {
 
     @Override
     protected void onDestroy() {
-
         super.onDestroy();
-        Log.v("jajajaFM", "on destroy view");
-        // OpenSLES.shutdownEngine();
         this.mWakeLock.release();
     }
 

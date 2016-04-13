@@ -13,7 +13,7 @@
 class Mixer : public IMixer{
 
 public:
-    Mixer(SLEngineItf &engine, short *bandLevels);
+    Mixer(SLEngineItf &engine, int *bandLevels);
     ~Mixer();
     SLObjectItf *getMixer();
 

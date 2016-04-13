@@ -11,7 +11,7 @@ public:
     Options();
     ~Options();
     int _playersNumber;
-    short *_bandLevels;
+    int *_bandLevels;
 };
 
 #endif //JNIEXAMPLE_OPTIONS_H

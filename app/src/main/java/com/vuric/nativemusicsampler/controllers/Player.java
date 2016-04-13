@@ -1,66 +1,96 @@
 package com.vuric.nativemusicsampler.controllers;
 
-import android.content.Context;
-import android.widget.Toast;
+import android.util.Log;
 
-import com.vuric.nativemusicsampler.interfaces.IEffect;
+import com.vuric.nativemusicsampler.enums.PlayState;
 import com.vuric.nativemusicsampler.interfaces.IPlayer;
 import com.vuric.nativemusicsampler.models.PlayerModel;
+import com.vuric.nativemusicsampler.utils.Constants;
+
+import java.lang.reflect.Method;
 
 /**
  * Created by stefano on 4/6/2016.
  */
 public class Player implements IPlayer {
 
-    private Context _context;
     private PlayerModel _model;
 
-    public Player(Context context) {
+    public Player() {
 
-        _context = context;
+        String name = this.getClass().getName();
+        Method[] methods = this.getClass().getMethods();
+
         _model = new PlayerModel();
     }
 
     @Override
     public void play() {
-
-        if(_model.state == 0) {
-            Toast.makeText(_context, "Play", Toast.LENGTH_SHORT).show();
-            _model.state = 1;
-        } else if(_model.state == 1) {
-            Toast.makeText(_context, "REPlay", Toast.LENGTH_SHORT).show();
-            _model.state = 0;
-        }
+        /*if(_model.getState() == PlayState.PLAY) {
+            NativeWrapper.setPlayState(_model.getIndex(), PlayState.STOP.value);
+            NativeWrapper.setPlayState(_model.getIndex(), PlayState.PLAY.value);
+        } else {
+            NativeWrapper.setPlayState(_model.getIndex(), PlayState.PLAY.value);
+        }*/
+        Log.d(Constants.APP_TAG, "Play");
     }
 
     @Override
     public void pause() {
-
+        /*if(_model.getState() == PlayState.PLAY) {
+            NativeWrapper.setPlayState(_model.getIndex(), PlayState.PAUSE.value);
+        }*/
+        Log.d(Constants.APP_TAG, "Pause");
     }
 
     @Override
     public void stop() {
-
+        /*if(_model.getState() == PlayState.PLAY) {
+            NativeWrapper.setPlayState(_model.getIndex(), PlayState.STOP.value);
+        }*/
+        Log.d(Constants.APP_TAG, "Stop");
     }
 
     @Override
-    public void load(String path) {
-        Toast.makeText(_context, "Load", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void applyEffect(IEffect effect) {
-
-    }
-
-    @Override
-    public void loop() {
-        if(!_model.loop) {
-            Toast.makeText(_context, "Enable Loop", Toast.LENGTH_SHORT).show();
-            _model.loop = true;
+    public boolean load(String path) {
+        /*if(_model.isReady()) {
+            return NativeWrapper.loadSample(_model.getIndex(), path);
         } else {
-            Toast.makeText(_context, "Disable Loop", Toast.LENGTH_SHORT).show();
-            _model.loop = false;
-        }
+            return false;
+        }*/
+        Log.d(Constants.APP_TAG, "Load");
+        return true;
+    }
+
+    @Override
+    public boolean unload() {
+        /*if(_model.isLoaded()) {
+            return NativeWrapper.unloadSample(_model.getIndex());
+        } else {
+            return false;
+        }*/
+        return true;
+    }
+
+    @Override
+    public PlayState getPlayState() {
+        //return PlayState.values()[NativeWrapper.getPlayState(_model.getIndex())];
+        return PlayState.PLAY;
+    }
+
+    @Override
+    public void enableLoop() {
+        /*if(!_model.isLooping()) {
+            NativeWrapper.setLoop(_model.getIndex(), true);
+            _model.setLoop(true);
+        }*/
+    }
+
+    @Override
+    public void disableeLoop() {
+        /*if(_model.isLooping()) {
+            NativeWrapper.setLoop(_model.getIndex(), false);
+            _model.setLoop(false);
+        }*/
     }
 }

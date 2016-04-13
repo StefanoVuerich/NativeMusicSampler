@@ -1,5 +1,6 @@
 package com.vuric.nativemusicsampler.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,35 +8,33 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import com.vuric.nativemusicsampler.R;
+import com.vuric.nativemusicsampler.fragments.ConsoleFragment;
 import com.vuric.nativemusicsampler.interfaces.IPlayer;
-import com.vuric.nativemusicsampler.controllers.Player;
 import com.vuric.nativemusicsampler.layouts.PlayerView;
+import com.vuric.nativemusicsampler.utils.Constants;
 
 public class SanplerSlotsAdapter extends BaseAdapter {
 
-    private Context mContext;
-    private IPlayer[] players;
+    private Context _context;
+    private IPlayer[] _players;
+    private ConsoleFragment _consoleFragment;
 
-    public SanplerSlotsAdapter(Context c, int slots) {
+    public SanplerSlotsAdapter(Context context) {
 
-        mContext = c;
-        players = new IPlayer[slots];
-        init(slots);
-    }
-
-    private void init(int slots) {
-
-        for(int i = 0; i < slots; ++i) {
-            players[i] = new Player(mContext);
+        _context = context;
+        _consoleFragment = (ConsoleFragment) ((Activity)context).getFragmentManager().findFragmentByTag(Constants.CONSOLE_FRAGMENT);
+        if(_consoleFragment != null) {
+            _players = _consoleFragment.getPlayers();
         }
+
     }
 
     public int getCount() {
-        return players.length;
+        return _players.length;
     }
 
     public IPlayer getItem(int position) {
-        return players[position];
+        return _players[position];
     }
 
     public long getItemId(int position) {
@@ -45,8 +44,8 @@ public class SanplerSlotsAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         PlayerView view;
         if (convertView == null) {
-            view = (PlayerView) LayoutInflater.from(mContext).inflate(R.layout.slot_view, parent, false);
-            view.setPlayer(players[position]);
+            view = (PlayerView) LayoutInflater.from(_context).inflate(R.layout.slot_view, parent, false);
+            view.setPlayer(_players[position]);
         } else {
             view = (PlayerView) convertView;
         }

@@ -5,7 +5,9 @@
 #ifndef JNIEXAMPLE_ICONSOLE_H
 #define JNIEXAMPLE_ICONSOLE_H
 
-class IConsole { };
+#include "IPlayersController.h"
+
+class IConsole {};
 
 
 #endif //JNIEXAMPLE_ICONSOLE_H

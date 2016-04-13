@@ -17,16 +17,25 @@ using namespace std;
 class Player : public IPlayer{
 
 public:
-    Player(SLEngineItf &engine, SLObjectItf &obj);
+    Player(SLEngineItf &engine, SLObjectItf &mixer);
     ~Player();
-    void load(string fileName);
+    void init();
     void play();
+    void pause();
+    void stop();
+    void load(string fileName);
+    void unload();
+    bool isLoaded();
 
 private:
-    SLObjectItf _bufferQueuePlayerObject;
-    SLPlayItf _playItf;
+    bool loaded;
+    int state;
+    SLObjectItf _player;
     SLBufferQueueItf _bufferQueueItf;
+    SLPlayItf _playInterface;
+    SLSeekItf _seekInterface;
+    SLVolumeItf _volumeInterface;
+    SLPrefetchStatusItf _prefetchStatusInterface;
 };
-
 
 #endif //JNIEXAMPLE_PLAYER_H

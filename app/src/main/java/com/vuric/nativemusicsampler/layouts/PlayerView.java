@@ -69,7 +69,7 @@ public class PlayerView extends RelativeLayout {
         activeButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                _player.loop();
+                _player.enableLoop();
             }
         });
     }

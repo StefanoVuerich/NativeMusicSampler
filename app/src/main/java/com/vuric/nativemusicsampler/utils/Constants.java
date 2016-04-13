@@ -31,4 +31,8 @@ public class Constants {
     public static final String SAMPLES_PATH = "/samples";
     public static final String SAMPLES_INFO_PATH = "/samplesinfo";
     public static final String HASHES_PATH = "/hashes/{hash}";
+
+    public static final String WAKE_LOCK = "WAKE_LOCK";
+    public static final String CONSOLE_FRAGMENT = "CONSOLE_FRAGMENT";
+    public static final String APP_TAG = "NATIIVE_SAMPLER";
 }

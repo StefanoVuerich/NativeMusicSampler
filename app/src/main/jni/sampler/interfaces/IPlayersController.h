@@ -9,6 +9,7 @@ class IPlayersController {
 
 public:
     virtual void play(int playerIndex) = 0;
+    virtual void load(int playerIndex) = 0;
 };
 
 #endif //JNIEXAMPLE_IPLAYERSCONTROLLER_H

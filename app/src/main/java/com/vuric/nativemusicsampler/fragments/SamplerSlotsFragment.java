@@ -9,7 +9,6 @@ import android.widget.GridView;
 
 import com.vuric.nativemusicsampler.R;
 import com.vuric.nativemusicsampler.adapters.SanplerSlotsAdapter;
-import com.vuric.nativemusicsampler.utils.Constants;
 
 /**
  * Created by stefano on 4/5/2016.
@@ -17,7 +16,12 @@ import com.vuric.nativemusicsampler.utils.Constants;
 public class SamplerSlotsFragment extends Fragment {
 
     public static final String _TAG = SamplerSlotsFragment.class.getSimpleName();
-    private GridView gridview;
+    private GridView _gridview;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -26,8 +30,8 @@ public class SamplerSlotsFragment extends Fragment {
         View rootView = inflater.inflate(
                 R.layout.sampler_slots_fragment_layout, container, false);
 
-        gridview = (GridView) rootView.findViewById(R.id.gridview);
-        gridview.setAdapter(new SanplerSlotsAdapter(getActivity(), Constants.SLOTS));
+        _gridview = (GridView) rootView.findViewById(R.id.gridview);
+        _gridview.setAdapter(new SanplerSlotsAdapter(getActivity()));
 
         return rootView;
     }

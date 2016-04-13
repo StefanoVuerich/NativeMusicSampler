@@ -12,8 +12,13 @@ using namespace std;
 class IPlayer {
 
 public:
+    virtual void init() = 0;
     virtual void play() = 0;
+    virtual void pause() = 0;
+    virtual void stop() = 0;
     virtual void load(string fileName) = 0;
+    virtual void unload() = 0;
+    virtual bool isLoaded() = 0;
 };
 
 
