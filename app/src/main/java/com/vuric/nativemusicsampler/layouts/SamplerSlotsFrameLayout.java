@@ -33,10 +33,4 @@ public class SamplerSlotsFrameLayout extends FrameLayout {
             addView(slotView);
         }*/
     }
-
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-
-        super.onMeasure(heightMeasureSpec, heightMeasureSpec);
-    }
 }

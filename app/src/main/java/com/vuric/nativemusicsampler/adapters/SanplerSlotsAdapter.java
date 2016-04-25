@@ -26,7 +26,6 @@ public class SanplerSlotsAdapter extends BaseAdapter {
         if(_consoleFragment != null) {
             _players = _consoleFragment.getPlayers();
         }
-
     }
 
     public int getCount() {
@@ -45,7 +44,7 @@ public class SanplerSlotsAdapter extends BaseAdapter {
         PlayerView view;
         if (convertView == null) {
             view = (PlayerView) LayoutInflater.from(_context).inflate(R.layout.slot_view, parent, false);
-            view.setPlayer(_players[position]);
+            //view.setPlayer(_players[position]);
         } else {
             view = (PlayerView) convertView;
         }

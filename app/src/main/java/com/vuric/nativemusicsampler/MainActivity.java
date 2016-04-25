@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.graphics.Point;
 import android.media.AudioManager;
 import android.os.Bundle;
@@ -12,13 +13,18 @@ import android.os.PowerManager;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.squareup.otto.Subscribe;
+import com.vuric.nativemusicsampler.enums.SlotsContainerState;
 import com.vuric.nativemusicsampler.fragments.ConsoleFragment;
 import com.vuric.nativemusicsampler.fragments.SamplerControlsFragment;
 import com.vuric.nativemusicsampler.fragments.SamplerSlotsFragment;
+import com.vuric.nativemusicsampler.fragments.SamplesListFragment;
 import com.vuric.nativemusicsampler.utils.Constants;
 
 public class MainActivity extends Activity implements View.OnTouchListener {
@@ -28,30 +34,77 @@ public class MainActivity extends Activity implements View.OnTouchListener {
     private Point screenSize;
     private FrameLayout controlsContainer;
     private int controlsContainerWidth, controlsContainerHeight;
+    private SlotsContainerState _state = SlotsContainerState.CLOSE;
+    private ViewGroup baseContainer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
 
-        View samplerBaseContainer = findViewById(R.id.samplerBaseContainer);
-        samplerBaseContainer.setOnTouchListener(this);
+        baseContainer = (ViewGroup) findViewById(R.id.samplerBaseContainer);
+        baseContainer.setOnTouchListener(this);
 
         if (savedInstanceState == null) {
             checkForAudioLowLatency();
             getRateAndFrames();
-            getScreenSizeAndSendValueToApplicationClass();
+
             // checkForNewFiles();
         }
         setWakeLock();
+        getScreenSizeAndSendValueToApplicationClass();
+        setContainerMeasure();
         //drawer = (CustomDrawer) findViewById(R.id.drawer);
         setConsoleFragment();
         setSamplerSlotsFragment();
         setSamplerControlsFragment();
     }
 
+    @Subscribe
+    public void receiveMessage(Message message) {
+
+        SlotsContainerState state =  message.get_state();
+
+        if(state != _state) {
+            _state = state;
+            SamplerSlotsFragment fr = (SamplerSlotsFragment) getFragmentManager().findFragmentByTag(SamplerSlotsFragment._TAG);
+            if(fr != null) {
+                fr.setState(_state);
+            }
+            setContainerMeasure();
+            baseContainer.invalidate();
+        }
+    }
+
+    @Subscribe
+    public void receiveMessage(ShowSamplesListEvent evt) {
+
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.replace(R.id.samplerControlsContainer, SamplesListFragment.getInstance(), SamplesListFragment._TAG);
+        ft.commit();
+    }
+
+    private void setContainerMeasure() {
+
+        int slotBaseContainerWidth = _state == SlotsContainerState.CLOSE ?
+                screenSize.y :
+                screenSize.y + (screenSize.y / 3 / 2 * 3);
+
+        FrameLayout left = (FrameLayout) findViewById(R.id.samplerSlotsContainer);
+        left.setBackgroundColor(Color.parseColor("#0000FF"));
+        left.setLayoutParams(new LinearLayout.LayoutParams(slotBaseContainerWidth, screenSize.y));
+
+        FrameLayout right = (FrameLayout) findViewById(R.id.samplerControlsContainer);
+        right.setBackgroundColor(Color.parseColor("#CCCCCC"));
+        right.setLayoutParams(new LinearLayout.LayoutParams(screenSize.x - slotBaseContainerWidth, screenSize.y));
+    }
+
     private void setSamplerControlsFragment() {
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("STATE", _state);
         Fragment sampleButtonFragment = SamplerSlotsFragment.getInstance();
+        sampleButtonFragment.setArguments(bundle);
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.replace(R.id.samplerSlotsContainer, sampleButtonFragment, SamplerSlotsFragment._TAG);
         ft.commit();
@@ -134,9 +187,15 @@ public class MainActivity extends Activity implements View.OnTouchListener {
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        BusStation.getBus().unregister(this);
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
-
+        BusStation.getBus().register(this);
         /*int index = 0;
         for (SampleSlot slot : SoundHub.getInstance().getSamplesController().getSampleSlots()) {
             if (slot != null && slot.isPlaying()) {
