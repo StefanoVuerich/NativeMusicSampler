@@ -22,7 +22,7 @@ public class SanplerSlotsAdapter extends BaseAdapter {
     public SanplerSlotsAdapter(Context context) {
 
         _context = context;
-        _consoleFragment = (ConsoleFragment) ((Activity)context).getFragmentManager().findFragmentByTag(Constants.CONSOLE_FRAGMENT);
+        _consoleFragment = (ConsoleFragment) ((Activity)context).getFragmentManager().findFragmentByTag(ConsoleFragment._TAG);
         if(_consoleFragment != null) {
             _players = _consoleFragment.getPlayers();
         }

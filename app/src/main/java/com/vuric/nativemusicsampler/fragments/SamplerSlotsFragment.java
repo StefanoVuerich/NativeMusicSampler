@@ -24,13 +24,12 @@ public class SamplerSlotsFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
         Bundle b = getArguments();
         if(b != null) {
             _state = (SlotsContainerState)b.get("STATE");
         }
-
-        super.onCreate(savedInstanceState);
     }
 
     @Override
@@ -53,11 +52,8 @@ public class SamplerSlotsFragment extends Fragment {
 
     public void setState(SlotsContainerState state) {
 
-        if(state != _state) {
-            _state = state;
-            _samplerSlotsBaseContainer.removeAllViewsInLayout();
-            _samplerSlotsBaseContainer.addView(new SlotsContainerRelativeLayout(getActivity(), Constants.SLOTS, _state));
-            _samplerSlotsBaseContainer.invalidate();
-        }
+        _state = state;
+        _slotsContainerRelativeLayout.setState(state);
+        _slotsContainerRelativeLayout.invalidate();
     }
 }

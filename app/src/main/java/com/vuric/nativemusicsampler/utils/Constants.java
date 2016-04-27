@@ -33,7 +33,6 @@ public class Constants {
     public static final String HASHES_PATH = "/hashes/{hash}";
 
     public static final String WAKE_LOCK = "WAKE_LOCK";
-    public static final String CONSOLE_FRAGMENT = "CONSOLE_FRAGMENT";
     public static final String APP_TAG = "NATIIVE_SAMPLER";
 
     public static final int SWIPE_THRESHOLD = 100;

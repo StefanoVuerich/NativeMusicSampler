@@ -22,6 +22,7 @@ public class ConsoleFragment extends Fragment {
     private IConsole _console;
     private IMixer _mixer;
     private IPlayer[] _players;
+    public static final String _TAG = ConsoleFragment.class.getSimpleName();
 
     public static ConsoleFragment get() {
         return new ConsoleFragment();
@@ -63,6 +64,10 @@ public class ConsoleFragment extends Fragment {
 
     public IMixer getMixer() {
         return _mixer;
+    }
+
+    public IPlayer getPlayer(int index) {
+        return _players[index];
     }
 
     public IPlayer[] getPlayers() {

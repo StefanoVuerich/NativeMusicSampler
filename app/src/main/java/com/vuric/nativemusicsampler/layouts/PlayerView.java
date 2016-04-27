@@ -2,15 +2,16 @@ package com.vuric.nativemusicsampler.layouts;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
+import com.squareup.otto.Subscribe;
+import com.vuric.nativemusicsampler.BusStation;
+import com.vuric.nativemusicsampler.SelectSamplesSlotEvt;
 import com.vuric.nativemusicsampler.enums.SlotsContainerState;
-import com.vuric.nativemusicsampler.utils.Constants;
+import com.vuric.nativemusicsampler.models.PlayerModel;
 
 /**
  * Created by stefano on 4/5/2016.
@@ -21,27 +22,25 @@ public class PlayerView extends RelativeLayout {
     private View playView;
     private View topView;
     private View bottomView;
-    SlotsContainerState _state;
-
-    public PlayerView(Context context) {
-        super(context);
-        init();
-    }
-
-    public PlayerView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        init();
-    }
-
-    public PlayerView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        init();
-    }
+    private SlotsContainerState _state;
+    private PlayerModel _model;
 
     public PlayerView(Context context, SlotsContainerState state) {
         super(context);
+        _model = new PlayerModel();
         _state = state;
         init();
+    }
+
+    public PlayerView(Context context, SlotsContainerState state, PlayerModel model) {
+        super(context);
+        _model = model;
+        _state = state;
+        init();
+    }
+
+    public PlayerModel getModel() {
+        return _model;
     }
 
     private void init() {
@@ -49,12 +48,12 @@ public class PlayerView extends RelativeLayout {
         setBackgroundColor(Color.parseColor("#0000FF"));
         setPadding(5, 5, 5, 5);
 
+
         playView = new View(getContext());
         playView.setOnTouchListener(new View.OnTouchListener() {
 
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                Log.d(Constants.APP_TAG, "Touch");
                 return ((ViewGroup)getParent()).onTouchEvent(event);
             }
         });
@@ -86,7 +85,7 @@ public class PlayerView extends RelativeLayout {
         int mWidth = w = wSpecSize;
 
         View playView = getChildAt(0);
-        playView.setBackgroundColor(Color.parseColor("#000000"));
+        playView.setBackgroundColor(_model.isSelected() ? Color.parseColor("#FFFFFF") : Color.parseColor("#000000"));
         playView.setLayoutParams(new RelativeLayout.LayoutParams(mHeight, mHeight));
 
         int currentWidth = _state == SlotsContainerState.CLOSE ? 0 : h / 2;
@@ -94,10 +93,12 @@ public class PlayerView extends RelativeLayout {
         View topView = getChildAt(1);
         topView.setBackgroundColor(Color.parseColor("#0000CC"));
         topView.setLayoutParams(new RelativeLayout.LayoutParams(currentWidth, mHeight / 2));
+        topView.requestLayout();
 
         View bottomView = getChildAt(2);
         bottomView.setBackgroundColor(Color.parseColor("#0000AA"));
         bottomView.setLayoutParams(new RelativeLayout.LayoutParams(currentWidth, mHeight / 2));
+        bottomView.requestLayout();
     }
 
     @Override
@@ -114,5 +115,30 @@ public class PlayerView extends RelativeLayout {
 
         View bottomView = getChildAt(2);
         bottomView.layout(h, h / 2, h + currentWidth, h);
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        BusStation.getBus().register(this);
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        BusStation.getBus().unregister(this);
+    }
+
+    @Subscribe
+    public void receiveMessage(SelectSamplesSlotEvt evt) {
+        if(evt.getViewID() == getId()) {
+            _model.setSelected(true);
+            playView.setBackgroundColor(Color.parseColor("#FFFFFF"));
+        } else {
+            if(_model.isSelected()) {
+                _model.setSelected(false);
+                playView.setBackgroundColor(Color.parseColor("#000000"));
+            }
+        }
     }
 }

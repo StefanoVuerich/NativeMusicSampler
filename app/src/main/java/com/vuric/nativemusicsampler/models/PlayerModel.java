@@ -12,6 +12,18 @@ public class PlayerModel {
     private PlayState _state;
     private boolean _ready;
     private boolean _loaded;
+    private boolean _selected;
+
+    public PlayerModel() {}
+
+    public PlayerModel(int index, boolean loop, PlayState state, boolean ready, boolean loaded, boolean selected) {
+        _index = index;
+        _loop = loop;
+        _state = state;
+        _ready = ready;
+        _loaded = loaded;
+        _selected = selected;
+    }
 
     public boolean isLoaded() {
         return _loaded;
@@ -53,5 +65,11 @@ public class PlayerModel {
         this._index = _index;
     }
 
+    public boolean isSelected() {
+        return _selected;
+    }
 
+    public void setSelected(boolean _selected) {
+        this._selected = _selected;
+    }
 }

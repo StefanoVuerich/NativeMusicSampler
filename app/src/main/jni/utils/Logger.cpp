@@ -10,5 +10,5 @@ Logger::~Logger() { }
 
 void Logger::log(std::string text) {
 
-    __android_log_print(ANDROID_LOG_DEBUG, "OpenSLNative", "Message -> %s", text.c_str());
+    __android_log_print(ANDROID_LOG_DEBUG, "OpenSLNative", "SlotsContainerEvt -> %s", text.c_str());
 }

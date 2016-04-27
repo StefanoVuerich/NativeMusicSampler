@@ -1,5 +1,6 @@
 package com.vuric.nativemusicsampler.listeners;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -7,9 +8,10 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.vuric.nativemusicsampler.BusStation;
-import com.vuric.nativemusicsampler.Message;
-import com.vuric.nativemusicsampler.ShowSamplesListEvent;
+import com.vuric.nativemusicsampler.SlotsContainerEvt;
+import com.vuric.nativemusicsampler.SelectSamplesSlotEvt;
 import com.vuric.nativemusicsampler.enums.SlotsContainerState;
+import com.vuric.nativemusicsampler.fragments.ConsoleFragment;
 import com.vuric.nativemusicsampler.utils.Constants;
 
 /**
@@ -18,32 +20,40 @@ import com.vuric.nativemusicsampler.utils.Constants;
 public class SlotsContainerGestureListener implements View.OnTouchListener {
 
     private final GestureDetector _gestureDetector;
+    private ConsoleFragment _consoleFragment;
+    private View _lastTouchedView;
 
     public SlotsContainerGestureListener(Context context) {
         _gestureDetector = new GestureDetector(context, new GestureListener());
+        _consoleFragment = (ConsoleFragment) ((Activity)context).getFragmentManager().findFragmentByTag(ConsoleFragment._TAG);
     }
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
+        _lastTouchedView = v;
         return _gestureDetector.onTouchEvent(event);
     }
 
     private final class GestureListener extends GestureDetector.SimpleOnGestureListener {
 
+
+
         @Override
         public void onLongPress(MotionEvent e) {
-
-            Log.d(Constants.APP_TAG, "Long press from listener");
-            BusStation.getBus().post(new ShowSamplesListEvent());
+            Log.d(Constants.APP_TAG, "Long press");
+            BusStation.getBus().post(new SelectSamplesSlotEvt(_lastTouchedView.getId()));
 
             super.onLongPress(e);
         }
 
         @Override
+        public boolean onSingleTapUp(MotionEvent e) {
+            _consoleFragment.getPlayer(_lastTouchedView.getId()).play();
+            return true;
+        }
+
+        @Override
         public boolean onDown(MotionEvent e) {
-
-            Log.d(Constants.APP_TAG, "Down from listener");
-
             return true;
         }
 
@@ -80,11 +90,11 @@ public class SlotsContainerGestureListener implements View.OnTouchListener {
         }
 
         public void onSwipeRight() {
-            BusStation.getBus().post(new Message(SlotsContainerState.OPEN));
+            BusStation.getBus().post(new SlotsContainerEvt(SlotsContainerState.OPEN));
         }
 
         public void onSwipeLeft() {
-            BusStation.getBus().post(new Message(SlotsContainerState.CLOSE));
+            BusStation.getBus().post(new SlotsContainerEvt(SlotsContainerState.CLOSE));
         }
 
         public void onSwipeTop() {

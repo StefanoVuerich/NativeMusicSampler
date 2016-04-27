@@ -22,7 +22,6 @@ import com.vuric.nativemusicsampler.enums.SlotsContainerState;
 import com.vuric.nativemusicsampler.fragments.ConsoleFragment;
 import com.vuric.nativemusicsampler.fragments.SamplerControlsFragment;
 import com.vuric.nativemusicsampler.fragments.SamplerSlotsFragment;
-import com.vuric.nativemusicsampler.fragments.SamplesListFragment;
 import com.vuric.nativemusicsampler.utils.Constants;
 
 public class MainActivity extends Activity {
@@ -42,7 +41,6 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         baseContainer = (ViewGroup) findViewById(R.id.samplerBaseContainer);
-        //baseContainer.setOnTouchListener(this);
 
         if (savedInstanceState == null) {
             checkForAudioLowLatency();
@@ -59,12 +57,12 @@ public class MainActivity extends Activity {
     }
 
     @Subscribe
-    public void receiveMessage(Message message) {
+    public void receiveMessage(SlotsContainerEvt message) {
 
-        SlotsContainerState state =  message.get_state();
+        SlotsContainerState newState =  message.getState();
 
-        if(state != _state) {
-            _state = state;
+        if(newState != _state) {
+            _state = newState;
             SamplerSlotsFragment fr = (SamplerSlotsFragment) getFragmentManager().findFragmentByTag(SamplerSlotsFragment._TAG);
             if(fr != null) {
                 fr.setState(_state);
@@ -72,14 +70,6 @@ public class MainActivity extends Activity {
             setFragmentsMeasure();
             baseContainer.invalidate();
         }
-    }
-
-    @Subscribe
-    public void receiveMessage(ShowSamplesListEvent evt) {
-
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.samplerControlsContainer, SamplesListFragment.getInstance(), SamplesListFragment._TAG);
-        ft.commit();
     }
 
     private void setFragmentsMeasure() {
@@ -127,10 +117,10 @@ public class MainActivity extends Activity {
     }
 
     private void setConsoleFragment() {
-        ConsoleFragment consoleFragment = (ConsoleFragment) getFragmentManager().findFragmentByTag(Constants.CONSOLE_FRAGMENT);
+        ConsoleFragment consoleFragment = (ConsoleFragment) getFragmentManager().findFragmentByTag(ConsoleFragment._TAG);
         if(consoleFragment == null) {
             FragmentTransaction ft = getFragmentManager().beginTransaction();
-            ft.add(ConsoleFragment.get(), Constants.CONSOLE_FRAGMENT);
+            ft.add(ConsoleFragment.get(), ConsoleFragment._TAG);
             ft.commit();
         }
     }

@@ -6,6 +6,7 @@ import android.widget.RelativeLayout;
 
 import com.vuric.nativemusicsampler.enums.SlotsContainerState;
 import com.vuric.nativemusicsampler.listeners.SlotsContainerGestureListener;
+import com.vuric.nativemusicsampler.models.PlayerModel;
 
 /**
  * Created by stefano on 4/24/2016.
@@ -15,6 +16,8 @@ public class SlotsContainerRelativeLayout extends RelativeLayout {
     private int w,h;
     private int childW, childH;
     private SlotsContainerState _state;
+    private OnTouchListener _listener;
+    private int _slots;
 
     public SlotsContainerRelativeLayout(Context context) {
         super(context);
@@ -31,25 +34,43 @@ public class SlotsContainerRelativeLayout extends RelativeLayout {
     public SlotsContainerRelativeLayout(Context context, int slots, SlotsContainerState state) {
         super(context);
         _state = state;
-        init(slots);
+        init(slots, null);
     }
 
     public void setState(SlotsContainerState state) {
         if(state != _state) {
             _state = state;
+            _listener = null;
+
+            PlayerModel[] states = new PlayerModel[getChildCount()];
+            for(int i = 0; i < getChildCount(); ++i) {
+                states[i] = ((PlayerView)getChildAt(i)).getModel();
+            }
+
+            removeAllViews();
+            init(_slots, states);
+
         }
     }
 
-    private void init(int slots) {
+    private void init(int slots, PlayerModel[] states) {
+        _slots = slots;
+        _listener =  new SlotsContainerGestureListener(getContext());
 
-        OnTouchListener l =  new SlotsContainerGestureListener(getContext());
-
-        setOnTouchListener(l);
+        setOnTouchListener(_listener);
 
         for(int i = 0; i < slots; ++i) {
 
-            PlayerView v = new PlayerView(getContext(), _state);
-            v.setOnTouchListener(l);
+            PlayerView v = null;
+
+            if(states != null) {
+                v = new PlayerView(getContext(), _state, states[i]);
+            } else {
+                v = new PlayerView(getContext(), _state);
+            }
+
+            v.setId(i);
+            v.setOnTouchListener(_listener);
             addView(v);
         }
     }

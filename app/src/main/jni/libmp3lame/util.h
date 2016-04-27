@@ -599,7 +599,7 @@ extern  "C" {
 
 /***********************************************************************
 *
-*  Macros about Message Printing and Exit
+*  Macros about SlotsContainerEvt Printing and Exit
 *
 ***********************************************************************/
 
