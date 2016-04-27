@@ -10,37 +10,19 @@ import com.facebook.stetho.Stetho;
  */
 public class CustomApplicationClass extends Application {
 
-    private static CustomApplicationClass mInstance;
-    private Point screenSize;
+    private static CustomApplicationClass _mInstance;
+    private Point _screenSize;
 
     @Override
     public void onCreate() {
         super.onCreate();
 
-        mInstance = this;
+        _mInstance = this;
         initializeStetho();
-
-        /*soundHub = SoundHub.getInstance();
-        soundHub.initialize(Constants.SLOTS, getApplicationContext());
-
-        checkSamplerEffectsFolder();
-        registerActivityLifecycleCallbacks(new ActivityCallBacks());
-
-        startWatchFolderForChanges();
-
-        this.currentSelectedSlots = new LinkedList<Integer>();
-        this.selectedObservers = new LinkedList<AbstractSelectedObserver>();*/
     }
 
     public static CustomApplicationClass get() {
-        return mInstance;
-    }
-
-    @Override
-    public void onTerminate() {
-        super.onTerminate();
-
-        //OpenSLES.shutdownEngine();
+        return _mInstance;
     }
 
     private void initializeStetho() {
@@ -52,10 +34,10 @@ public class CustomApplicationClass extends Application {
     }
 
     public Point getScreenSize() {
-        return this.screenSize;
+        return this._screenSize;
     }
 
     public void setScreenSize(Point size) {
-        this.screenSize = size;
+        this._screenSize = size;
     }
 }

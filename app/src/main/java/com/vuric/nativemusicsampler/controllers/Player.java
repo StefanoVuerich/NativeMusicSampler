@@ -52,24 +52,22 @@ public class Player implements IPlayer {
     }
 
     @Override
-    public boolean load(String path) {
+    public void load(String path) {
         /*if(_model.isReady()) {
             return NativeWrapper.loadSample(_model.getIndex(), path);
         } else {
             return false;
         }*/
         Log.d(Constants.APP_TAG, "Load");
-        return true;
     }
 
     @Override
-    public boolean unload() {
+    public void unload() {
         /*if(_model.isLoaded()) {
             return NativeWrapper.unloadSample(_model.getIndex());
         } else {
             return false;
         }*/
-        return true;
     }
 
     @Override

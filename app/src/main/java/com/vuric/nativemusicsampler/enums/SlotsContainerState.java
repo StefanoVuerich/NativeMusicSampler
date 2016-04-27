@@ -9,9 +9,7 @@ public enum SlotsContainerState {
 
     private int value;
 
-    SlotsContainerState(int value) {
-        this.value = value;
-    }
+    SlotsContainerState(int value) { this.value = value; }
 
     public int getValue() {
         return value;

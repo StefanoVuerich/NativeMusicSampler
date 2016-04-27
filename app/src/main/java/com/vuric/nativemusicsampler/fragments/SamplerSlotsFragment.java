@@ -19,8 +19,8 @@ public class SamplerSlotsFragment extends Fragment {
 
     public static final String _TAG = SamplerSlotsFragment.class.getSimpleName();
     private SlotsContainerState _state;
-    FrameLayout l;
-    SlotsContainerRelativeLayout rl;
+    private FrameLayout _samplerSlotsBaseContainer;
+    private SlotsContainerRelativeLayout _slotsContainerRelativeLayout;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,15 +40,9 @@ public class SamplerSlotsFragment extends Fragment {
         View rootView = inflater.inflate(
                 R.layout.sampler_slots_fragment_layout, container, false);
 
-        /*int width;
-        int height;
-        _gridview = (GridView) rootView.findViewById(R.id.gridview);
-        _gridview.setAdapter(new SanplerSlotsAdapter(getActivity()));
-        _gridview.setOnTouchListener(new SlotsContainerGestureListener(getActivity()));*/
-
-        l = (FrameLayout) rootView.findViewById(R.id.samplerSlotsBaseContainer);
-        rl = new SlotsContainerRelativeLayout(getActivity(), Constants.SLOTS, _state);
-        l.addView(rl);
+        _samplerSlotsBaseContainer = (FrameLayout) rootView.findViewById(R.id.samplerSlotsBaseContainer);
+        _slotsContainerRelativeLayout = new SlotsContainerRelativeLayout(getActivity(), Constants.SLOTS, _state);
+        _samplerSlotsBaseContainer.addView(_slotsContainerRelativeLayout);
 
         return rootView;
     }
@@ -58,12 +52,12 @@ public class SamplerSlotsFragment extends Fragment {
     }
 
     public void setState(SlotsContainerState state) {
+
         if(state != _state) {
             _state = state;
-
-            l.removeAllViewsInLayout();
-            l.addView(new SlotsContainerRelativeLayout(getActivity(), Constants.SLOTS, _state));
-            l.invalidate();
+            _samplerSlotsBaseContainer.removeAllViewsInLayout();
+            _samplerSlotsBaseContainer.addView(new SlotsContainerRelativeLayout(getActivity(), Constants.SLOTS, _state));
+            _samplerSlotsBaseContainer.invalidate();
         }
     }
 }

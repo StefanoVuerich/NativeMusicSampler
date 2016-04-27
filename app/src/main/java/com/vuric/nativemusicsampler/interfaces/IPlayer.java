@@ -7,8 +7,8 @@ public interface IPlayer {
     void play();
     void pause();
     void stop();
-    boolean load(String path);
-    boolean unload();
+    void load(String path);
+    void unload();
     PlayState getPlayState();
     void enableLoop();
     void disableeLoop();

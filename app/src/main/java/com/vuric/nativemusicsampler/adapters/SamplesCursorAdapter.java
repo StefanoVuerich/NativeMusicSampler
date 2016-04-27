@@ -69,13 +69,13 @@ public class SamplesCursorAdapter extends CursorAdapter {
         SampleObj tmp = null;
         if (cursor.moveToPosition(position)) {
             tmp = new SampleObj();
-            tmp.ID = cursor.getInt(cursor.getColumnIndex(SamplesHelper._ID));
-            tmp.name = cursor.getString(cursor.getColumnIndex(SamplesHelper.NAME));
-            tmp.path = cursor.getString(cursor.getColumnIndex(SamplesHelper.PATH));
-            tmp.size = cursor.getLong(cursor.getColumnIndex(SamplesHelper.SIZE));
-            tmp.rate = cursor.getFloat(cursor.getColumnIndex(SamplesHelper.RATE));
-            tmp.played = cursor.getInt(cursor.getColumnIndex(SamplesHelper.PLAYED));
-            tmp.format = cursor.getString(cursor.getColumnIndex(SamplesHelper.FORMAT));
+            tmp.setID(cursor.getInt(cursor.getColumnIndex(SamplesHelper._ID)));
+            tmp.setName(cursor.getString(cursor.getColumnIndex(SamplesHelper.NAME)));
+            tmp.setPath(cursor.getString(cursor.getColumnIndex(SamplesHelper.PATH)));
+            tmp.setSize(cursor.getLong(cursor.getColumnIndex(SamplesHelper.SIZE)));
+            tmp.setRate(cursor.getFloat(cursor.getColumnIndex(SamplesHelper.RATE)));
+            tmp.setPlayed(cursor.getInt(cursor.getColumnIndex(SamplesHelper.PLAYED)));
+            tmp.setFormat(cursor.getString(cursor.getColumnIndex(SamplesHelper.FORMAT)));
         }
         return tmp;
     }

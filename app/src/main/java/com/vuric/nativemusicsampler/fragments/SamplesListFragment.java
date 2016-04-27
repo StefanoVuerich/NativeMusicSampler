@@ -54,7 +54,7 @@ public class SamplesListFragment extends Fragment implements LoaderManager.Loade
         ListView l = (ListView) rootView.findViewById(R.id.samplesListView);
         cursorAdapter = new SamplesCursorAdapter(getActivity(), null);
         l.setAdapter(cursorAdapter);
-        //l.setMyAdapter(cursorAdapter);
+        //samplerSlotsBaseContainer.setMyAdapter(cursorAdapter);
         getLoaderManager().initLoader(0, null, this);
 
         return rootView;

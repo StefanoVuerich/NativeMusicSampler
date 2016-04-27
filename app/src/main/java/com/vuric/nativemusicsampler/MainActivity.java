@@ -11,8 +11,6 @@ import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.util.Log;
-import android.view.MotionEvent;
-import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
@@ -27,15 +25,15 @@ import com.vuric.nativemusicsampler.fragments.SamplerSlotsFragment;
 import com.vuric.nativemusicsampler.fragments.SamplesListFragment;
 import com.vuric.nativemusicsampler.utils.Constants;
 
-public class MainActivity extends Activity implements View.OnTouchListener {
+public class MainActivity extends Activity {
 
 
-    protected PowerManager.WakeLock mWakeLock;
+    protected PowerManager.WakeLock wakeLock;
+    private ViewGroup baseContainer;
     private Point screenSize;
     private FrameLayout controlsContainer;
     private int controlsContainerWidth, controlsContainerHeight;
     private SlotsContainerState _state = SlotsContainerState.CLOSE;
-    private ViewGroup baseContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,18 +42,17 @@ public class MainActivity extends Activity implements View.OnTouchListener {
         setContentView(R.layout.activity_main);
 
         baseContainer = (ViewGroup) findViewById(R.id.samplerBaseContainer);
-        baseContainer.setOnTouchListener(this);
+        //baseContainer.setOnTouchListener(this);
 
         if (savedInstanceState == null) {
             checkForAudioLowLatency();
             getRateAndFrames();
-
             // checkForNewFiles();
         }
+
         setWakeLock();
         getScreenSizeAndSendValueToApplicationClass();
-        setContainerMeasure();
-        //drawer = (CustomDrawer) findViewById(R.id.drawer);
+        setFragmentsMeasure();
         setConsoleFragment();
         setSamplerSlotsFragment();
         setSamplerControlsFragment();
@@ -72,7 +69,7 @@ public class MainActivity extends Activity implements View.OnTouchListener {
             if(fr != null) {
                 fr.setState(_state);
             }
-            setContainerMeasure();
+            setFragmentsMeasure();
             baseContainer.invalidate();
         }
     }
@@ -85,7 +82,7 @@ public class MainActivity extends Activity implements View.OnTouchListener {
         ft.commit();
     }
 
-    private void setContainerMeasure() {
+    private void setFragmentsMeasure() {
 
         int slotBaseContainerWidth = _state == SlotsContainerState.CLOSE ?
                 screenSize.y :
@@ -101,6 +98,7 @@ public class MainActivity extends Activity implements View.OnTouchListener {
     }
 
     private void setSamplerControlsFragment() {
+
         Bundle bundle = new Bundle();
         bundle.putSerializable("STATE", _state);
         Fragment sampleButtonFragment = SamplerSlotsFragment.getInstance();
@@ -145,8 +143,8 @@ public class MainActivity extends Activity implements View.OnTouchListener {
 
     private void setWakeLock() {
         final PowerManager pom = (PowerManager) getSystemService(Context.POWER_SERVICE);
-        this.mWakeLock = pom.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK, Constants.WAKE_LOCK);
-        this.mWakeLock.acquire();
+        this.wakeLock = pom.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK, Constants.WAKE_LOCK);
+        this.wakeLock.acquire();
     }
 
     private void getRateAndFrames() {
@@ -172,18 +170,10 @@ public class MainActivity extends Activity implements View.OnTouchListener {
             Log.v("jajaja", "NOT supported");
     }
 
-
-
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        Log.v("jajajaFM", "on saved instance state");
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        this.mWakeLock.release();
+    protected void onResume() {
+        super.onResume();
+        BusStation.getBus().register(this);
     }
 
     @Override
@@ -193,71 +183,13 @@ public class MainActivity extends Activity implements View.OnTouchListener {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        BusStation.getBus().register(this);
-        /*int index = 0;
-        for (SampleSlot slot : SoundHub.getInstance().getSamplesController().getSampleSlots()) {
-            if (slot != null && slot.isPlaying()) {
-                SlotView slotView = (SlotView) ((ViewGroup) findViewById(R.string.slotCustomLayout)).getChildAt(index);
-                PlayingRotationView rotateView = (PlayingRotationView) slotView.getChildAt(1);
-                if (!rotateView.isPlaying())
-                    rotateView.setPlaying(true);
-            }
-            index++;
-        }*/
+    protected void onDestroy() {
+        super.onDestroy();
+        this.wakeLock.release();
     }
 
     public void updateFromNative() {
 
         Toast.makeText(this, "Finished", Toast.LENGTH_SHORT).show();
     }
-
-    @Override
-    public boolean onTouch(View v, MotionEvent event) {
-        /*SetLoopDialogFragment fr = (SetLoopDialogFragment) getFragmentManager()
-                .findFragmentByTag(SetLoopDialogFragment._TAG);
-        if (fr != null) {
-            fr.dismiss();
-
-            return true;
-        }*/
-        return false;
-    }
-
-    /*@Override
-    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        CursorLoader loader = new CursorLoader(this, EffectsSamplerContentProvider.SAMPLES_URI, null, null, null, null);
-        return loader;
-    }
-
-    @Override
-    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        cursorAdapter.changeCursor(data);
-    }
-
-    @Override
-    public void onLoaderReset(Loader<Cursor> data) {
-        cursorAdapter.changeCursor(null);
-    }
-
-    @Override
-    public void drawerChange(boolean visible) {
-        isDrawerVisible = visible;
-    }
-
-    @Override
-    public void onDeckCreated(String name) {
-
-        ContentValues values = new ContentValues();
-        values.put(DecksHelper.DECK_NAME, name);
-        Uri newDeckID = getContentResolver().insert(EffectsSamplerContentProvider.DECKS_URI, values);
-        // create deck empty slots in database
-        DecksDatabaseHelper.get().setDeck(this, Integer.parseInt(newDeckID.toString()));
-
-        MainControlsFragment fr = (MainControlsFragment) getFragmentManager()
-                .findFragmentByTag(MainControlsFragment._TAG);
-        if (fr != null)
-            fr.setUpdated(true);
-    }*/
 }
