@@ -8,9 +8,6 @@ import com.vuric.nativemusicsampler.enums.SlotsContainerState;
 import com.vuric.nativemusicsampler.listeners.SlotsContainerGestureListener;
 import com.vuric.nativemusicsampler.models.PlayerModel;
 
-/**
- * Created by stefano on 4/24/2016.
- */
 public class SlotsContainerRelativeLayout extends RelativeLayout {
 
     private int w,h;
@@ -61,15 +58,14 @@ public class SlotsContainerRelativeLayout extends RelativeLayout {
 
         for(int i = 0; i < slots; ++i) {
 
-            PlayerView v = null;
+            PlayerView v;
 
             if(states != null) {
-                v = new PlayerView(getContext(), _state, states[i]);
+                v = new PlayerView(getContext(), _state, states[i], _listener, i);
             } else {
-                v = new PlayerView(getContext(), _state);
+                v = new PlayerView(getContext(), _state, _listener, i);
             }
 
-            v.setId(i);
             v.setOnTouchListener(_listener);
             addView(v);
         }
