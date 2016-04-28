@@ -4,12 +4,11 @@ import android.content.Context;
 import android.graphics.Color;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.squareup.otto.Subscribe;
 import com.vuric.nativemusicsampler.BusStation;
-import com.vuric.nativemusicsampler.SelectSamplesSlotEvt;
+import com.vuric.nativemusicsampler.SampleSlotSelected;
 import com.vuric.nativemusicsampler.enums.SlotsContainerState;
 import com.vuric.nativemusicsampler.models.PlayerModel;
 
@@ -24,18 +23,23 @@ public class PlayerView extends RelativeLayout {
     private View bottomView;
     private SlotsContainerState _state;
     private PlayerModel _model;
+    private OnTouchListener _listener;
 
-    public PlayerView(Context context, SlotsContainerState state) {
+    public PlayerView(Context context, SlotsContainerState state, OnTouchListener listener, int id) {
         super(context);
         _model = new PlayerModel();
         _state = state;
+        _listener = listener;
+        setId(id);
         init();
     }
 
-    public PlayerView(Context context, SlotsContainerState state, PlayerModel model) {
+    public PlayerView(Context context, SlotsContainerState state, PlayerModel model, OnTouchListener listener, int id) {
         super(context);
         _model = model;
         _state = state;
+        _listener = listener;
+        setId(id);
         init();
     }
 
@@ -50,19 +54,25 @@ public class PlayerView extends RelativeLayout {
 
 
         playView = new View(getContext());
+        playView.setId(getId());
         playView.setOnTouchListener(new View.OnTouchListener() {
 
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                return ((ViewGroup)getParent()).onTouchEvent(event);
+                return _listener.onTouch(v,event);
             }
         });
+        playView.setTag("PlayView");
         addView(playView);
 
         topView = new View(getContext());
+        topView.setId(getId());
+        topView.setTag("TopView");
         addView(topView);
 
         bottomView = new View(getContext());
+        bottomView.setId(getId());
+        bottomView.setTag("BottomView");
         addView(bottomView);
     }
 
@@ -130,7 +140,7 @@ public class PlayerView extends RelativeLayout {
     }
 
     @Subscribe
-    public void receiveMessage(SelectSamplesSlotEvt evt) {
+    public void receiveMessage(SampleSlotSelected evt) {
         if(evt.getViewID() == getId()) {
             _model.setSelected(true);
             playView.setBackgroundColor(Color.parseColor("#FFFFFF"));

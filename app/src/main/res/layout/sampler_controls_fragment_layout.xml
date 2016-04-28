@@ -1,52 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.percent.PercentFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/controlsFragmentLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    android:orientation="vertical"
-    android:gravity="right"
-    android:layout_gravity="right" >
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/controlsContainer"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_widthPercent="70%"
+        app:layout_heightPercent="100%"
+        android:layout_gravity="left"/>
 
     <LinearLayout
         android:id="@+id/rightButtonsFragmentContainer"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal" >
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_widthPercent="30%"
+        app:layout_heightPercent="100%"
+        android:orientation="vertical"
+        android:layout_gravity="right">
 
         <Button
-            android:id="@+id/mainButton"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:id="@+id/infoButton"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="Main"
+            android:text="Info"
             android:textAppearance="?android:attr/textAppearanceSmall"/>
 
         <Button
-            android:id="@+id/slotButton"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:id="@+id/loadButton"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="Slot"
+            android:text="Load"
+            android:textAppearance="?android:attr/textAppearanceSmall"/>
+
+        <Button
+            android:id="@+id/volumeButton"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="Vol"
+            android:textAppearance="?android:attr/textAppearanceSmall"/>
+
+        <Button
+            android:id="@+id/pitchButton"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="Pitch"
             android:textAppearance="?android:attr/textAppearanceSmall"/>
 
         <Button
             android:id="@+id/loopButton"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1"
             android:text="Loop"
             android:textAppearance="?android:attr/textAppearanceSmall"/>
 
-    </LinearLayout>
+        <Button
+            android:id="@+id/effectsButton"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="Efx"
+            android:textAppearance="?android:attr/textAppearanceSmall"/>
 
-    <LinearLayout
-        android:id="@+id/controlsRightContainer"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="9" >
     </LinearLayout>
-
-</LinearLayout>
+</android.support.percent.PercentFrameLayout>

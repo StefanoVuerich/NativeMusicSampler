@@ -9,7 +9,7 @@ import android.view.View;
 
 import com.vuric.nativemusicsampler.BusStation;
 import com.vuric.nativemusicsampler.SlotsContainerEvt;
-import com.vuric.nativemusicsampler.SelectSamplesSlotEvt;
+import com.vuric.nativemusicsampler.SampleSlotSelected;
 import com.vuric.nativemusicsampler.enums.SlotsContainerState;
 import com.vuric.nativemusicsampler.fragments.ConsoleFragment;
 import com.vuric.nativemusicsampler.utils.Constants;
@@ -30,6 +30,9 @@ public class SlotsContainerGestureListener implements View.OnTouchListener {
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
+
+        String tag = (String) v.getTag();
+
         _lastTouchedView = v;
         return _gestureDetector.onTouchEvent(event);
     }
@@ -41,8 +44,7 @@ public class SlotsContainerGestureListener implements View.OnTouchListener {
         @Override
         public void onLongPress(MotionEvent e) {
             Log.d(Constants.APP_TAG, "Long press");
-            BusStation.getBus().post(new SelectSamplesSlotEvt(_lastTouchedView.getId()));
-
+            BusStation.getBus().post(new SampleSlotSelected(_lastTouchedView.getId()));
             super.onLongPress(e);
         }
 

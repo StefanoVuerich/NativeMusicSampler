@@ -10,4 +10,11 @@
         <item>Flanger</item>
         <item>Equalizer</item>
     </string-array>
+
+    <string name="info_fragment">Info</string>
+    <string name="load_fragment">Load</string>
+    <string name="volume_fragment">Volume</string>
+    <string name="pitch_fragment">Pitch</string>
+    <string name="loop_fragment">Loop</string>
+    <string name="effects_fragment">Effects</string>
 </resources>

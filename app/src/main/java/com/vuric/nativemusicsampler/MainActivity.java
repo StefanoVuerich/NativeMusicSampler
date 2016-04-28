@@ -57,9 +57,9 @@ public class MainActivity extends Activity {
     }
 
     @Subscribe
-    public void receiveMessage(SlotsContainerEvt message) {
+    public void receiveMessage(SlotsContainerEvt evt) {
 
-        SlotsContainerState newState =  message.getState();
+        SlotsContainerState newState =  evt.getState();
 
         if(newState != _state) {
             _state = newState;
@@ -70,6 +70,15 @@ public class MainActivity extends Activity {
             setFragmentsMeasure();
             baseContainer.invalidate();
         }
+    }
+
+    @Subscribe
+    public void receiveMessage(SampleSlotSelected evt) {
+
+        getFragmentManager()
+                .beginTransaction()
+                .replace(R.id.samplerControlsContainer, SamplerControlsFragment.getInstance(), SamplerControlsFragment._TAG)
+                .commit();
     }
 
     private void setFragmentsMeasure() {
