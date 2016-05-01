@@ -8,10 +8,11 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.vuric.nativemusicsampler.BusStation;
-import com.vuric.nativemusicsampler.SlotsContainerEvt;
-import com.vuric.nativemusicsampler.SampleSlotSelected;
+import com.vuric.nativemusicsampler.events.SlotsContainerEvt;
+import com.vuric.nativemusicsampler.events.SampleSlotSelectedEvt;
 import com.vuric.nativemusicsampler.enums.SlotsContainerState;
 import com.vuric.nativemusicsampler.fragments.ConsoleFragment;
+import com.vuric.nativemusicsampler.layouts.PlayerView;
 import com.vuric.nativemusicsampler.utils.Constants;
 
 /**
@@ -21,7 +22,7 @@ public class SlotsContainerGestureListener implements View.OnTouchListener {
 
     private final GestureDetector _gestureDetector;
     private ConsoleFragment _consoleFragment;
-    private View _lastTouchedView;
+    private PlayerView _lastTouchedView;
 
     public SlotsContainerGestureListener(Context context) {
         _gestureDetector = new GestureDetector(context, new GestureListener());
@@ -33,24 +34,21 @@ public class SlotsContainerGestureListener implements View.OnTouchListener {
 
         String tag = (String) v.getTag();
 
-        _lastTouchedView = v;
+        _lastTouchedView = (PlayerView) v.getParent();
         return _gestureDetector.onTouchEvent(event);
     }
 
     private final class GestureListener extends GestureDetector.SimpleOnGestureListener {
 
-
-
         @Override
         public void onLongPress(MotionEvent e) {
-            Log.d(Constants.APP_TAG, "Long press");
-            BusStation.getBus().post(new SampleSlotSelected(_lastTouchedView.getId()));
+            BusStation.getBus().post(new SampleSlotSelectedEvt(_lastTouchedView.getModel()));
             super.onLongPress(e);
         }
 
         @Override
         public boolean onSingleTapUp(MotionEvent e) {
-            _consoleFragment.getPlayer(_lastTouchedView.getId()).play();
+            _consoleFragment.getPlayer(_lastTouchedView.getModel().getID()).play();
             return true;
         }
 

@@ -8,12 +8,22 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.vuric.nativemusicsampler.R;
+import com.vuric.nativemusicsampler.models.PlayerModel;
 
 public class SamplerControlsFragment extends Fragment implements View.OnClickListener {
 
     public final static String _TAG = SamplerControlsFragment.class.getSimpleName();
+    public static final String PLAYER_MODEL = "PLAYER_MODEL";
     private Button infoButton, loadButton, volumeButton, pitchButton, loopButton, effectsButton;
     private Button lastclickeButton = null;
+    private PlayerModel _playerModel;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        _playerModel = (PlayerModel) getArguments().getSerializable(PLAYER_MODEL);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -46,8 +56,15 @@ public class SamplerControlsFragment extends Fragment implements View.OnClickLis
         return rootView;
     }
 
-    public static SamplerControlsFragment getInstance() {
-        return new SamplerControlsFragment();
+    public static Fragment getInstance(PlayerModel playerModel) {
+
+        Bundle args = new Bundle();
+        args.putSerializable(PLAYER_MODEL, playerModel);
+
+        Fragment fragment = new SamplerControlsFragment();
+        fragment.setArguments(args);
+
+        return fragment;
     }
 
     @Override
@@ -64,7 +81,7 @@ public class SamplerControlsFragment extends Fragment implements View.OnClickLis
                 TAG = SlotInfoFragment._TAG;
                 break;
             case R.id.loadButton:
-                fragment = SlotLoadFragment.newInstance();
+                fragment = SlotLoadFragment.newInstance(_playerModel.getID());
                 TAG = SlotLoadFragment._TAG;
                 break;
             case R.id.volumeButton:
@@ -97,5 +114,10 @@ public class SamplerControlsFragment extends Fragment implements View.OnClickLis
 
         v.setEnabled(false);
         lastclickeButton = (Button) v;
+    }
+
+    public static Fragment getInstance() {
+
+        return new SamplerControlsFragment();
     }
 }

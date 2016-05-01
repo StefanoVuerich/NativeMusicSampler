@@ -19,6 +19,8 @@ import android.widget.Toast;
 
 import com.squareup.otto.Subscribe;
 import com.vuric.nativemusicsampler.enums.SlotsContainerState;
+import com.vuric.nativemusicsampler.events.SampleSlotSelectedEvt;
+import com.vuric.nativemusicsampler.events.SlotsContainerEvt;
 import com.vuric.nativemusicsampler.fragments.ConsoleFragment;
 import com.vuric.nativemusicsampler.fragments.SamplerControlsFragment;
 import com.vuric.nativemusicsampler.fragments.SamplerSlotsFragment;
@@ -73,11 +75,11 @@ public class MainActivity extends Activity {
     }
 
     @Subscribe
-    public void receiveMessage(SampleSlotSelected evt) {
+    public void receiveMessage(SampleSlotSelectedEvt evt) {
 
         getFragmentManager()
                 .beginTransaction()
-                .replace(R.id.samplerControlsContainer, SamplerControlsFragment.getInstance(), SamplerControlsFragment._TAG)
+                .replace(R.id.samplerControlsContainer, SamplerControlsFragment.getInstance(evt.getPlayerModel()), SamplerControlsFragment._TAG)
                 .commit();
     }
 

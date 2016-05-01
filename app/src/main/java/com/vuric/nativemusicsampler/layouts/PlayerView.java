@@ -8,7 +8,8 @@ import android.widget.RelativeLayout;
 
 import com.squareup.otto.Subscribe;
 import com.vuric.nativemusicsampler.BusStation;
-import com.vuric.nativemusicsampler.SampleSlotSelected;
+import com.vuric.nativemusicsampler.events.SampleSelectedEvt;
+import com.vuric.nativemusicsampler.events.SampleSlotSelectedEvt;
 import com.vuric.nativemusicsampler.enums.SlotsContainerState;
 import com.vuric.nativemusicsampler.models.PlayerModel;
 
@@ -28,9 +29,9 @@ public class PlayerView extends RelativeLayout {
     public PlayerView(Context context, SlotsContainerState state, OnTouchListener listener, int id) {
         super(context);
         _model = new PlayerModel();
+        _model.setID(id);
         _state = state;
         _listener = listener;
-        setId(id);
         init();
     }
 
@@ -39,7 +40,6 @@ public class PlayerView extends RelativeLayout {
         _model = model;
         _state = state;
         _listener = listener;
-        setId(id);
         init();
     }
 
@@ -140,8 +140,8 @@ public class PlayerView extends RelativeLayout {
     }
 
     @Subscribe
-    public void receiveMessage(SampleSlotSelected evt) {
-        if(evt.getViewID() == getId()) {
+    public void receiveMessage(SampleSlotSelectedEvt evt) {
+        if(evt.getPlayerModel().getID() == getModel().getID()) {
             _model.setSelected(true);
             playView.setBackgroundColor(Color.parseColor("#FFFFFF"));
         } else {
@@ -149,6 +149,33 @@ public class PlayerView extends RelativeLayout {
                 _model.setSelected(false);
                 playView.setBackgroundColor(Color.parseColor("#000000"));
             }
+        }
+    }
+
+    @Subscribe
+    public void receiveMessage(SampleSelectedEvt evt) {
+
+        if(evt.get_slotID() == getModel().getID()) {
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+
+                    post(new Runnable() {
+                        @Override
+                        public void run() {
+                            playView.setBackgroundColor(Color.parseColor("#0000FF"));
+                        }
+                    });
+
+                    postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            playView.setBackgroundColor(_model.isSelected() ? Color.parseColor("#FFFFFF") : Color.parseColor("#000000"));
+                        }
+                    }, 200);
+                }
+            }).run();
         }
     }
 }

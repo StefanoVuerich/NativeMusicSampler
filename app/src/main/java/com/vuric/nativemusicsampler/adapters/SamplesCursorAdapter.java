@@ -10,8 +10,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.vuric.nativemusicsampler.BusStation;
 import com.vuric.nativemusicsampler.R;
 import com.vuric.nativemusicsampler.database.helpers.SamplesHelper;
+import com.vuric.nativemusicsampler.events.SampleSelectedEvt;
 import com.vuric.nativemusicsampler.models.SampleObj;
 
 import java.util.ArrayList;
@@ -23,10 +25,12 @@ import java.util.List;
 public class SamplesCursorAdapter extends CursorAdapter {
 
     private List<SampleObj> samples;
+    private int _currentSelectedSlotID;
 
-    public SamplesCursorAdapter(Context context, Cursor c) {
+    public SamplesCursorAdapter(Context context, Cursor c, int currentSelectedSlotID) {
         super(context, c, 0);
         samples = new ArrayList<SampleObj>();
+        _currentSelectedSlotID = currentSelectedSlotID;
     }
 
     static class ViewHolder {
@@ -40,6 +44,18 @@ public class SamplesCursorAdapter extends CursorAdapter {
 
         LayoutInflater vInflater = LayoutInflater.from(context);
         View vView = vInflater.inflate(R.layout.sample_item_layout, null);
+        vView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Cursor cursor = getCursor();
+
+                BusStation.getBus().post(
+                        new SampleSelectedEvt(
+                                cursor.getString(cursor.getColumnIndex(SamplesHelper.PATH)),
+                                _currentSelectedSlotID));
+            }
+        });
 
         ViewHolder holder = new ViewHolder();
         holder.container = (LinearLayout) vView.findViewById(R.id.sampleItemContainer);

@@ -1,4 +1,4 @@
-package com.vuric.nativemusicsampler;
+package com.vuric.nativemusicsampler.events;
 
 import com.vuric.nativemusicsampler.enums.SlotsContainerState;
 

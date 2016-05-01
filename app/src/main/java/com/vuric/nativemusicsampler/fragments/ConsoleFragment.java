@@ -6,9 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.squareup.otto.Subscribe;
+import com.vuric.nativemusicsampler.BusStation;
 import com.vuric.nativemusicsampler.controllers.Console;
 import com.vuric.nativemusicsampler.controllers.Mixer;
 import com.vuric.nativemusicsampler.controllers.Player;
+import com.vuric.nativemusicsampler.events.SampleSelectedEvt;
 import com.vuric.nativemusicsampler.interfaces.IConsole;
 import com.vuric.nativemusicsampler.interfaces.IMixer;
 import com.vuric.nativemusicsampler.interfaces.IPlayer;
@@ -29,6 +32,12 @@ public class ConsoleFragment extends Fragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        BusStation.getBus().register(this);
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -38,6 +47,12 @@ public class ConsoleFragment extends Fragment {
         _mixer = new Mixer();
         _players = generatePlayers();
         _console.init();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        BusStation.getBus().unregister(this);
     }
 
     private IPlayer[] generatePlayers() {
@@ -72,5 +87,11 @@ public class ConsoleFragment extends Fragment {
 
     public IPlayer[] getPlayers() {
         return _players;
+    }
+
+    @Subscribe
+    public void receiveMessage(SampleSelectedEvt evt) {
+
+        _players[evt.get_slotID()].load(evt.get_path());
     }
 }

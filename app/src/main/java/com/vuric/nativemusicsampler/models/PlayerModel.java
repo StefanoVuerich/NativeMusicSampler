@@ -2,27 +2,31 @@ package com.vuric.nativemusicsampler.models;
 
 import com.vuric.nativemusicsampler.enums.PlayState;
 
+import java.io.Serializable;
+
 /**
  * Created by stefano on 4/7/2016.
  */
-public class PlayerModel {
+public class PlayerModel implements Serializable {
 
-    private int _index;
+    private int _ID;
     private boolean _loop;
     private PlayState _state;
     private boolean _ready;
     private boolean _loaded;
     private boolean _selected;
+    private SampleObj _sampleInfo;
 
     public PlayerModel() {}
 
-    public PlayerModel(int index, boolean loop, PlayState state, boolean ready, boolean loaded, boolean selected) {
-        _index = index;
+    public PlayerModel(int index, boolean loop, PlayState state, boolean ready, boolean loaded, boolean selected, SampleObj sampleInfo) {
+        _ID = index;
         _loop = loop;
         _state = state;
         _ready = ready;
         _loaded = loaded;
         _selected = selected;
+        _sampleInfo = sampleInfo;
     }
 
     public boolean isLoaded() {
@@ -57,12 +61,12 @@ public class PlayerModel {
         this._loop = _loop;
     }
 
-    public int getIndex() {
-        return _index;
+    public int getID() {
+        return _ID;
     }
 
-    public void setIndex(int _index) {
-        this._index = _index;
+    public void setID(int _index) {
+        this._ID = _index;
     }
 
     public boolean isSelected() {

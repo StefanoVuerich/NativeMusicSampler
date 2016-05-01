@@ -32,15 +32,18 @@ import java.util.Set;
 public class SlotLoadFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>{
 
     public static final String _TAG = SlotLoadFragment.class.getSimpleName();
+    public static final String CURRENT_SELECTED_SLOT_ID = "CURRENT_SELECTED_SLOT_ID";
+    private int _currentSelectedSlotID;
+
     public static SlotLoadFragment getInstance() {
         return new SlotLoadFragment();
     }
     private SamplesCursorAdapter cursorAdapter;
 
-    public static Fragment newInstance() {
+    public static Fragment newInstance(int currentSelectedSlotID) {
 
         Bundle args = new Bundle();
-
+        args.putInt(CURRENT_SELECTED_SLOT_ID, currentSelectedSlotID);
         Fragment fragment = new SlotLoadFragment();
         fragment.setArguments(args);
         return fragment;
@@ -49,7 +52,8 @@ public class SlotLoadFragment extends Fragment implements LoaderManager.LoaderCa
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+
+        _currentSelectedSlotID = getArguments().getInt(CURRENT_SELECTED_SLOT_ID);
         checkFiles();
     }
 
@@ -61,7 +65,7 @@ public class SlotLoadFragment extends Fragment implements LoaderManager.LoaderCa
                 R.layout.slot_load_fragment_layout, container, false);
 
         ListView l = (ListView) rootView.findViewById(R.id.samplesListView);
-        cursorAdapter = new SamplesCursorAdapter(getActivity(), null);
+        cursorAdapter = new SamplesCursorAdapter(getActivity(), null, _currentSelectedSlotID);
         l.setAdapter(cursorAdapter);
         //samplerSlotsBaseContainer.setMyAdapter(cursorAdapter);
         getLoaderManager().initLoader(0, null, this);
