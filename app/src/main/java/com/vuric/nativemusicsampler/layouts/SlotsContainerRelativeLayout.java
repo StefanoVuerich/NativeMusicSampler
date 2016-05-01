@@ -1,10 +1,13 @@
 package com.vuric.nativemusicsampler.layouts;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
 
+import com.vuric.nativemusicsampler.controllers.PlayerController;
 import com.vuric.nativemusicsampler.enums.SlotsContainerState;
+import com.vuric.nativemusicsampler.fragments.ConsoleFragment;
 import com.vuric.nativemusicsampler.listeners.SlotsContainerGestureListener;
 import com.vuric.nativemusicsampler.models.PlayerModel;
 
@@ -15,6 +18,7 @@ public class SlotsContainerRelativeLayout extends RelativeLayout {
     private SlotsContainerState _state;
     private OnTouchListener _listener;
     private int _slots;
+    private ConsoleFragment _consoleFragment;
 
     public SlotsContainerRelativeLayout(Context context) {
         super(context);
@@ -50,25 +54,32 @@ public class SlotsContainerRelativeLayout extends RelativeLayout {
         }
     }
 
-    private void init(int slots, PlayerModel[] states) {
-        _slots = slots;
-        _listener =  new SlotsContainerGestureListener(getContext());
+    private void init(int slots, PlayerModel[] models) {
+
+        _consoleFragment = (ConsoleFragment) ((Activity)getContext()).getFragmentManager().findFragmentByTag(ConsoleFragment._TAG);
 
         setOnTouchListener(_listener);
+
+        _slots = slots;
+        _listener =  new SlotsContainerGestureListener(getContext());
+        PlayerController[] controllers = new PlayerController[slots];
 
         for(int i = 0; i < slots; ++i) {
 
             PlayerView v;
 
-            if(states != null) {
-                v = new PlayerView(getContext(), _state, states[i], _listener, i);
+            if(models != null) {
+                v = new PlayerView(getContext(), _state, models[i], _listener, i);
             } else {
                 v = new PlayerView(getContext(), _state, _listener, i);
             }
 
             v.setOnTouchListener(_listener);
             addView(v);
+            controllers[i] = v.getController();
         }
+
+        _consoleFragment.setPlayers(controllers);
     }
 
     @Override

@@ -8,6 +8,8 @@ import android.widget.RelativeLayout;
 
 import com.squareup.otto.Subscribe;
 import com.vuric.nativemusicsampler.BusStation;
+import com.vuric.nativemusicsampler.controllers.PlayerController;
+import com.vuric.nativemusicsampler.enums.PlayState;
 import com.vuric.nativemusicsampler.events.SampleSelectedEvt;
 import com.vuric.nativemusicsampler.events.SampleSlotSelectedEvt;
 import com.vuric.nativemusicsampler.enums.SlotsContainerState;
@@ -23,13 +25,17 @@ public class PlayerView extends RelativeLayout {
     private View topView;
     private View bottomView;
     private SlotsContainerState _state;
-    private PlayerModel _model;
+    private PlayerController _controller;
     private OnTouchListener _listener;
 
     public PlayerView(Context context, SlotsContainerState state, OnTouchListener listener, int id) {
         super(context);
-        _model = new PlayerModel();
-        _model.setID(id);
+
+        PlayerModel model = new PlayerModel();
+        model.setID(id);
+        model.setState(PlayState.STOP);
+        _controller = new PlayerController(model);
+
         _state = state;
         _listener = listener;
         init();
@@ -37,14 +43,20 @@ public class PlayerView extends RelativeLayout {
 
     public PlayerView(Context context, SlotsContainerState state, PlayerModel model, OnTouchListener listener, int id) {
         super(context);
-        _model = model;
+
+        _controller = new PlayerController(model);
+
         _state = state;
         _listener = listener;
         init();
     }
 
     public PlayerModel getModel() {
-        return _model;
+        return _controller.getModel();
+    }
+
+    public PlayerController getController() {
+        return _controller;
     }
 
     private void init() {
@@ -95,7 +107,7 @@ public class PlayerView extends RelativeLayout {
         int mWidth = w = wSpecSize;
 
         View playView = getChildAt(0);
-        playView.setBackgroundColor(_model.isSelected() ? Color.parseColor("#FFFFFF") : Color.parseColor("#000000"));
+        playView.setBackgroundColor(_controller.getModel().isSelected() ? Color.parseColor("#FFFFFF") : Color.parseColor("#000000"));
         playView.setLayoutParams(new RelativeLayout.LayoutParams(mHeight, mHeight));
 
         int currentWidth = _state == SlotsContainerState.CLOSE ? 0 : h / 2;
@@ -142,13 +154,11 @@ public class PlayerView extends RelativeLayout {
     @Subscribe
     public void receiveMessage(SampleSlotSelectedEvt evt) {
         if(evt.getPlayerModel().getID() == getModel().getID()) {
-            _model.setSelected(true);
+            _controller.setSelected(true);
             playView.setBackgroundColor(Color.parseColor("#FFFFFF"));
         } else {
-            if(_model.isSelected()) {
-                _model.setSelected(false);
-                playView.setBackgroundColor(Color.parseColor("#000000"));
-            }
+            _controller.setSelected(false);
+            playView.setBackgroundColor(Color.parseColor("#000000"));
         }
     }
 
@@ -164,14 +174,14 @@ public class PlayerView extends RelativeLayout {
                     post(new Runnable() {
                         @Override
                         public void run() {
-                            playView.setBackgroundColor(Color.parseColor("#0000FF"));
+                            _controller.setColor("#0000FF", playView);
                         }
                     });
 
                     postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            playView.setBackgroundColor(_model.isSelected() ? Color.parseColor("#FFFFFF") : Color.parseColor("#000000"));
+                            _controller.setColor(_controller.getModel().isSelected() ? "#FFFFFF" : "#000000", playView);
                         }
                     }, 200);
                 }

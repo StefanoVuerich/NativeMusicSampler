@@ -10,12 +10,10 @@ import com.squareup.otto.Subscribe;
 import com.vuric.nativemusicsampler.BusStation;
 import com.vuric.nativemusicsampler.controllers.Console;
 import com.vuric.nativemusicsampler.controllers.Mixer;
-import com.vuric.nativemusicsampler.controllers.Player;
 import com.vuric.nativemusicsampler.events.SampleSelectedEvt;
 import com.vuric.nativemusicsampler.interfaces.IConsole;
 import com.vuric.nativemusicsampler.interfaces.IMixer;
 import com.vuric.nativemusicsampler.interfaces.IPlayer;
-import com.vuric.nativemusicsampler.utils.Constants;
 
 /**
  * Created by stefano on 4/9/2016.
@@ -45,7 +43,7 @@ public class ConsoleFragment extends Fragment {
 
         _console = new Console();
         _mixer = new Mixer();
-        _players = generatePlayers();
+        //_players = generatePlayers();
         _console.init();
     }
 
@@ -55,13 +53,17 @@ public class ConsoleFragment extends Fragment {
         BusStation.getBus().unregister(this);
     }
 
-    private IPlayer[] generatePlayers() {
-        Player[] players = new Player[Constants.SLOTS];
+    public void setPlayers(IPlayer[] players) {
+        _players = players;
+    }
+
+    /*private IPlayer[] generatePlayers() {
+        PlayerController[] players = new PlayerController[Constants.SLOTS];
         for(int i = 0; i < players.length; ++i) {
-            players[i] = new Player();
+            players[i] = new PlayerController(_model);
         }
         return players;
-    }
+    }*/
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

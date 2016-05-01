@@ -14,8 +14,17 @@ Console::Console(Options options) {
         Logger::log("Try to create new player");
         Player *tmp = new Player(*_engine->getEngine(), *_mixer->getMixer());
         _players.push_back(tmp);
-        Logger::log("Player pushed to vector");
+        Logger::log("PlayerController pushed to vector");
     }
 }
 
 Console::~Console() { }
+
+/*void Console::loadSample(int slotIndex, string path) {
+    _players[slotIndex]->load(path);
+}*/
+
+IPlayer* Console::getPlayer(int index) {
+
+    return _players[index];
+}

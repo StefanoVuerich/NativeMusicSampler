@@ -1,8 +1,7 @@
 package com.vuric.nativemusicsampler.controllers;
 
-import android.util.Log;
-
 import com.vuric.nativemusicsampler.interfaces.IConsole;
+import com.vuric.nativemusicsampler.nativeaudio.NativeWrapper;
 import com.vuric.nativemusicsampler.utils.Constants;
 
 /**
@@ -10,17 +9,17 @@ import com.vuric.nativemusicsampler.utils.Constants;
  */
 public class Console implements IConsole {
 
-    @Override
-    public boolean init() {
-        Log.d(Constants.APP_TAG, "Init console");
-        return true;
-        //return NativeWrapper.init(Constants.SLOTS);
+    static {
+        System.loadLibrary("native-audio-jni");
     }
 
     @Override
-    public boolean shutdown() {
-        Log.d(Constants.APP_TAG, "Shutdown console");
-        return true;
-        //return NativeWrapper.shutdown();
+    public void init() {
+        NativeWrapper.init(Constants.SLOTS, new int[] {0,0,0,0,0});
+    }
+
+    @Override
+    public void shutdown() {
+        NativeWrapper.shutdown();
     }
 }

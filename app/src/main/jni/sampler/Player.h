@@ -30,6 +30,8 @@ public:
 private:
     bool loaded;
     int state;
+    SLEngineItf _engine;
+    SLObjectItf _mixer;
     SLObjectItf _player;
     SLBufferQueueItf _bufferQueueItf;
     SLPlayItf _playInterface;

@@ -20,11 +20,12 @@ class Console : public IConsole {
 public:
     Console(Options options);
     ~Console();
+    //void loadSample(int slotIndex, string path);
+    IPlayer *getPlayer(int index);
 
 private:
     IEngine *_engine;
     IMixer *_mixer;
-    IPlayersController *_playerController;
     std::vector<IPlayer*> _players;
 };
 

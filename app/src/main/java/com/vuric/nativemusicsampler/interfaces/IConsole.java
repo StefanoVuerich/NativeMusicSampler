@@ -5,6 +5,6 @@ package com.vuric.nativemusicsampler.interfaces;
  */
 public interface IConsole {
 
-    boolean init();
-    boolean shutdown();
+    void init();
+    void shutdown();
 }

@@ -23,6 +23,13 @@
                 android:paddingTop="8dp"
                 android:text="Name" />
 
+            <TextView
+                android:id="@+id/samplePath"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="8dp"
+                android:text="Path" />
+
             <RatingBar
                 android:id="@+id/ratingBar1"
                 style="?android:attr/ratingBarStyleSmall"

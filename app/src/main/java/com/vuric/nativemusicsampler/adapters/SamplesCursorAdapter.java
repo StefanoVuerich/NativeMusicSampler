@@ -10,11 +10,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.vuric.nativemusicsampler.BusStation;
 import com.vuric.nativemusicsampler.R;
 import com.vuric.nativemusicsampler.database.helpers.SamplesHelper;
-import com.vuric.nativemusicsampler.events.SampleSelectedEvt;
 import com.vuric.nativemusicsampler.models.SampleObj;
+import com.vuric.nativemusicsampler.nativeaudio.NativeWrapper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +34,7 @@ public class SamplesCursorAdapter extends CursorAdapter {
 
     static class ViewHolder {
         public LinearLayout container;
-        public TextView sampleName;
+        public TextView sampleName, samplePath;
         public ImageView selectedItem;
     }
 
@@ -44,22 +43,11 @@ public class SamplesCursorAdapter extends CursorAdapter {
 
         LayoutInflater vInflater = LayoutInflater.from(context);
         View vView = vInflater.inflate(R.layout.sample_item_layout, null);
-        vView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Cursor cursor = getCursor();
-
-                BusStation.getBus().post(
-                        new SampleSelectedEvt(
-                                cursor.getString(cursor.getColumnIndex(SamplesHelper.PATH)),
-                                _currentSelectedSlotID));
-            }
-        });
 
         ViewHolder holder = new ViewHolder();
         holder.container = (LinearLayout) vView.findViewById(R.id.sampleItemContainer);
         holder.sampleName = (TextView) vView.findViewById(R.id.sampleName);
+        holder.samplePath = (TextView) vView.findViewById(R.id.samplePath);
         holder.selectedItem = (ImageView) vView.findViewById(R.id.selectedItem);
 
         vView.setTag(holder);
@@ -68,15 +56,24 @@ public class SamplesCursorAdapter extends CursorAdapter {
     }
 
     @Override
-    public void bindView(View view, Context context, Cursor cursor) {
+    public void bindView(View view, Context context, final Cursor cursor) {
 
         int idColumnIndex = cursor.getColumnIndex(SamplesHelper._ID);
         int nameColumIndex = cursor.getColumnIndex(SamplesHelper.NAME);
+        int pathColumIndex = cursor.getColumnIndex(SamplesHelper.PATH);
         int sizeColumIndex = cursor.getColumnIndex(SamplesHelper.SIZE);
 
-        ViewHolder holder = (ViewHolder) view.getTag();
+        final ViewHolder holder = (ViewHolder) view.getTag();
         holder.container.setId(/*cursor.getInt(idColumnIndex)*/cursor.getPosition());
+        holder.container.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                NativeWrapper.loadSample(_currentSelectedSlotID, holder.samplePath.getText().toString());
+            }
+        });
         holder.sampleName.setText(cursor.getString(nameColumIndex));
+        holder.samplePath.setText(cursor.getString(pathColumIndex));
     }
 
     @Override
