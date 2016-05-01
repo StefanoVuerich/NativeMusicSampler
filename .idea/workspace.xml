@@ -10,37 +10,10 @@
   </component>
   <component name="BookmarkManager">
     <bookmark url="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/layouts/PlayButton.java" description="}" line="29" />
+    <bookmark url="file://$PROJECT_DIR$/app/src/main/jni/sampler/interfaces/IConsole.h" line="11" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5fc1ce23-632e-4965-b551-3c59699d41bc" name="Default" comment="Implementes slot controls">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/events/SampleSelectedEvt.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/events/SampleSlotSelectedEvt.java" />
-      <change type="DELETED" beforePath="C:\Projects\Android\NativeMusicSampler\.idea\libraries\animated_vector_drawable_23_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Projects\Android\NativeMusicSampler\.idea\libraries\appcompat_v7_23_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Projects\Android\NativeMusicSampler\.idea\libraries\commons_cli_1_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Projects\Android\NativeMusicSampler\.idea\libraries\jsr305_2_0_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Projects\Android\NativeMusicSampler\.idea\libraries\otto_1_3_8.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Projects\Android\NativeMusicSampler\.idea\libraries\percent_23_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Projects\Android\NativeMusicSampler\.idea\libraries\stetho_1_3_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Projects\Android\NativeMusicSampler\.idea\libraries\support_annotations_23_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Projects\Android\NativeMusicSampler\.idea\libraries\support_v4_23_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Projects\Android\NativeMusicSampler\.idea\libraries\support_vector_drawable_23_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Projects\Android\NativeMusicSampler\app\src\main\java\com\vuric\nativemusicsampler\Message.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Projects\Android\NativeMusicSampler\app\src\main\java\com\vuric\nativemusicsampler\SampleSlotSelected.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Projects\Android\NativeMusicSampler\app\src\main\java\com\vuric\nativemusicsampler\SelectSamplesSlotEvt.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Projects\Android\NativeMusicSampler\app\src\main\java\com\vuric\nativemusicsampler\ShowSamplesListEvent.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Projects\Android\NativeMusicSampler\app\src\main\java\com\vuric\nativemusicsampler\fragments\SamplesListFragment.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Projects\Android\NativeMusicSampler\app\src\main\res\layout\samples_list_fragment_layout.xml" afterPath="" />
-      <change type="MOVED" beforePath="C:\Projects\Android\NativeMusicSampler\app\src\main\java\com\vuric\nativemusicsampler\SlotsContainerEvt.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/events/SlotsContainerEvt.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/fragments/ConsoleFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/fragments/ConsoleFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/models/PlayerModel.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/models/PlayerModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/layouts/PlayerView.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/layouts/PlayerView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/fragments/SamplerControlsFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/fragments/SamplerControlsFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/adapters/SamplesCursorAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/adapters/SamplesCursorAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/fragments/SlotInfoFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/fragments/SlotInfoFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/fragments/SlotLoadFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/fragments/SlotLoadFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/listeners/SlotsContainerGestureListener.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/listeners/SlotsContainerGestureListener.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="NativeMusicSampler.iws" />
@@ -69,11 +42,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/MainActivity.java">
+      <file leaf-file-name="SlotsContainerGestureListener.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/listeners/SlotsContainerGestureListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.33333334">
-              <caret line="79" column="0" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="50" column="80" selection-start-line="50" selection-start-column="76" selection-end-line="50" selection-end-column="80" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IPlayer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/interfaces/IPlayer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="6" column="9" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PlayerController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/controllers/PlayerController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -81,21 +74,63 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SlotsContainerGestureListener.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/listeners/SlotsContainerGestureListener.java">
+      <file leaf-file-name="GestureDetector.java" pinned="false" current-in-tab="false">
+        <entry file="file://C:/SDKS/android-sdk-windows/sources/android-23/android/view/GestureDetector.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+              <caret line="594" column="0" selection-start-line="594" selection-start-column="0" selection-end-line="594" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SamplerControlsFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/fragments/SamplerControlsFragment.java">
+      <file leaf-file-name="native-audio-jni.c" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/jni/native-audio-jni.c">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="com_vuric_nativemusicsampler_nativeaudio_NativeWrapper.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/jni/com_vuric_nativemusicsampler_nativeaudio_NativeWrapper.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="6.3703704">
+              <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="55" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="com_vuric_nativemusicsampler_nativeaudio_NativeWrapper.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/jni/com_vuric_nativemusicsampler_nativeaudio_NativeWrapper.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-10.296296">
+              <caret line="47" column="58" selection-start-line="47" selection-start-column="58" selection-end-line="47" selection-end-column="58" />
+              <folding>
+                <element signature="e#0#67#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Player.cpp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/jni/sampler/Player.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.5934066">
+              <caret line="36" column="30" selection-start-line="36" selection-start-column="30" selection-end-line="36" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PlayerView.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/layouts/PlayerView.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+              <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -107,85 +142,7 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/adapters/SamplesCursorAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="32" column="55" selection-start-line="32" selection-start-column="55" selection-end-line="32" selection-end-column="55" />
-              <folding>
-                <element signature="e#1491#1894#0" expanded="true" />
-                <element signature="e#1893#1894#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SlotInfoFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/fragments/SlotInfoFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="18" column="39" selection-start-line="18" selection-start-column="39" selection-end-line="18" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ConsoleFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/fragments/ConsoleFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="84" column="0" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
-              <folding>
-                <element signature="e#1034#1035#0" expanded="true" />
-                <element signature="e#1078#1079#0" expanded="true" />
-                <element signature="e#2018#2019#0" expanded="true" />
-                <element signature="e#2053#2054#0" expanded="true" />
-                <element signature="e#2262#2263#0" expanded="true" />
-                <element signature="e#2299#2300#0" expanded="true" />
-                <element signature="e#2330#2331#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SlotLoadFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/fragments/SlotLoadFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="67" column="92" selection-start-line="67" selection-start-column="92" selection-end-line="67" selection-end-column="92" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PlayerView.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/layouts/PlayerView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="157" column="0" selection-start-line="157" selection-start-column="0" selection-end-line="157" selection-end-column="0" />
-              <folding>
-                <element signature="e#5014#5702#0" expanded="true" />
-                <element signature="e#5119#5347#0" expanded="true" />
-                <element signature="e#5346#5347#0" expanded="true" />
-                <element signature="e#5383#5663#0" expanded="true" />
-                <element signature="e#5662#5663#0" expanded="true" />
-                <element signature="e#5701#5702#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Mixer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/controllers/Mixer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Player.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/controllers/Player.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+              <caret line="71" column="0" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -9297,23 +9254,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/BusStation.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/Message.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/slot_view.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/enums/PlayState.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/utils/FileHasher.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/database/helpers/DBHelper.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/database/helpers/SamplesHelper.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/database/EffectsSamplerContentProvider.java" />
-        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/sample_item_layout.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/ShowSamplesListEvent.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/samples_list_fragment_layout.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/fragments/SamplesListFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/sampler_slots_fragment_layout.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/enums/SlotsContainerState.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/interfaces/IPlayer.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/controllers/Player.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/CustomApplicationClass.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/SelectSamplesSlotEvt.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/utils/Constants.java" />
@@ -9334,20 +9274,37 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/fragments/SlotPitchFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/fragments/SlotVolumeFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/slot_info_fragment_layout.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/layouts/SlotsContainerRelativeLayout.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/SampleSlotSelected.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/models/SampleObj.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/models/PlayerModel.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/SampleSlotSelectedEvt.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/events/SampleSelectedEvt.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/adapters/SamplesCursorAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/fragments/ConsoleFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/fragments/SlotInfoFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/fragments/SamplerControlsFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/fragments/SlotLoadFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/listeners/SlotsContainerGestureListener.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/nativeaudio/Wrapper.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/nativeaudio/NativeReceiver.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/interfaces/IConsole.java" />
+        <option value="$PROJECT_DIR$/app/src/main/jni/com_vuric_nativemusicsampler_utils_NativeWrapper.cpp" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/nativeaudio/NativeWrapper.java" />
+        <option value="$PROJECT_DIR$/app/src/main/jni/com_vuric_nativemusicsampler_nativeaudio_NativeWrapper.h" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/controllers/Console.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/controllers/Player.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/fragments/ConsoleFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/layouts/SlotsContainerRelativeLayout.java" />
+        <option value="$PROJECT_DIR$/app/src/main/jni/sampler/interfaces/IConsole.h" />
+        <option value="$PROJECT_DIR$/app/src/main/jni/sampler/Console.h" />
+        <option value="$PROJECT_DIR$/app/src/main/jni/sampler/Console.cpp" />
+        <option value="$PROJECT_DIR$/app/src/main/jni/sampler/Player.h" />
+        <option value="$PROJECT_DIR$/app/src/main/jni/com_vuric_nativemusicsampler_nativeaudio_NativeWrapper.cpp" />
+        <option value="$PROJECT_DIR$/app/src/main/jni/utils/ErrorChecker.cpp" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/sample_item_layout.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/adapters/SamplesCursorAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/layouts/PlayerView.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/controllers/PlayerController.java" />
+        <option value="$PROJECT_DIR$/app/src/main/jni/sampler/Player.cpp" />
       </list>
     </option>
   </component>
@@ -9411,6 +9368,28 @@
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NativeMusicSampler" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layout" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -9472,6 +9451,28 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="jni" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sampler" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="interfaces" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NativeMusicSampler" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="java" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
             </PATH_ELEMENT>
@@ -9512,7 +9513,29 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="models" />
+              <option name="myItemId" value="utils" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NativeMusicSampler" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nativemusicsampler" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nativeaudio" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -9600,7 +9623,29 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="events" />
+              <option name="myItemId" value="enums" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NativeMusicSampler" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nativemusicsampler" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="database" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -9646,6 +9691,16 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="adapters" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NativeMusicSampler" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -9963,43 +10018,49 @@
       <option name="project" value="LOCAL" />
       <updated>1461878993503</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Implemented samples loading and play">
+      <created>1462139540384</created>
+      <option name="number" value="00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1462139540384</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1928" y="-320" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32480535" sideWeight="0.3976546" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32480535" sideWeight="0.3848614" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2580645" sideWeight="0.6998934" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32480535" sideWeight="0.60394454" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.063403785" sideWeight="0.35660982" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23025584" sideWeight="0.4946695" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23136818" sideWeight="0.4978678" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6618465" sideWeight="0.48667377" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.46162403" sideWeight="0.5079957" order="12" side_tool="true" content_ui="tabs" />
+      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23025584" sideWeight="0.5053305" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1716418" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36707452" sideWeight="0.48294243" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1716418" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.55172414" sideWeight="0.47441363" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2580645" sideWeight="0.3001066" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.88320357" sideWeight="0.22707888" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -10015,342 +10076,45 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Implementes slot controls" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implementes slot controls" />
+    <MESSAGE value="Implemented samples loading and play" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented samples loading and play" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/fragments/ConsoleFragment.java</url>
-          <line>84</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/controllers/PlayerController.java</url>
+          <line>54</line>
           <properties />
-          <option name="timeStamp" value="131" />
+          <option name="timeStamp" value="138" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/adapters/SamplesCursorAdapter.java</url>
+          <line>71</line>
+          <properties />
+          <option name="timeStamp" value="141" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/layouts/PlayerView.java</url>
+          <line>33</line>
+          <properties />
+          <option name="timeStamp" value="144" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/controllers/PlayerController.java</url>
+          <line>26</line>
+          <properties />
+          <option name="timeStamp" value="145" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="133" />
+      <option name="time" value="146" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/utils/FileHasher.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.32454923">
-          <caret line="17" column="16" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/sample_item_layout.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup/otto/1.3.8/57254b7c1d02b6df44a710525a3955e0c2a0c824/otto-1.3.8-sources.jar!/com/squareup/otto/Bus.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33287102">
-          <caret line="312" column="14" selection-start-line="312" selection-start-column="14" selection-end-line="312" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/slot_load_fragment_layout.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="43" selection-start-line="7" selection-start-column="43" selection-end-line="7" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/sampler_slots_fragment_layout.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.08023774">
-          <caret line="3" column="46" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/database/EffectsSamplerContentProvider.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="51" selection-start-line="22" selection-start-column="51" selection-end-line="22" selection-end-column="51" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/enums/PlayState.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="27" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/enums/SlotsContainerState.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="35" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/interfaces/IConsole.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/interfaces/IEffect.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/interfaces/IMixer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/CustomApplicationClass.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="19" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
-          <folding>
-            <element signature="e#506#507#0" expanded="true" />
-            <element signature="e#539#540#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/interfaces/IPlayer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="8" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/database/helpers/SamplesHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/utils/Constants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="34" column="55" selection-start-line="34" selection-start-column="55" selection-end-line="34" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/layouts/SamplerSlotsFrameLayout.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="34" column="5" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/adapters/SanplerSlotsAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="50" selection-start-line="26" selection-start-column="40" selection-end-line="26" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/fragments/SamplerSlotsFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="42" column="71" selection-start-line="42" selection-start-column="43" selection-end-line="42" selection-end-column="71" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8043478">
-          <caret line="54" column="1" selection-start-line="54" selection-start-column="1" selection-end-line="54" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.45652175">
-          <caret line="14" column="5" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/slot_volume_fragment_layout.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.206897">
-          <caret line="10" column="45" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/slot_pitch_fragment_layout.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3272727">
-          <caret line="10" column="44" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/slot_loop_fragment_layout.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3272727">
-          <caret line="10" column="30" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/slot_effects_fragment_layout.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3272727">
-          <caret line="10" column="46" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/fragments/SlotEffectsFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="4" column="28" selection-start-line="4" selection-start-column="28" selection-end-line="4" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/fragments/SlotLoopFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1208981">
-          <caret line="4" column="28" selection-start-line="4" selection-start-column="28" selection-end-line="4" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/fragments/SlotPitchFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.12435233">
-          <caret line="4" column="28" selection-start-line="4" selection-start-column="28" selection-end-line="4" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/slot_info_fragment_layout.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3272727">
-          <caret line="10" column="43" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.42391303">
-          <caret line="13" column="18" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/fragments/SlotVolumeFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="18" column="4" selection-start-line="18" selection-start-column="4" selection-end-line="25" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/layouts/SlotsContainerRelativeLayout.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="92" column="12" selection-start-line="92" selection-start-column="12" selection-end-line="92" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/models/SampleObj.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
-          <folding>
-            <element signature="e#348#349#0" expanded="false" />
-            <element signature="e#374#375#0" expanded="false" />
-            <element signature="e#407#408#0" expanded="false" />
-            <element signature="e#436#437#0" expanded="false" />
-            <element signature="e#467#468#0" expanded="false" />
-            <element signature="e#495#496#0" expanded="false" />
-            <element signature="e#535#536#0" expanded="false" />
-            <element signature="e#568#569#0" expanded="false" />
-            <element signature="e#599#600#0" expanded="false" />
-            <element signature="e#627#628#0" expanded="false" />
-            <element signature="e#667#668#0" expanded="false" />
-            <element signature="e#700#701#0" expanded="false" />
-            <element signature="e#729#730#0" expanded="false" />
-            <element signature="e#757#758#0" expanded="false" />
-            <element signature="e#795#796#0" expanded="false" />
-            <element signature="e#828#829#0" expanded="false" />
-            <element signature="e#858#859#0" expanded="false" />
-            <element signature="e#886#887#0" expanded="false" />
-            <element signature="e#925#926#0" expanded="false" />
-            <element signature="e#958#959#0" expanded="false" />
-            <element signature="e#988#989#0" expanded="false" />
-            <element signature="e#1018#1019#0" expanded="false" />
-            <element signature="e#1059#1060#0" expanded="false" />
-            <element signature="e#1096#1097#0" expanded="false" />
-            <element signature="e#1129#1130#0" expanded="false" />
-            <element signature="e#1159#1160#0" expanded="false" />
-            <element signature="e#1203#1204#0" expanded="false" />
-            <element signature="e#1240#1241#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/models/PlayerModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="48" selection-start-line="9" selection-start-column="48" selection-end-line="9" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/sampler_controls_fragment_layout.xml">
       <provider selected="true" editor-type-id="android-designer">
         <state />
@@ -10370,32 +10134,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/jni/sampler/Player.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.888889">
-          <caret line="25" column="13" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/events/SampleSelectedEvt.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.27149323">
           <caret line="10" column="57" selection-start-line="10" selection-start-column="57" selection-end-line="10" selection-end-column="57" />
           <folding>
-            <element signature="e#329#330#0" expanded="true" />
-            <element signature="e#357#358#0" expanded="true" />
-            <element signature="e#388#389#0" expanded="true" />
-            <element signature="e#418#419#0" expanded="true" />
+            <element signature="e#329#330#0" expanded="false" />
+            <element signature="e#357#358#0" expanded="false" />
+            <element signature="e#388#389#0" expanded="false" />
+            <element signature="e#418#419#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/jni/sampler/Console.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -10404,8 +10152,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="15" column="35" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
           <folding>
-            <element signature="e#367#368#0" expanded="true" />
-            <element signature="e#396#397#0" expanded="true" />
+            <element signature="e#367#368#0" expanded="false" />
+            <element signature="e#396#397#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -10418,41 +10166,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/controllers/Console.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="20" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/controllers/Mixer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/controllers/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/adapters/SamplesCursorAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="32" column="55" selection-start-line="32" selection-start-column="55" selection-end-line="32" selection-end-column="55" />
-          <folding>
-            <element signature="e#1491#1894#0" expanded="true" />
-            <element signature="e#1893#1894#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/fragments/SlotInfoFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -10461,35 +10174,217 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/controllers/Mixer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.1971831">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/interfaces/IConsole.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/SDKS/NDK/android-ndk-r10d/platforms/android-21/arch-arm/usr/include/android/log.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.346875">
+          <caret line="82" column="4" selection-start-line="82" selection-start-column="4" selection-end-line="82" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/nativeaudio/NativeReceiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.26359832">
+          <caret line="7" column="28" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/CustomApplicationClass.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.37029287">
+          <caret line="13" column="19" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.22394678">
+          <caret line="16" column="22" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/jni/utils/Logger.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3529412">
+          <caret line="12" column="41" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/jni/sampler/Engine.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="79" column="0" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/layouts/SlotsContainerRelativeLayout.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/layouts/SamplerSlotsFrameLayout.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="34" column="5" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/jni/sampler/interfaces/IEngine.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/jni/sampler/interfaces/IMixer.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/jni/sampler/PlayersController.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/jni/sampler/interfaces/IConsole.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.333333">
+          <caret line="17" column="21" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
+          <folding>
+            <element signature="e#104#121#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/jni/sampler/Console.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-17.777779">
+          <caret line="28" column="11" selection-start-line="28" selection-start-column="11" selection-end-line="28" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/jni/sampler/Console.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.111111">
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding>
+            <element signature="e#102#134#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/SDKS/NDK/android-ndk-r10d/platforms/android-21/arch-arm/usr/include/SLES/OpenSLES.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.148148">
+          <caret line="1007" column="26" selection-start-line="1007" selection-start-column="26" selection-end-line="1007" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/jni/sampler/interfaces/IPlayer.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/jni/sampler/Player.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-20.37037">
+          <caret line="39" column="49" selection-start-line="39" selection-start-column="49" selection-end-line="39" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/jni/sampler/Options.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/jni/sampler/Mixer.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/jni/sampler/Mixer.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.8148148">
+          <caret line="6" column="49" selection-start-line="6" selection-start-column="39" selection-end-line="6" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/utils/FileHasher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/fragments/SamplerSlotsFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="42" column="71" selection-start-line="42" selection-start-column="43" selection-end-line="42" selection-end-column="71" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/fragments/SlotLoadFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="67" column="92" selection-start-line="67" selection-start-column="92" selection-end-line="67" selection-end-column="92" />
+          <caret line="90" column="99" selection-start-line="90" selection-start-column="88" selection-end-line="90" selection-end-column="99" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/listeners/SlotsContainerGestureListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/fragments/ConsoleFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="84" column="0" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
-          <folding>
-            <element signature="e#1034#1035#0" expanded="true" />
-            <element signature="e#1078#1079#0" expanded="true" />
-            <element signature="e#2018#2019#0" expanded="true" />
-            <element signature="e#2053#2054#0" expanded="true" />
-            <element signature="e#2262#2263#0" expanded="true" />
-            <element signature="e#2299#2300#0" expanded="true" />
-            <element signature="e#2330#2331#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -10503,28 +10398,156 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/layouts/PlayerView.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/controllers/Console.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="157" column="0" selection-start-line="157" selection-start-column="0" selection-end-line="157" selection-end-column="0" />
+          <caret line="12" column="44" selection-start-line="12" selection-start-column="44" selection-end-line="12" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/enums/PlayState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/fragments/ConsoleFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="96" column="0" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/jni/sampler/PlayersController.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/jni/utils/ErrorChecker.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.666667">
+          <caret line="22" column="78" selection-start-line="22" selection-start-column="78" selection-end-line="22" selection-end-column="78" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/database/EffectsSamplerContentProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.3073463">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/sample_item_layout.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="26" column="43" selection-start-line="26" selection-start-column="43" selection-end-line="26" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/nativeaudio/NativeWrapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="34" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/interfaces/IPlayer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="6" column="9" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/listeners/SlotsContainerGestureListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="50" column="80" selection-start-line="50" selection-start-column="76" selection-end-line="50" selection-end-column="80" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/adapters/SamplesCursorAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="71" column="0" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/controllers/PlayerController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
           <folding>
-            <element signature="e#5014#5702#0" expanded="true" />
-            <element signature="e#5119#5347#0" expanded="true" />
-            <element signature="e#5346#5347#0" expanded="true" />
-            <element signature="e#5383#5663#0" expanded="true" />
-            <element signature="e#5662#5663#0" expanded="true" />
-            <element signature="e#5701#5702#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/MainActivity.java">
+    <entry file="file://C:/SDKS/android-sdk-windows/sources/android-23/android/view/GestureDetector.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="79" column="0" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="594" column="0" selection-start-line="594" selection-start-column="0" selection-end-line="594" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/jni/native-audio-jni.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/jni/com_vuric_nativemusicsampler_nativeaudio_NativeWrapper.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="6.3703704">
+          <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="55" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/jni/com_vuric_nativemusicsampler_nativeaudio_NativeWrapper.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.296296">
+          <caret line="47" column="58" selection-start-line="47" selection-start-column="58" selection-end-line="47" selection-end-column="58" />
+          <folding>
+            <element signature="e#0#67#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vuric/nativemusicsampler/layouts/PlayerView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/jni/sampler/Player.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5934066">
+          <caret line="36" column="30" selection-start-line="36" selection-start-column="30" selection-end-line="36" selection-end-column="30" />
+          <folding />
         </state>
       </provider>
     </entry>
