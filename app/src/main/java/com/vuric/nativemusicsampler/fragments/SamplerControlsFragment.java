@@ -7,8 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.squareup.otto.Subscribe;
+import com.vuric.nativemusicsampler.BusStation;
 import com.vuric.nativemusicsampler.R;
+import com.vuric.nativemusicsampler.events.SampleLoadedEvt;
 import com.vuric.nativemusicsampler.models.PlayerModel;
+import com.vuric.nativemusicsampler.models.SampleObj;
 
 public class SamplerControlsFragment extends Fragment implements View.OnClickListener {
 
@@ -17,6 +21,13 @@ public class SamplerControlsFragment extends Fragment implements View.OnClickLis
     private Button infoButton, loadButton, volumeButton, pitchButton, loopButton, effectsButton;
     private Button lastclickeButton = null;
     private PlayerModel _playerModel;
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        BusStation.getBus().register(this);
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -49,11 +60,28 @@ public class SamplerControlsFragment extends Fragment implements View.OnClickLis
         effectsButton.setOnClickListener(this);
 
         getFragmentManager().beginTransaction()
-                .replace(R.id.controlsContainer, SlotInfoFragment.newInstance(), SlotInfoFragment._TAG).commit();
+                .replace(R.id.controlsContainer, SlotInfoFragment.newInstance(_playerModel), SlotInfoFragment._TAG).commit();
 
         setSelectedButton(infoButton);
 
         return rootView;
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        BusStation.getBus().unregister(this);
+    }
+
+    @Subscribe
+    public void receiveMessage(SampleLoadedEvt evt) {
+
+        SampleObj info = new SampleObj();
+        info.setName(evt.getTitle());
+        info.setSize(evt.getSize());
+
+        _playerModel.setSampleInfo(info);
     }
 
     public static Fragment getInstance(PlayerModel playerModel) {
@@ -77,7 +105,7 @@ public class SamplerControlsFragment extends Fragment implements View.OnClickLis
 
         switch (v.getId()) {
             case R.id.infoButton:
-                fragment = SlotInfoFragment.newInstance();
+                fragment = SlotInfoFragment.newInstance(_playerModel);
                 TAG = SlotInfoFragment._TAG;
                 break;
             case R.id.loadButton:

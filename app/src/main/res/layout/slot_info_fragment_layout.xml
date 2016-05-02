@@ -1,13 +1,29 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.vuric.nativemusicsampler.fragments.SlotInfoFragment">
+    tools:context="com.vuric.nativemusicsampler.fragments.SlotInfoFragment"
+    android:padding="8dp"
+    android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/info_fragment" />
+        android:layout_height="wrap_content"
+        android:text="@string/info_fragment"
+        android:gravity="center_horizontal"/>
 
-</FrameLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Title"
+        android:id="@+id/sampleTitle"
+        android:gravity="center_horizontal"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Size"
+        android:id="@+id/sampleSize"
+        android:gravity="center_horizontal"/>
+
+</LinearLayout>

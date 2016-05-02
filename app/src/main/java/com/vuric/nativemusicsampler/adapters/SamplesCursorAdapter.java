@@ -10,8 +10,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.vuric.nativemusicsampler.BusStation;
 import com.vuric.nativemusicsampler.R;
 import com.vuric.nativemusicsampler.database.helpers.SamplesHelper;
+import com.vuric.nativemusicsampler.events.SampleLoadedEvt;
 import com.vuric.nativemusicsampler.models.SampleObj;
 import com.vuric.nativemusicsampler.nativeaudio.NativeWrapper;
 
@@ -30,6 +32,13 @@ public class SamplesCursorAdapter extends CursorAdapter {
         super(context, c, 0);
         samples = new ArrayList<SampleObj>();
         _currentSelectedSlotID = currentSelectedSlotID;
+        BusStation.getBus().register(this);
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        super.finalize();
+        BusStation.getBus().unregister(this);
     }
 
     static class ViewHolder {
@@ -69,6 +78,7 @@ public class SamplesCursorAdapter extends CursorAdapter {
             @Override
             public void onClick(View v) {
 
+                BusStation.getBus().post(new SampleLoadedEvt(getItem(holder.container.getId()).getName(), getItem(holder.container.getId()).getSize()));
                 NativeWrapper.loadSample(_currentSelectedSlotID, holder.samplePath.getText().toString());
             }
         });

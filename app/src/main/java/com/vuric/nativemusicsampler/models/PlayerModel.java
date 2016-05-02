@@ -29,6 +29,10 @@ public class PlayerModel implements Serializable {
         _sampleInfo = sampleInfo;
     }
 
+    public SampleObj getSampleInfo() {
+        return _sampleInfo;
+    }
+
     public boolean isLoaded() {
         return _loaded;
     }
@@ -75,5 +79,9 @@ public class PlayerModel implements Serializable {
 
     public void setSelected(boolean _selected) {
         this._selected = _selected;
+    }
+
+    public void setSampleInfo(SampleObj sampleInfo) {
+        _sampleInfo = sampleInfo;
     }
 }
