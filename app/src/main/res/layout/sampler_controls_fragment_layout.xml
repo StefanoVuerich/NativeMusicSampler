@@ -8,7 +8,7 @@
     android:orientation="horizontal">
 
     <LinearLayout
-        android:id="@+id/controlsContainer"
+        android:id="@+id/leftControlsContainer"
         android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,7 +17,7 @@
         android:layout_gravity="left"/>
 
     <LinearLayout
-        android:id="@+id/rightButtonsFragmentContainer"
+        android:id="@+id/rightControlsContainer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_widthPercent="30%"

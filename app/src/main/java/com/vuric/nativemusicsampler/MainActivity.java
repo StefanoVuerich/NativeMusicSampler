@@ -28,11 +28,10 @@ import com.vuric.nativemusicsampler.utils.Constants;
 
 public class MainActivity extends Activity {
 
-
     protected PowerManager.WakeLock wakeLock;
     private ViewGroup baseContainer;
     private Point screenSize;
-    private FrameLayout controlsContainer;
+    private FrameLayout _controlsContainer;
     private int controlsContainerWidth, controlsContainerHeight;
     private SlotsContainerState _state = SlotsContainerState.CLOSE;
 
@@ -65,10 +64,15 @@ public class MainActivity extends Activity {
 
         if(newState != _state) {
             _state = newState;
-            SamplerSlotsFragment fr = (SamplerSlotsFragment) getFragmentManager().findFragmentByTag(SamplerSlotsFragment._TAG);
-            if(fr != null) {
-                fr.setState(_state);
+            SamplerSlotsFragment samplerSlotsFragment = (SamplerSlotsFragment) getFragmentManager().findFragmentByTag(SamplerSlotsFragment._TAG);
+            SamplerControlsFragment samplerControlsFragment = (SamplerControlsFragment) getFragmentManager().findFragmentByTag(SamplerControlsFragment._TAG);
+            //if(samplerSlotsFragment != null) {
+            samplerSlotsFragment.setState(_state);
+            if (samplerControlsFragment != null) {
+
+                samplerControlsFragment.setState(_state);
             }
+            //}
             setFragmentsMeasure();
             baseContainer.invalidate();
         }
@@ -98,7 +102,7 @@ public class MainActivity extends Activity {
         right.setLayoutParams(new LinearLayout.LayoutParams(screenSize.x - slotBaseContainerWidth, screenSize.y));
     }
 
-    private void setSamplerControlsFragment() {
+    private void setSamplerSlotsFragment() {
 
         Bundle bundle = new Bundle();
         bundle.putSerializable("STATE", _state);
@@ -108,20 +112,20 @@ public class MainActivity extends Activity {
         ft.replace(R.id.samplerSlotsContainer, sampleButtonFragment, SamplerSlotsFragment._TAG);
         ft.commit();
 
-        controlsContainer = (FrameLayout) findViewById(R.id.samplerControlsContainer);
-        ViewTreeObserver vto = controlsContainer.getViewTreeObserver();
+        _controlsContainer = (FrameLayout) findViewById(R.id.samplerControlsContainer);
+        ViewTreeObserver vto = _controlsContainer.getViewTreeObserver();
         vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
 
             @Override
             public void onGlobalLayout() {
-                controlsContainer.getViewTreeObserver().removeGlobalOnLayoutListener(this);
-                controlsContainerWidth = controlsContainer.getMeasuredWidth();
-                controlsContainerHeight = controlsContainer.getMeasuredHeight();
+                _controlsContainer.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                controlsContainerWidth = _controlsContainer.getMeasuredWidth();
+                controlsContainerHeight = _controlsContainer.getMeasuredHeight();
             }
         });
     }
 
-    private void setSamplerSlotsFragment() {
+    private void setSamplerControlsFragment() {
         Fragment controlsFragment = SamplerControlsFragment.getInstance();
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.replace(R.id.samplerControlsContainer, controlsFragment, SamplerControlsFragment._TAG);

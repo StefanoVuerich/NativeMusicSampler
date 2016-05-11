@@ -32,9 +32,12 @@ public class SlotsContainerGestureListener implements View.OnTouchListener {
     @Override
     public boolean onTouch(View v, MotionEvent event) {
 
-        String tag = (String) v.getTag();
+        if(v != null) {
 
-        _lastTouchedView = (PlayerView) v.getParent();
+            String tag = (String) v.getTag();
+            _lastTouchedView = (PlayerView) v.getParent();
+        }
+
         return _gestureDetector.onTouchEvent(event);
     }
 
