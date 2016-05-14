@@ -13,11 +13,11 @@ public class SampleSelectedEvt {
         this._slotID = _slotID;
     }
 
-    public String get_path() {
+    public String getPath() {
         return _path;
     }
 
-    public int get_slotID() {
+    public int getSlotID() {
         return _slotID;
     }
 }

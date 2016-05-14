@@ -10,9 +10,9 @@ import com.squareup.otto.Subscribe;
 import com.vuric.nativemusicsampler.BusStation;
 import com.vuric.nativemusicsampler.controllers.PlayerController;
 import com.vuric.nativemusicsampler.enums.PlayState;
+import com.vuric.nativemusicsampler.enums.AppLayoutState;
 import com.vuric.nativemusicsampler.events.SampleSelectedEvt;
 import com.vuric.nativemusicsampler.events.SampleSlotSelectedEvt;
-import com.vuric.nativemusicsampler.enums.SlotsContainerState;
 import com.vuric.nativemusicsampler.models.PlayerModel;
 
 /**
@@ -24,11 +24,11 @@ public class PlayerView extends RelativeLayout {
     private View playView;
     private View topView;
     private View bottomView;
-    private SlotsContainerState _state;
+    private AppLayoutState _state;
     private PlayerController _controller;
     private OnTouchListener _listener;
 
-    public PlayerView(Context context, SlotsContainerState state, OnTouchListener listener, int id) {
+    public PlayerView(Context context, AppLayoutState state, OnTouchListener listener, int id) {
         super(context);
 
         PlayerModel model = new PlayerModel();
@@ -41,7 +41,7 @@ public class PlayerView extends RelativeLayout {
         init();
     }
 
-    public PlayerView(Context context, SlotsContainerState state, PlayerModel model, OnTouchListener listener, int id) {
+    public PlayerView(Context context, AppLayoutState state, PlayerModel model, OnTouchListener listener, int id) {
         super(context);
 
         _controller = new PlayerController(model);
@@ -71,7 +71,15 @@ public class PlayerView extends RelativeLayout {
 
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                return _listener.onTouch(v,event);
+
+                /*if(getModel().isLoaded()) {
+
+                    NativeWrapper.setPlayState(0, PlayState.STOP.getValue());
+                    NativeWrapper.setPlayState(0, PlayState.PLAY.getValue());
+
+                    return true;
+                } else*/
+                    return _listener.onTouch(v,event);
             }
         });
         playView.setTag("PlayView");
@@ -110,7 +118,7 @@ public class PlayerView extends RelativeLayout {
         playView.setBackgroundColor(_controller.getModel().isSelected() ? Color.parseColor("#FFFFFF") : Color.parseColor("#000000"));
         playView.setLayoutParams(new RelativeLayout.LayoutParams(mHeight, mHeight));
 
-        int currentWidth = _state == SlotsContainerState.CLOSE ? 0 : h / 2;
+        int currentWidth = _state == AppLayoutState.CLOSE ? 0 : h / 2;
 
         View topView = getChildAt(1);
         topView.setBackgroundColor(Color.parseColor("#0000CC"));
@@ -130,7 +138,7 @@ public class PlayerView extends RelativeLayout {
         View playView = getChildAt(0);
         playView.layout(0, 0, h, h);
 
-        int currentWidth = _state == SlotsContainerState.CLOSE ? 0 : h / 2;
+        int currentWidth = _state == AppLayoutState.CLOSE ? 0 : h / 2;
 
         View topView = getChildAt(1);
         topView.layout(h, 0, h + currentWidth, h / 2);
@@ -165,7 +173,7 @@ public class PlayerView extends RelativeLayout {
     @Subscribe
     public void receiveMessage(SampleSelectedEvt evt) {
 
-        if(evt.get_slotID() == getModel().getID()) {
+        if(evt.getSlotID() == getModel().getID()) {
 
             new Thread(new Runnable() {
                 @Override

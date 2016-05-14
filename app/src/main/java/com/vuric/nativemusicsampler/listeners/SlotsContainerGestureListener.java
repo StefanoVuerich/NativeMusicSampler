@@ -10,7 +10,7 @@ import android.view.View;
 import com.vuric.nativemusicsampler.BusStation;
 import com.vuric.nativemusicsampler.events.SlotsContainerEvt;
 import com.vuric.nativemusicsampler.events.SampleSlotSelectedEvt;
-import com.vuric.nativemusicsampler.enums.SlotsContainerState;
+import com.vuric.nativemusicsampler.enums.AppLayoutState;
 import com.vuric.nativemusicsampler.fragments.ConsoleFragment;
 import com.vuric.nativemusicsampler.layouts.PlayerView;
 import com.vuric.nativemusicsampler.utils.Constants;
@@ -93,11 +93,11 @@ public class SlotsContainerGestureListener implements View.OnTouchListener {
         }
 
         public void onSwipeRight() {
-            BusStation.getBus().post(new SlotsContainerEvt(SlotsContainerState.OPEN));
+            BusStation.getBus().post(new SlotsContainerEvt(AppLayoutState.OPEN));
         }
 
         public void onSwipeLeft() {
-            BusStation.getBus().post(new SlotsContainerEvt(SlotsContainerState.CLOSE));
+            BusStation.getBus().post(new SlotsContainerEvt(AppLayoutState.CLOSE));
         }
 
         public void onSwipeTop() {

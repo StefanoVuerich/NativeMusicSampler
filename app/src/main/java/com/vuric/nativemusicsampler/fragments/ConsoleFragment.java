@@ -94,6 +94,6 @@ public class ConsoleFragment extends Fragment {
     @Subscribe
     public void receiveMessage(SampleSelectedEvt evt) {
 
-        _players[evt.get_slotID()].load(evt.get_path());
+        _players[evt.getSlotID()].load(evt.getPath());
     }
 }

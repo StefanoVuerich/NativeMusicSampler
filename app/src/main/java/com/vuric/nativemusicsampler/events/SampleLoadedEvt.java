@@ -7,10 +7,12 @@ public class SampleLoadedEvt {
 
     private String _title;
     private long _size;
+    private int _ID;
 
-    public SampleLoadedEvt(String title, long size) {
+    public SampleLoadedEvt(String title, long size, int id) {
         _title = title;
         _size = size;
+        _ID = id;
     }
 
     public String getTitle() {
@@ -19,5 +21,9 @@ public class SampleLoadedEvt {
 
     public long getSize() {
         return _size;
+    }
+
+    public int getID() {
+        return _ID;
     }
 }

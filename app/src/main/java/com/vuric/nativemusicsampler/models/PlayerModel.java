@@ -15,11 +15,11 @@ public class PlayerModel implements Serializable {
     private boolean _ready;
     private boolean _loaded;
     private boolean _selected;
-    private SampleObj _sampleInfo;
+    private SampleModel _sampleInfo;
 
     public PlayerModel() {}
 
-    public PlayerModel(int index, boolean loop, PlayState state, boolean ready, boolean loaded, boolean selected, SampleObj sampleInfo) {
+    public PlayerModel(int index, boolean loop, PlayState state, boolean ready, boolean loaded, boolean selected, SampleModel sampleInfo) {
         _ID = index;
         _loop = loop;
         _state = state;
@@ -29,7 +29,7 @@ public class PlayerModel implements Serializable {
         _sampleInfo = sampleInfo;
     }
 
-    public SampleObj getSampleInfo() {
+    public SampleModel getSampleInfo() {
         return _sampleInfo;
     }
 
@@ -81,7 +81,7 @@ public class PlayerModel implements Serializable {
         this._selected = _selected;
     }
 
-    public void setSampleInfo(SampleObj sampleInfo) {
+    public void setSampleInfo(SampleModel sampleInfo) {
         _sampleInfo = sampleInfo;
     }
 }

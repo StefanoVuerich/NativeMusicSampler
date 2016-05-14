@@ -1,4 +1,4 @@
-package com.vuric.nativemusicsampler;
+package com.vuric.nativemusicsampler.activities;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -18,7 +18,10 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.squareup.otto.Subscribe;
-import com.vuric.nativemusicsampler.enums.SlotsContainerState;
+import com.vuric.nativemusicsampler.BusStation;
+import com.vuric.nativemusicsampler.CustomApplicationClass;
+import com.vuric.nativemusicsampler.R;
+import com.vuric.nativemusicsampler.enums.AppLayoutState;
 import com.vuric.nativemusicsampler.events.SampleSlotSelectedEvt;
 import com.vuric.nativemusicsampler.events.SlotsContainerEvt;
 import com.vuric.nativemusicsampler.fragments.ConsoleFragment;
@@ -28,12 +31,19 @@ import com.vuric.nativemusicsampler.utils.Constants;
 
 public class MainActivity extends Activity {
 
-    protected PowerManager.WakeLock wakeLock;
-    private ViewGroup baseContainer;
-    private Point screenSize;
+    public static final String APP_LAYOUT_STATE = "APP_LAYOUT_STATE";
+    private PowerManager.WakeLock _wakeLock;
+    private ViewGroup _baseContainer;
+    private Point _screenSize;
     private FrameLayout _controlsContainer;
-    private int controlsContainerWidth, controlsContainerHeight;
-    private SlotsContainerState _state = SlotsContainerState.CLOSE;
+    private int _controlsContainerWidth, _controlsContainerHeight;
+    private AppLayoutState _state = AppLayoutState.CLOSE;
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        BusStation.getBus().register(this);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +51,7 @@ public class MainActivity extends Activity {
 
         setContentView(R.layout.activity_main);
 
-        baseContainer = (ViewGroup) findViewById(R.id.samplerBaseContainer);
+        _baseContainer = (ViewGroup) findViewById(R.id.samplerBaseContainer);
 
         if (savedInstanceState == null) {
             checkForAudioLowLatency();
@@ -57,10 +67,23 @@ public class MainActivity extends Activity {
         setSamplerControlsFragment();
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        BusStation.getBus().unregister(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        this._wakeLock.release();
+    }
+
+
     @Subscribe
     public void receiveMessage(SlotsContainerEvt evt) {
 
-        SlotsContainerState newState =  evt.getState();
+        AppLayoutState newState =  evt.getState();
 
         if(newState != _state) {
             _state = newState;
@@ -74,7 +97,7 @@ public class MainActivity extends Activity {
             }
             //}
             setFragmentsMeasure();
-            baseContainer.invalidate();
+            _baseContainer.invalidate();
         }
     }
 
@@ -89,23 +112,23 @@ public class MainActivity extends Activity {
 
     private void setFragmentsMeasure() {
 
-        int slotBaseContainerWidth = _state == SlotsContainerState.CLOSE ?
-                screenSize.y :
-                screenSize.y + (screenSize.y / 3 / 2 * 3);
+        int slotBaseContainerWidth = _state == AppLayoutState.CLOSE ?
+                _screenSize.y :
+                _screenSize.y + (_screenSize.y / 3 / 2 * 3);
 
         FrameLayout left = (FrameLayout) findViewById(R.id.samplerSlotsContainer);
         left.setBackgroundColor(Color.parseColor("#0000FF"));
-        left.setLayoutParams(new LinearLayout.LayoutParams(slotBaseContainerWidth, screenSize.y));
+        left.setLayoutParams(new LinearLayout.LayoutParams(slotBaseContainerWidth, _screenSize.y));
 
         FrameLayout right = (FrameLayout) findViewById(R.id.samplerControlsContainer);
         right.setBackgroundColor(Color.parseColor("#CCCCCC"));
-        right.setLayoutParams(new LinearLayout.LayoutParams(screenSize.x - slotBaseContainerWidth, screenSize.y));
+        right.setLayoutParams(new LinearLayout.LayoutParams(_screenSize.x - slotBaseContainerWidth, _screenSize.y));
     }
 
     private void setSamplerSlotsFragment() {
 
         Bundle bundle = new Bundle();
-        bundle.putSerializable("STATE", _state);
+        bundle.putSerializable(APP_LAYOUT_STATE, _state);
         Fragment sampleButtonFragment = SamplerSlotsFragment.getInstance();
         sampleButtonFragment.setArguments(bundle);
         FragmentTransaction ft = getFragmentManager().beginTransaction();
@@ -119,8 +142,8 @@ public class MainActivity extends Activity {
             @Override
             public void onGlobalLayout() {
                 _controlsContainer.getViewTreeObserver().removeGlobalOnLayoutListener(this);
-                controlsContainerWidth = _controlsContainer.getMeasuredWidth();
-                controlsContainerHeight = _controlsContainer.getMeasuredHeight();
+                _controlsContainerWidth = _controlsContainer.getMeasuredWidth();
+                _controlsContainerHeight = _controlsContainer.getMeasuredHeight();
             }
         });
     }
@@ -141,15 +164,15 @@ public class MainActivity extends Activity {
     }
 
     private void getScreenSizeAndSendValueToApplicationClass() {
-        screenSize = new Point();
-        getWindowManager().getDefaultDisplay().getSize(screenSize);
-        CustomApplicationClass.get().setScreenSize(screenSize);
+        _screenSize = new Point();
+        getWindowManager().getDefaultDisplay().getSize(_screenSize);
+        CustomApplicationClass.get().setScreenSize(_screenSize);
     }
 
     private void setWakeLock() {
         final PowerManager pom = (PowerManager) getSystemService(Context.POWER_SERVICE);
-        this.wakeLock = pom.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK, Constants.WAKE_LOCK);
-        this.wakeLock.acquire();
+        this._wakeLock = pom.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK, Constants.WAKE_LOCK);
+        this._wakeLock.acquire();
     }
 
     private void getRateAndFrames() {
@@ -163,34 +186,16 @@ public class MainActivity extends Activity {
         String a = am.getParameters(AudioManager.PROPERTY_OUTPUT_SAMPLE_RATE);
         String b = am.getParameters(AudioManager.PROPERTY_OUTPUT_FRAMES_PER_BUFFER);
 
-        Log.v("jajaja", String.format("Sample rate %s, Frame buffer %s", a, b));
+        Log.v(Constants.APP_TAG, String.format("Sample rate %s, Frame buffer %s", a, b));
     }
 
     private void checkForAudioLowLatency() {
         PackageManager pm = MainActivity.this.getPackageManager();
         boolean claimsFeature = pm.hasSystemFeature(PackageManager.FEATURE_AUDIO_LOW_LATENCY);
         if (claimsFeature)
-            Log.v("jajaja", "supported");
+            Log.v(Constants.APP_TAG, "Low Latency supported");
         else
-            Log.v("jajaja", "NOT supported");
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        BusStation.getBus().register(this);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        BusStation.getBus().unregister(this);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        this.wakeLock.release();
+            Log.v(Constants.APP_TAG, "Low Latency NOT supported");
     }
 
     public void updateFromNative() {

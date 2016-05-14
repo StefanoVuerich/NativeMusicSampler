@@ -1,9 +1,11 @@
 package com.vuric.nativemusicsampler.models;
 
+import java.io.Serializable;
+
 /**
  * Created by stefano on 4/25/2016.
  */
-public class SampleObj {
+public class SampleModel implements Serializable{
 
     private int _ID;
     private String _name;
@@ -13,7 +15,7 @@ public class SampleObj {
     private int _played;
     private String _format;
 
-    public SampleObj() {
+    public SampleModel() {
 
     }
 

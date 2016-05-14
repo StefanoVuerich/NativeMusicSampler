@@ -6,23 +6,20 @@ import android.util.AttributeSet;
 import android.widget.RelativeLayout;
 
 import com.vuric.nativemusicsampler.controllers.PlayerController;
-import com.vuric.nativemusicsampler.enums.SlotsContainerState;
+import com.vuric.nativemusicsampler.enums.AppLayoutState;
 import com.vuric.nativemusicsampler.fragments.ConsoleFragment;
 import com.vuric.nativemusicsampler.listeners.SlotsContainerGestureListener;
 import com.vuric.nativemusicsampler.models.PlayerModel;
+import com.vuric.nativemusicsampler.models.GlobalPlayersState;
 
 public class SlotsContainerRelativeLayout extends RelativeLayout {
 
     private int w,h;
     private int childW, childH;
-    private SlotsContainerState _state;
+    private AppLayoutState _state;
     private OnTouchListener _listener;
     private int _slots;
     private ConsoleFragment _consoleFragment;
-
-    public SlotsContainerRelativeLayout(Context context) {
-        super(context);
-    }
 
     public SlotsContainerRelativeLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -32,13 +29,13 @@ public class SlotsContainerRelativeLayout extends RelativeLayout {
         super(context, attrs, defStyleAttr);
     }
 
-    public SlotsContainerRelativeLayout(Context context, int slots, SlotsContainerState state) {
+    public SlotsContainerRelativeLayout(Context context, int slots, AppLayoutState state, GlobalPlayersState _playerState) {
         super(context);
         _state = state;
-        init(slots, null);
+        init(slots, _playerState.getPlayersModel());
     }
 
-    public void setState(SlotsContainerState state) {
+    public void setState(AppLayoutState state) {
         if(state != _state) {
             _state = state;
             _listener = null;

@@ -14,7 +14,7 @@ import com.vuric.nativemusicsampler.BusStation;
 import com.vuric.nativemusicsampler.R;
 import com.vuric.nativemusicsampler.database.helpers.SamplesHelper;
 import com.vuric.nativemusicsampler.events.SampleLoadedEvt;
-import com.vuric.nativemusicsampler.models.SampleObj;
+import com.vuric.nativemusicsampler.models.SampleModel;
 import com.vuric.nativemusicsampler.nativeaudio.NativeWrapper;
 
 import java.util.ArrayList;
@@ -25,12 +25,12 @@ import java.util.List;
  */
 public class SamplesCursorAdapter extends CursorAdapter {
 
-    private List<SampleObj> samples;
+    private List<SampleModel> samples;
     private int _currentSelectedSlotID;
 
     public SamplesCursorAdapter(Context context, Cursor c, int currentSelectedSlotID) {
         super(context, c, 0);
-        samples = new ArrayList<SampleObj>();
+        samples = new ArrayList<SampleModel>();
         _currentSelectedSlotID = currentSelectedSlotID;
         BusStation.getBus().register(this);
     }
@@ -78,7 +78,7 @@ public class SamplesCursorAdapter extends CursorAdapter {
             @Override
             public void onClick(View v) {
 
-                BusStation.getBus().post(new SampleLoadedEvt(getItem(holder.container.getId()).getName(), getItem(holder.container.getId()).getSize()));
+                BusStation.getBus().post(new SampleLoadedEvt(getItem(holder.container.getId()).getName(), getItem(holder.container.getId()).getSize(), _currentSelectedSlotID));
                 NativeWrapper.loadSample(_currentSelectedSlotID, holder.samplePath.getText().toString());
             }
         });
@@ -87,11 +87,11 @@ public class SamplesCursorAdapter extends CursorAdapter {
     }
 
     @Override
-    public SampleObj getItem(int position) {
+    public SampleModel getItem(int position) {
         Cursor cursor = getCursor();
-        SampleObj tmp = null;
+        SampleModel tmp = null;
         if (cursor.moveToPosition(position)) {
-            tmp = new SampleObj();
+            tmp = new SampleModel();
             tmp.setID(cursor.getInt(cursor.getColumnIndex(SamplesHelper._ID)));
             tmp.setName(cursor.getString(cursor.getColumnIndex(SamplesHelper.NAME)));
             tmp.setPath(cursor.getString(cursor.getColumnIndex(SamplesHelper.PATH)));
@@ -108,11 +108,9 @@ public class SamplesCursorAdapter extends CursorAdapter {
         Cursor cursor = getCursor();
         if(cursor != null) {
             int count =  cursor.getCount();
-            //cursor.close();
+            cursor.close();
             return count;
         }
         return 0;
     }
-
-
 }

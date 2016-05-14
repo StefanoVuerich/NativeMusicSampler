@@ -13,19 +13,19 @@ import android.widget.LinearLayout;
 import com.squareup.otto.Subscribe;
 import com.vuric.nativemusicsampler.BusStation;
 import com.vuric.nativemusicsampler.R;
-import com.vuric.nativemusicsampler.enums.SlotsContainerState;
+import com.vuric.nativemusicsampler.enums.AppLayoutState;
 import com.vuric.nativemusicsampler.events.SampleLoadedEvt;
 import com.vuric.nativemusicsampler.models.PlayerModel;
-import com.vuric.nativemusicsampler.models.SampleObj;
+import com.vuric.nativemusicsampler.models.SampleModel;
 
 public class SamplerControlsFragment extends Fragment implements View.OnClickListener {
 
     public final static String _TAG = SamplerControlsFragment.class.getSimpleName();
     public static final String PLAYER_MODEL = "PLAYER_MODEL";
     private Button infoButton, loadButton, volumeButton, pitchButton, loopButton, effectsButton;
-    private Button lastclickeButton = null;
+    private Button lastclickeButton;
     private PlayerModel _playerModel;
-    private SlotsContainerState _state;
+    private AppLayoutState _state;
     private int _currentViewId;
     private View _rootView;
 
@@ -66,9 +66,6 @@ public class SamplerControlsFragment extends Fragment implements View.OnClickLis
         effectsButton = (Button) _rootView.findViewById(R.id.effectsButton);
         effectsButton.setOnClickListener(this);
 
-        /*getFragmentManager().beginTransaction()
-                .replace(R.id.controlsContainer, SlotInfoFragment.newInstance(_playerModel), SlotInfoFragment._TAG).commit();*/
-
         setSelectedButton(infoButton);
         setSelectedFragment(infoButton.getId());
         _currentViewId = infoButton.getId();
@@ -86,7 +83,7 @@ public class SamplerControlsFragment extends Fragment implements View.OnClickLis
     @Subscribe
     public void receiveMessage(SampleLoadedEvt evt) {
 
-        SampleObj info = new SampleObj();
+        SampleModel info = new SampleModel();
         info.setName(evt.getTitle());
         info.setSize(evt.getSize());
 
@@ -162,7 +159,7 @@ public class SamplerControlsFragment extends Fragment implements View.OnClickLis
         return new SamplerControlsFragment();
     }
 
-    public void setState(SlotsContainerState state) {
+    public void setState(AppLayoutState state) {
 
         _state = state;
 
@@ -175,7 +172,7 @@ public class SamplerControlsFragment extends Fragment implements View.OnClickLis
         PercentFrameLayout.LayoutParams rightParams = (PercentFrameLayout.LayoutParams) rightControls.getLayoutParams();
         PercentLayoutHelper.PercentLayoutInfo rightInfo = rightParams.getPercentLayoutInfo();
 
-        if(state == SlotsContainerState.OPEN) {
+        if(state == AppLayoutState.OPEN) {
 
             leftInfo.widthPercent = 1.0f;
             leftInfo.heightPercent = 1.0f;
