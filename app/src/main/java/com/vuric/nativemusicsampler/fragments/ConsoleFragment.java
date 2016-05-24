@@ -14,6 +14,7 @@ import com.vuric.nativemusicsampler.events.SampleSelectedEvt;
 import com.vuric.nativemusicsampler.interfaces.IConsole;
 import com.vuric.nativemusicsampler.interfaces.IMixer;
 import com.vuric.nativemusicsampler.interfaces.IPlayer;
+import com.vuric.nativemusicsampler.utils.Constants;
 
 /**
  * Created by stefano on 4/9/2016.
@@ -41,7 +42,7 @@ public class ConsoleFragment extends Fragment {
 
         setRetainInstance(true);
 
-        _console = new Console();
+        _console = new Console(Constants.SLOTS);
         _mixer = new Mixer();
         //_players = generatePlayers();
         _console.init();

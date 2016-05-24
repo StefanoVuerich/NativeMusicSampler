@@ -43,8 +43,22 @@ public class SlotInfoFragment extends Fragment {
 
         if(_model.getSampleInfo() != null) {
 
+            TextView artist = (TextView) v.findViewById(R.id.sampleArtist);
+            artist.setText(_model.getSampleInfo().getArtist());
+
             TextView title = (TextView) v.findViewById(R.id.sampleTitle);
-            title.setText(_model.getSampleInfo().getName());
+            title.setText(_model.getSampleInfo().getTitle());
+
+            TextView duration = (TextView) v.findViewById(R.id.sampleDuration);
+            duration.setText("" + _model.getSampleInfo().getHours() + "." +
+                    _model.getSampleInfo().getMinutes() + "." +
+                    _model.getSampleInfo().getSeconds());
+
+            TextView format = (TextView) v.findViewById(R.id.sampleFormat);
+            format.setText("" + _model.getSampleInfo().getFormat());
+
+            TextView bitrate = (TextView) v.findViewById(R.id.sampleBitrate);
+            bitrate.setText("" + _model.getSampleInfo().getBitrate());
 
             TextView size = (TextView) v.findViewById(R.id.sampleSize);
             size.setText("" + _model.getSampleInfo().getSize());

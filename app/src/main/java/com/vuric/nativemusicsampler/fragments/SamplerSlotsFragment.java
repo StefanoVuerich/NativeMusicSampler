@@ -7,17 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
-import com.squareup.otto.Subscribe;
 import com.vuric.nativemusicsampler.BusStation;
 import com.vuric.nativemusicsampler.R;
 import com.vuric.nativemusicsampler.activities.MainActivity;
-import com.vuric.nativemusicsampler.enums.PlayState;
 import com.vuric.nativemusicsampler.enums.AppLayoutState;
-import com.vuric.nativemusicsampler.events.SampleLoadedEvt;
 import com.vuric.nativemusicsampler.layouts.SlotsContainerRelativeLayout;
-import com.vuric.nativemusicsampler.models.PlayerModel;
-import com.vuric.nativemusicsampler.models.GlobalPlayersState;
-import com.vuric.nativemusicsampler.models.SampleModel;
 import com.vuric.nativemusicsampler.utils.Constants;
 
 /**
@@ -30,7 +24,6 @@ public class SamplerSlotsFragment extends Fragment {
     private AppLayoutState _state;
     private FrameLayout _samplerSlotsBaseContainer;
     private SlotsContainerRelativeLayout _slotsContainerRelativeLayout;
-    private GlobalPlayersState _playerState;
 
     @Override
     public void onResume() {
@@ -46,10 +39,9 @@ public class SamplerSlotsFragment extends Fragment {
         Bundle bundle = getArguments();
         if(bundle != null) {
             _state = (AppLayoutState)bundle.get(MainActivity.APP_LAYOUT_STATE);
-            _playerState = (GlobalPlayersState) bundle.get(PLAYERS_STATE);
         }
 
-        if(_playerState == null) {
+        /*if(_playerState == null) {
 
             PlayerModel[] models = new PlayerModel[Constants.SLOTS];
 
@@ -63,14 +55,14 @@ public class SamplerSlotsFragment extends Fragment {
             }
 
             _playerState = new GlobalPlayersState(models);
-        }
+        }*/
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
-        outState.putSerializable(PLAYERS_STATE, _playerState);
+        //outState.putSerializable(PLAYERS_STATE, _playerState);
     }
 
     @Override
@@ -81,7 +73,7 @@ public class SamplerSlotsFragment extends Fragment {
                 R.layout.sampler_slots_fragment_layout, container, false);
 
         _samplerSlotsBaseContainer = (FrameLayout) rootView.findViewById(R.id.samplerSlotsBaseContainer);
-        _slotsContainerRelativeLayout = new SlotsContainerRelativeLayout(getActivity(), Constants.SLOTS, _state, _playerState);
+        _slotsContainerRelativeLayout = new SlotsContainerRelativeLayout(getActivity(), Constants.SLOTS, _state);
         _samplerSlotsBaseContainer.addView(_slotsContainerRelativeLayout);
 
         return rootView;
@@ -92,19 +84,6 @@ public class SamplerSlotsFragment extends Fragment {
         super.onPause();
 
         BusStation.getBus().unregister(this);
-    }
-
-    @Subscribe
-    public void receiveMessage(SampleLoadedEvt evt) {
-
-       PlayerModel model = _playerState.getPlayersModel()[evt.getID()];
-
-        model.setLoaded(true);
-
-        SampleModel sampleObj =  new SampleModel();
-        sampleObj.setName(evt.getTitle());
-
-        model.setSampleInfo(sampleObj);
     }
 
     public static SamplerSlotsFragment getInstance() {

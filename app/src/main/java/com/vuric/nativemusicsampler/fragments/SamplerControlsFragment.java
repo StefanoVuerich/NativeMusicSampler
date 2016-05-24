@@ -16,7 +16,6 @@ import com.vuric.nativemusicsampler.R;
 import com.vuric.nativemusicsampler.enums.AppLayoutState;
 import com.vuric.nativemusicsampler.events.SampleLoadedEvt;
 import com.vuric.nativemusicsampler.models.PlayerModel;
-import com.vuric.nativemusicsampler.models.SampleModel;
 
 public class SamplerControlsFragment extends Fragment implements View.OnClickListener {
 
@@ -83,11 +82,7 @@ public class SamplerControlsFragment extends Fragment implements View.OnClickLis
     @Subscribe
     public void receiveMessage(SampleLoadedEvt evt) {
 
-        SampleModel info = new SampleModel();
-        info.setName(evt.getTitle());
-        info.setSize(evt.getSize());
-
-        _playerModel.setSampleInfo(info);
+        _playerModel.setSampleInfo(evt.getModel());
     }
 
     public static Fragment getInstance(PlayerModel playerModel) {

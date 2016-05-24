@@ -21,23 +21,32 @@ import com.squareup.otto.Subscribe;
 import com.vuric.nativemusicsampler.BusStation;
 import com.vuric.nativemusicsampler.CustomApplicationClass;
 import com.vuric.nativemusicsampler.R;
+import com.vuric.nativemusicsampler.controllers.Console;
 import com.vuric.nativemusicsampler.enums.AppLayoutState;
 import com.vuric.nativemusicsampler.events.SampleSlotSelectedEvt;
+import com.vuric.nativemusicsampler.events.SamplesDirectoryCheckedEvt;
 import com.vuric.nativemusicsampler.events.SlotsContainerEvt;
 import com.vuric.nativemusicsampler.fragments.ConsoleFragment;
 import com.vuric.nativemusicsampler.fragments.SamplerControlsFragment;
 import com.vuric.nativemusicsampler.fragments.SamplerSlotsFragment;
+import com.vuric.nativemusicsampler.interfaces.IConsole;
+import com.vuric.nativemusicsampler.models.MixerModel;
+import com.vuric.nativemusicsampler.models.PlayerModel;
 import com.vuric.nativemusicsampler.utils.Constants;
+import com.vuric.nativemusicsampler.utils.FilesChecker;
 
 public class MainActivity extends Activity {
 
     public static final String APP_LAYOUT_STATE = "APP_LAYOUT_STATE";
+    public static final String PLAYER_MODELS = "PLAYER_MODELS";
+    public static final String MIXER_MODEL = "MIXER_MODEL";
     private PowerManager.WakeLock _wakeLock;
     private ViewGroup _baseContainer;
     private Point _screenSize;
     private FrameLayout _controlsContainer;
     private int _controlsContainerWidth, _controlsContainerHeight;
     private AppLayoutState _state = AppLayoutState.CLOSE;
+    private IConsole _console;
 
     @Override
     protected void onResume() {
@@ -56,15 +65,45 @@ public class MainActivity extends Activity {
         if (savedInstanceState == null) {
             checkForAudioLowLatency();
             getRateAndFrames();
-            // checkForNewFiles();
+            checkForNewFiles();
+            initConsole();
+        } else {
+            MixerModel mixerModel = (MixerModel) savedInstanceState.getSerializable(MIXER_MODEL);
+            PlayerModel[] playerModels= (PlayerModel[]) savedInstanceState.getSerializable(PLAYER_MODELS);
+            reAttachConsole(mixerModel, playerModels);
         }
 
+        //initConsole();
         setWakeLock();
         getScreenSizeAndSendValueToApplicationClass();
         setFragmentsMeasure();
-        setConsoleFragment();
+        //setConsoleFragment();
         setSamplerSlotsFragment();
         setSamplerControlsFragment();
+    }
+
+    public IConsole getConsole() {
+        return _console;
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putSerializable(MIXER_MODEL, _console.getMixer().getModel());
+        outState.putSerializable(PLAYER_MODELS, _console.getPlayerModels());
+    }
+
+    private void initConsole() {
+
+        _console = new Console(Constants.SLOTS);
+        _console.init();
+
+    }
+
+    private void reAttachConsole(MixerModel mixerModel, PlayerModel[] playerModels) {
+
+        _console = new Console(Constants.SLOTS, mixerModel, playerModels);
     }
 
     @Override
@@ -99,15 +138,6 @@ public class MainActivity extends Activity {
             setFragmentsMeasure();
             _baseContainer.invalidate();
         }
-    }
-
-    @Subscribe
-    public void receiveMessage(SampleSlotSelectedEvt evt) {
-
-        getFragmentManager()
-                .beginTransaction()
-                .replace(R.id.samplerControlsContainer, SamplerControlsFragment.getInstance(evt.getPlayerModel()), SamplerControlsFragment._TAG)
-                .commit();
     }
 
     private void setFragmentsMeasure() {
@@ -169,6 +199,11 @@ public class MainActivity extends Activity {
         CustomApplicationClass.get().setScreenSize(_screenSize);
     }
 
+    private void checkForNewFiles() {
+
+        new FilesChecker(this).execute();
+    }
+
     private void setWakeLock() {
         final PowerManager pom = (PowerManager) getSystemService(Context.POWER_SERVICE);
         this._wakeLock = pom.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK, Constants.WAKE_LOCK);
@@ -201,5 +236,22 @@ public class MainActivity extends Activity {
     public void updateFromNative() {
 
         Toast.makeText(this, "Finished", Toast.LENGTH_SHORT).show();
+    }
+
+    /* Events */
+
+    @Subscribe
+    public void receiveMessage(SampleSlotSelectedEvt evt) {
+
+        getFragmentManager()
+                .beginTransaction()
+                .replace(R.id.samplerControlsContainer, SamplerControlsFragment.getInstance(evt.getPlayerModel()), SamplerControlsFragment._TAG)
+                .commit();
+    }
+
+    @Subscribe
+    public void receiveMessage(SamplesDirectoryCheckedEvt evt) {
+
+        Toast.makeText(this, "Samples file folder checked", Toast.LENGTH_SHORT).show();
     }
 }

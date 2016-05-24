@@ -1,6 +1,5 @@
 package com.vuric.nativemusicsampler.listeners;
 
-import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -8,10 +7,9 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.vuric.nativemusicsampler.BusStation;
-import com.vuric.nativemusicsampler.events.SlotsContainerEvt;
-import com.vuric.nativemusicsampler.events.SampleSlotSelectedEvt;
 import com.vuric.nativemusicsampler.enums.AppLayoutState;
-import com.vuric.nativemusicsampler.fragments.ConsoleFragment;
+import com.vuric.nativemusicsampler.events.SampleSlotSelectedEvt;
+import com.vuric.nativemusicsampler.events.SlotsContainerEvt;
 import com.vuric.nativemusicsampler.layouts.PlayerView;
 import com.vuric.nativemusicsampler.utils.Constants;
 
@@ -21,43 +19,40 @@ import com.vuric.nativemusicsampler.utils.Constants;
 public class SlotsContainerGestureListener implements View.OnTouchListener {
 
     private final GestureDetector _gestureDetector;
-    private ConsoleFragment _consoleFragment;
     private PlayerView _lastTouchedView;
 
+
     public SlotsContainerGestureListener(Context context) {
-        _gestureDetector = new GestureDetector(context, new GestureListener());
-        _consoleFragment = (ConsoleFragment) ((Activity)context).getFragmentManager().findFragmentByTag(ConsoleFragment._TAG);
+
+        _gestureDetector = new GestureDetector(context, new GestureListener(context));
     }
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
 
-        if(v != null) {
-
-            String tag = (String) v.getTag();
-            _lastTouchedView = (PlayerView) v.getParent();
-        }
+        _lastTouchedView = (PlayerView) v.getParent();
 
         return _gestureDetector.onTouchEvent(event);
     }
 
     private final class GestureListener extends GestureDetector.SimpleOnGestureListener {
 
-        @Override
-        public void onLongPress(MotionEvent e) {
-            BusStation.getBus().post(new SampleSlotSelectedEvt(_lastTouchedView.getModel()));
-            super.onLongPress(e);
-        }
+        private Context _context;
 
-        @Override
-        public boolean onSingleTapUp(MotionEvent e) {
-            _consoleFragment.getPlayer(_lastTouchedView.getModel().getID()).play();
-            return true;
+        public GestureListener(Context context) {
+
+            _context = context;
         }
 
         @Override
         public boolean onDown(MotionEvent e) {
             return true;
+        }
+
+        @Override
+        public void onLongPress(MotionEvent e) {
+            BusStation.getBus().post(new SampleSlotSelectedEvt(_lastTouchedView.getModel()));
+            super.onLongPress(e);
         }
 
         @Override

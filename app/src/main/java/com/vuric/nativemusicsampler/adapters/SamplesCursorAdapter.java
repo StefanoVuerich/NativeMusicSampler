@@ -78,8 +78,10 @@ public class SamplesCursorAdapter extends CursorAdapter {
             @Override
             public void onClick(View v) {
 
-                BusStation.getBus().post(new SampleLoadedEvt(getItem(holder.container.getId()).getName(), getItem(holder.container.getId()).getSize(), _currentSelectedSlotID));
-                NativeWrapper.loadSample(_currentSelectedSlotID, holder.samplePath.getText().toString());
+                String path = holder.samplePath.getText().toString();
+
+                BusStation.getBus().post(new SampleLoadedEvt(_currentSelectedSlotID, getItem(holder.container.getId())));
+                NativeWrapper.loadSample(_currentSelectedSlotID, path);
             }
         });
         holder.sampleName.setText(cursor.getString(nameColumIndex));
@@ -94,12 +96,19 @@ public class SamplesCursorAdapter extends CursorAdapter {
             tmp = new SampleModel();
             tmp.setID(cursor.getInt(cursor.getColumnIndex(SamplesHelper._ID)));
             tmp.setName(cursor.getString(cursor.getColumnIndex(SamplesHelper.NAME)));
+            tmp.setArtist(cursor.getString(cursor.getColumnIndex(SamplesHelper.ARTIST)));
+            tmp.setTitle(cursor.getString(cursor.getColumnIndex(SamplesHelper.TITLE)));
             tmp.setPath(cursor.getString(cursor.getColumnIndex(SamplesHelper.PATH)));
+            tmp.setHours(cursor.getInt(cursor.getColumnIndex(SamplesHelper.HOURS)));
+            tmp.setMinutes(cursor.getInt(cursor.getColumnIndex(SamplesHelper.MINUTES)));
+            tmp.setSeconds(cursor.getInt(cursor.getColumnIndex(SamplesHelper.SECONDS)));
+            tmp.setBitrate(cursor.getInt(cursor.getColumnIndex(SamplesHelper.BITRATE)));
             tmp.setSize(cursor.getLong(cursor.getColumnIndex(SamplesHelper.SIZE)));
             tmp.setRate(cursor.getFloat(cursor.getColumnIndex(SamplesHelper.RATE)));
             tmp.setPlayed(cursor.getInt(cursor.getColumnIndex(SamplesHelper.PLAYED)));
             tmp.setFormat(cursor.getString(cursor.getColumnIndex(SamplesHelper.FORMAT)));
         }
+        //cursor.close();
         return tmp;
     }
 
@@ -108,7 +117,7 @@ public class SamplesCursorAdapter extends CursorAdapter {
         Cursor cursor = getCursor();
         if(cursor != null) {
             int count =  cursor.getCount();
-            cursor.close();
+            //cursor.close();
             return count;
         }
         return 0;

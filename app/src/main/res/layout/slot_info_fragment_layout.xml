@@ -7,23 +7,87 @@
     android:orientation="vertical">
 
     <TextView
+        style="@style/sampleInfoLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/info_fragment"
-        android:gravity="center_horizontal"/>
+        android:text="Artist"
+        android:id="@+id/sampleArtistLabel"/>
 
     <TextView
+        style="@style/sampleInfoText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="The Artist"
+        android:id="@+id/sampleArtist"/>
+
+    <TextView
+        style="@style/sampleInfoLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Title"
-        android:id="@+id/sampleTitle"
-        android:gravity="center_horizontal"/>
+        android:id="@+id/sampleTitleLabel"/>
 
     <TextView
+        style="@style/sampleInfoText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="The Title"
+        android:id="@+id/sampleTitle"/>
+
+    <TextView
+        style="@style/sampleInfoLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Duration"
+        android:id="@+id/sampleDurationLabel"/>
+
+    <TextView
+        style="@style/sampleInfoText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="The Duration"
+        android:id="@+id/sampleDuration"/>
+
+    <TextView
+        style="@style/sampleInfoLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Format"
+        android:id="@+id/sampleFormatLabel"/>
+
+    <TextView
+        style="@style/sampleInfoText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="The Format"
+        android:id="@+id/sampleFormat"/>
+
+    <TextView
+        style="@style/sampleInfoLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Bitrate"
+        android:id="@+id/sampleBitrateLabel"/>
+
+    <TextView
+        style="@style/sampleInfoText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Bitrate"
+        android:id="@+id/sampleBitrate"/>
+
+    <TextView
+        style="@style/sampleInfoLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Size"
-        android:id="@+id/sampleSize"
-        android:gravity="center_horizontal"/>
+        android:id="@+id/sampleSizeLabel"/>
+
+    <TextView
+        style="@style/sampleInfoText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="The Size"
+        android:id="@+id/sampleSize"/>
 
 </LinearLayout>

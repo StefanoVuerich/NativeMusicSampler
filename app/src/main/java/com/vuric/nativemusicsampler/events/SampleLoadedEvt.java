@@ -1,29 +1,25 @@
 package com.vuric.nativemusicsampler.events;
 
+import com.vuric.nativemusicsampler.models.SampleModel;
+
 /**
  * Created by stefano on 5/2/2016.
  */
 public class SampleLoadedEvt {
 
-    private String _title;
-    private long _size;
-    private int _ID;
+    private int _slotID;
+    private SampleModel _model;
 
-    public SampleLoadedEvt(String title, long size, int id) {
-        _title = title;
-        _size = size;
-        _ID = id;
+    public SampleLoadedEvt(int id, SampleModel model) {
+        _slotID = id;
+        _model = model;
     }
 
-    public String getTitle() {
-        return _title;
+    public int getSlotID() {
+        return _slotID;
     }
 
-    public long getSize() {
-        return _size;
-    }
-
-    public int getID() {
-        return _ID;
+    public SampleModel getModel() {
+        return _model;
     }
 }

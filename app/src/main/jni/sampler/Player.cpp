@@ -57,7 +57,7 @@ void Player::load(string fileName) {
 
     int settings[3];
     Logger::log("Loading");
-    Logger::log(fileName.c_str());
+    //Logger::log(fileName.c_str());
 
     SLresult result;
 

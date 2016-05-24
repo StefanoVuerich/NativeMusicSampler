@@ -9,23 +9,23 @@ import android.widget.RelativeLayout;
 import com.squareup.otto.Subscribe;
 import com.vuric.nativemusicsampler.BusStation;
 import com.vuric.nativemusicsampler.controllers.PlayerController;
-import com.vuric.nativemusicsampler.enums.PlayState;
 import com.vuric.nativemusicsampler.enums.AppLayoutState;
-import com.vuric.nativemusicsampler.events.SampleSelectedEvt;
+import com.vuric.nativemusicsampler.enums.PlayState;
+import com.vuric.nativemusicsampler.events.SampleLoadedEvt;
 import com.vuric.nativemusicsampler.events.SampleSlotSelectedEvt;
 import com.vuric.nativemusicsampler.models.PlayerModel;
 
 /**
  * Created by stefano on 4/5/2016.
  */
-public class PlayerView extends RelativeLayout {
+public class PlayerView extends RelativeLayout implements View.OnTouchListener {
 
     private int w, h;
     private View playView;
     private View topView;
     private View bottomView;
     private AppLayoutState _state;
-    private PlayerController _controller;
+    private PlayerController _playerController;
     private OnTouchListener _listener;
 
     public PlayerView(Context context, AppLayoutState state, OnTouchListener listener, int id) {
@@ -34,7 +34,7 @@ public class PlayerView extends RelativeLayout {
         PlayerModel model = new PlayerModel();
         model.setID(id);
         model.setState(PlayState.STOP);
-        _controller = new PlayerController(model);
+        _playerController = new PlayerController(model);
 
         _state = state;
         _listener = listener;
@@ -44,7 +44,7 @@ public class PlayerView extends RelativeLayout {
     public PlayerView(Context context, AppLayoutState state, PlayerModel model, OnTouchListener listener, int id) {
         super(context);
 
-        _controller = new PlayerController(model);
+        _playerController = new PlayerController(model);
 
         _state = state;
         _listener = listener;
@@ -52,11 +52,11 @@ public class PlayerView extends RelativeLayout {
     }
 
     public PlayerModel getModel() {
-        return _controller.getModel();
+        return _playerController.getModel();
     }
 
     public PlayerController getController() {
-        return _controller;
+        return _playerController;
     }
 
     private void init() {
@@ -64,25 +64,10 @@ public class PlayerView extends RelativeLayout {
         setBackgroundColor(Color.parseColor("#0000FF"));
         setPadding(5, 5, 5, 5);
 
-
         playView = new View(getContext());
         playView.setId(getId());
-        playView.setOnTouchListener(new View.OnTouchListener() {
-
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-
-                /*if(getModel().isLoaded()) {
-
-                    NativeWrapper.setPlayState(0, PlayState.STOP.getValue());
-                    NativeWrapper.setPlayState(0, PlayState.PLAY.getValue());
-
-                    return true;
-                } else*/
-                    return _listener.onTouch(v,event);
-            }
-        });
         playView.setTag("PlayView");
+        playView.setOnTouchListener(this);
         addView(playView);
 
         topView = new View(getContext());
@@ -115,7 +100,7 @@ public class PlayerView extends RelativeLayout {
         int mWidth = w = wSpecSize;
 
         View playView = getChildAt(0);
-        playView.setBackgroundColor(_controller.getModel().isSelected() ? Color.parseColor("#FFFFFF") : Color.parseColor("#000000"));
+        playView.setBackgroundColor(_playerController.getModel().isSelected() ? Color.parseColor("#FFFFFF") : Color.parseColor("#000000"));
         playView.setLayoutParams(new RelativeLayout.LayoutParams(mHeight, mHeight));
 
         int currentWidth = _state == AppLayoutState.CLOSE ? 0 : h / 2;
@@ -162,16 +147,16 @@ public class PlayerView extends RelativeLayout {
     @Subscribe
     public void receiveMessage(SampleSlotSelectedEvt evt) {
         if(evt.getPlayerModel().getID() == getModel().getID()) {
-            _controller.setSelected(true);
+            _playerController.setSelected(true);
             playView.setBackgroundColor(Color.parseColor("#FFFFFF"));
         } else {
-            _controller.setSelected(false);
+            _playerController.setSelected(false);
             playView.setBackgroundColor(Color.parseColor("#000000"));
         }
     }
 
     @Subscribe
-    public void receiveMessage(SampleSelectedEvt evt) {
+    public void receiveMessage(SampleLoadedEvt evt) {
 
         if(evt.getSlotID() == getModel().getID()) {
 
@@ -182,18 +167,30 @@ public class PlayerView extends RelativeLayout {
                     post(new Runnable() {
                         @Override
                         public void run() {
-                            _controller.setColor("#0000FF", playView);
+                            _playerController.setColor("#0000FF", playView);
                         }
                     });
 
                     postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            _controller.setColor(_controller.getModel().isSelected() ? "#FFFFFF" : "#000000", playView);
+                            _playerController.setColor(_playerController.getModel().isSelected() ? "#FFFFFF" : "#000000", playView);
                         }
                     }, 200);
                 }
             }).run();
         }
+    }
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+
+        switch(event.getAction()) {
+
+            case MotionEvent.ACTION_UP:
+                _playerController.play();
+        }
+
+        return _listener.onTouch(v,event);
     }
 }
