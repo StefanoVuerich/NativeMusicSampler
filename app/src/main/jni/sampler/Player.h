@@ -11,23 +11,25 @@
 #include "interfaces/IPlayer.h"
 #include "../utils/Logger.h"
 #include "../utils/ErrorChecker.h"
+#include "../utils/JavaLinker.h"
 
 using namespace std;
 
 class Player : public IPlayer{
 
 public:
-    Player(SLEngineItf &engine, SLObjectItf &mixer);
+    Player(SLEngineItf &engine, SLObjectItf &mixer, int id);
     ~Player();
     void init();
     void play();
     void pause();
     void stop();
-    void load(string fileName);
+    bool load(string fileName);
     void unload();
     bool isLoaded();
 
-private:
+protected:
+    int _id;
     bool loaded;
     int state;
     SLEngineItf _engine;
@@ -39,5 +41,8 @@ private:
     SLVolumeItf _volumeInterface;
     SLPrefetchStatusItf _prefetchStatusInterface;
 };
+
+void playerReadyCallback(SLPrefetchStatusItf caller, void *settings, SLuint32 event);
+void playerStatusUpdate (SLPlayItf caller, void *pContext, SLuint32 event);
 
 #endif //JNIEXAMPLE_PLAYER_H

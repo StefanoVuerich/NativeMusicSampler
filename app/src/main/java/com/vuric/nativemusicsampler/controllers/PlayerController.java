@@ -7,7 +7,7 @@ import android.view.View;
 import com.squareup.otto.Subscribe;
 import com.vuric.nativemusicsampler.BusStation;
 import com.vuric.nativemusicsampler.enums.PlayState;
-import com.vuric.nativemusicsampler.events.SampleLoadedEvt;
+import com.vuric.nativemusicsampler.events.SampleIsLoadedEvt;
 import com.vuric.nativemusicsampler.interfaces.IPlayer;
 import com.vuric.nativemusicsampler.models.PlayerModel;
 import com.vuric.nativemusicsampler.models.SampleModel;
@@ -44,7 +44,7 @@ public class PlayerController implements IPlayer {
     }
 
     @Subscribe
-    public void receiveMessage(SampleLoadedEvt evt) {
+    public void receiveMessage(SampleIsLoadedEvt evt) {
 
         if(evt.getSlotID() == _model.getID()) {
             _model.setSampleInfo(evt.getModel());

@@ -3,18 +3,67 @@
 //
 
 #include "Player.h"
+#include "../utils/JavaLinker.h"
 
-//extern "C" {
-    static void playerReadyCallback(SLPrefetchStatusItf caller, void *settings, SLuint32 event) {
 
-        Logger::log("Callback called");
+void playerReadyCallback(SLPrefetchStatusItf caller, void *settings, SLuint32 event) {
+
+    JavaLinker::getInstance()->invoceCallback("sampleLoaded", settings);
+
+    //(*_playInterface)->SetCallbackEventsMask(_playInterface, SL_PLAYEVENT_HEADATEND);
+}
+
+void playerStatusUpdate (SLPlayItf caller, void *pContext, SLuint32 event) {
+
+    SLresult result;
+    SLPlayItf playItf = (SLPlayItf)*(reinterpret_cast<SLPlayItf*>(pContext));
+
+    SLmillisecond pMsec;
+    result = (*playItf)->GetMarkerPosition(playItf, &pMsec);
+    ErrorChecker::check(result);
+
+    SLmillisecond duration;
+    (*playItf)->GetDuration(playItf, &duration);
+    ErrorChecker::check(result);
+
+    SLmillisecond newPosition;
+
+    switch(event) {
+
+        case SL_PLAYEVENT_HEADATMARKER:
+            Logger::log("SL_PLAYEVENT_HEADATMARKER");
+
+            newPosition = (SLmillisecond)pMsec + 100;
+
+            result = (*playItf)->SetMarkerPosition(playItf, newPosition);
+            ErrorChecker::check(result);
+
+            if(newPosition >= duration - 100) {
+                result = (*playItf)->SetCallbackEventsMask(playItf, SL_PLAYEVENT_HEADATEND);
+                ErrorChecker::check(result);
+            }
+
+            break;
+
+        case SL_PLAYEVENT_HEADATEND:
+            Logger::log("SL_PLAYEVENT_HEADATEND");
+
+            result = (*playItf)->SetMarkerPosition(playItf, 100);
+            ErrorChecker::check(result);
+
+            result = (*playItf)->SetCallbackEventsMask(playItf, SL_PLAYEVENT_HEADATMARKER);
+            ErrorChecker::check(result);
+
+            break;
     }
-//}
+}
 
-Player::Player(SLEngineItf &engine, SLObjectItf &mixer) {
+Player::Player(SLEngineItf &engine, SLObjectItf &mixer, int id) {
 
+    _id = id;
     _engine = engine;
     _mixer = mixer;
+
 }
 
 Player::~Player() { }
@@ -53,11 +102,10 @@ void Player::stop() {
     }
 }
 
-void Player::load(string fileName) {
+bool Player::load(string fileName) {
 
+    Logger::log("Loading" + fileName);
     int settings[3];
-    Logger::log("Loading");
-    //Logger::log(fileName.c_str());
 
     SLresult result;
 
@@ -75,11 +123,17 @@ void Player::load(string fileName) {
     result = (*_player)->Realize(_player,SL_BOOLEAN_FALSE);
     ErrorChecker::check(result);
 
+    // Seek Interface
+
     result = (*_player)->GetInterface(_player,SL_IID_SEEK, (void*) &_seekInterface);
     ErrorChecker::check(result);
 
+    // Volume Interface
+
     result = (*_player)->GetInterface(_player,SL_IID_VOLUME, (void*) &_volumeInterface);
     ErrorChecker::check(result);
+
+    // PrefetchStatus Interface
 
     result = (*_player)->GetInterface(_player,SL_IID_PREFETCHSTATUS, (void*) &_prefetchStatusInterface);
     ErrorChecker::check(result);
@@ -87,23 +141,37 @@ void Player::load(string fileName) {
     result = (*_prefetchStatusInterface)->SetCallbackEventsMask(_prefetchStatusInterface, SL_PREFETCHSTATUS_SUFFICIENTDATA);
     ErrorChecker::check(result);
 
-    result = (*_prefetchStatusInterface)->RegisterCallback(_prefetchStatusInterface, playerReadyCallback, (void*) &settings);
+    result = (*_prefetchStatusInterface)->RegisterCallback(_prefetchStatusInterface, playerReadyCallback, (void*) &_id);
     ErrorChecker::check(result);
+
+    // Play Interface
 
     result = (*_player)->GetInterface(_player,SL_IID_PLAY, (void*) &_playInterface);
     ErrorChecker::check(result);
 
-    if (FILE *file = fopen(fileName.c_str(), "r")) {
+    result = (*_playInterface)->RegisterCallback(_playInterface, playerStatusUpdate, reinterpret_cast<void*>(&_playInterface));
+    ErrorChecker::check(result);
+
+    result = (*_playInterface)->SetPositionUpdatePeriod(_playInterface,100);
+    ErrorChecker::check(result);
+
+    result = (*_playInterface)->SetMarkerPosition(_playInterface, 100);
+    ErrorChecker::check(result);
+
+    result = (*_playInterface)->SetCallbackEventsMask(_playInterface, SL_PLAYEVENT_HEADATMARKER);
+    ErrorChecker::check(result);
+
+    /*if (FILE *file = fopen(fileName.c_str(), "r")) {
         fclose(file);
     } else {
         Logger::log("File non esiste");
     }
 
-
-
-    Logger::log("Loaded");
+    Logger::log("Loaded");*/
 
     loaded = true;
+
+    return true;
 }
 
 void Player::unload() {

@@ -17,7 +17,7 @@ model {
         moduleName = "native-audio-jni"
         CFlags.add("-std=c99")
         ldLibs.addAll(["android", "OpenSLES", "log"])
-        CFlags.add("-I${file("src/main/jni/libmp3lame")}".toString())
+        //CFlags.add("-I${file("src/main/jni/libmp3lame")}".toString())
         stl = "stlport_static"
     }
     android.buildTypes {

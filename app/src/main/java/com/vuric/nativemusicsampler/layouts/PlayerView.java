@@ -11,7 +11,7 @@ import com.vuric.nativemusicsampler.BusStation;
 import com.vuric.nativemusicsampler.controllers.PlayerController;
 import com.vuric.nativemusicsampler.enums.AppLayoutState;
 import com.vuric.nativemusicsampler.enums.PlayState;
-import com.vuric.nativemusicsampler.events.SampleLoadedEvt;
+import com.vuric.nativemusicsampler.events.SampleIsLoadedEvt;
 import com.vuric.nativemusicsampler.events.SampleSlotSelectedEvt;
 import com.vuric.nativemusicsampler.models.PlayerModel;
 
@@ -156,7 +156,7 @@ public class PlayerView extends RelativeLayout implements View.OnTouchListener {
     }
 
     @Subscribe
-    public void receiveMessage(SampleLoadedEvt evt) {
+    public void receiveMessage(SampleIsLoadedEvt evt) {
 
         if(evt.getSlotID() == getModel().getID()) {
 

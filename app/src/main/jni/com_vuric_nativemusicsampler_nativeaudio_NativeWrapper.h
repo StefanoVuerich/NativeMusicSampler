@@ -13,15 +13,7 @@ extern "C" {
  * Signature: (I[I)V
  */
 JNIEXPORT void JNICALL Java_com_vuric_nativemusicsampler_nativeaudio_NativeWrapper_init
-  (JNIEnv *, jclass, jint, jintArray);
-
-/*
- * Class:     com_vuric_nativemusicsampler_nativeaudio_NativeWrapper
- * Method:    linkCallbackFunctions
- * Signature: ()V
- */
-JNIEXPORT void JNICALL Java_com_vuric_nativemusicsampler_nativeaudio_NativeWrapper_linkCallbackFunctions
-  (JNIEnv *, jclass);
+(JNIEnv *, jclass, jint, jintArray);
 
 /*
  * Class:     com_vuric_nativemusicsampler_nativeaudio_NativeWrapper
@@ -29,15 +21,15 @@ JNIEXPORT void JNICALL Java_com_vuric_nativemusicsampler_nativeaudio_NativeWrapp
  * Signature: ()V
  */
 JNIEXPORT void JNICALL Java_com_vuric_nativemusicsampler_nativeaudio_NativeWrapper_shutdown
-  (JNIEnv *, jclass);
+(JNIEnv *, jclass);
 
 /*
  * Class:     com_vuric_nativemusicsampler_nativeaudio_NativeWrapper
  * Method:    loadSample
  * Signature: (ILjava/lang/String;)V
  */
-JNIEXPORT void JNICALL Java_com_vuric_nativemusicsampler_nativeaudio_NativeWrapper_loadSample
-  (JNIEnv *, jclass, jint, jstring);
+JNIEXPORT jboolean JNICALL Java_com_vuric_nativemusicsampler_nativeaudio_NativeWrapper_loadSample
+(JNIEnv *, jclass, jint, jstring);
 
 /*
  * Class:     com_vuric_nativemusicsampler_nativeaudio_NativeWrapper
@@ -45,7 +37,7 @@ JNIEXPORT void JNICALL Java_com_vuric_nativemusicsampler_nativeaudio_NativeWrapp
  * Signature: (I)V
  */
 JNIEXPORT void JNICALL Java_com_vuric_nativemusicsampler_nativeaudio_NativeWrapper_unloadSample
-  (JNIEnv *, jclass, jint);
+(JNIEnv *, jclass, jint);
 
 /*
  * Class:     com_vuric_nativemusicsampler_nativeaudio_NativeWrapper
@@ -53,7 +45,7 @@ JNIEXPORT void JNICALL Java_com_vuric_nativemusicsampler_nativeaudio_NativeWrapp
  * Signature: (II)I
  */
 JNIEXPORT jint JNICALL Java_com_vuric_nativemusicsampler_nativeaudio_NativeWrapper_setPlayState
-  (JNIEnv *, jclass, jint, jint);
+        (JNIEnv *, jclass, jint, jint);
 
 /*
  * Class:     com_vuric_nativemusicsampler_nativeaudio_NativeWrapper
@@ -61,7 +53,7 @@ JNIEXPORT jint JNICALL Java_com_vuric_nativemusicsampler_nativeaudio_NativeWrapp
  * Signature: (I)I
  */
 JNIEXPORT jint JNICALL Java_com_vuric_nativemusicsampler_nativeaudio_NativeWrapper_getPlayState
-  (JNIEnv *, jclass, jint);
+        (JNIEnv *, jclass, jint);
 
 /*
  * Class:     com_vuric_nativemusicsampler_nativeaudio_NativeWrapper
@@ -69,7 +61,7 @@ JNIEXPORT jint JNICALL Java_com_vuric_nativemusicsampler_nativeaudio_NativeWrapp
  * Signature: ([I)V
  */
 JNIEXPORT void JNICALL Java_com_vuric_nativemusicsampler_nativeaudio_NativeWrapper_setBandLevels
-  (JNIEnv *, jclass, jintArray);
+(JNIEnv *, jclass, jintArray);
 
 /*
  * Class:     com_vuric_nativemusicsampler_nativeaudio_NativeWrapper
@@ -77,7 +69,7 @@ JNIEXPORT void JNICALL Java_com_vuric_nativemusicsampler_nativeaudio_NativeWrapp
  * Signature: ()[I
  */
 JNIEXPORT jintArray JNICALL Java_com_vuric_nativemusicsampler_nativeaudio_NativeWrapper_getBandLevels
-  (JNIEnv *, jclass);
+        (JNIEnv *, jclass);
 
 /*
  * Class:     com_vuric_nativemusicsampler_nativeaudio_NativeWrapper
@@ -85,7 +77,7 @@ JNIEXPORT jintArray JNICALL Java_com_vuric_nativemusicsampler_nativeaudio_Native
  * Signature: (IZ)V
  */
 JNIEXPORT void JNICALL Java_com_vuric_nativemusicsampler_nativeaudio_NativeWrapper_setLoop
-  (JNIEnv *, jclass, jint, jboolean);
+(JNIEnv *, jclass, jint, jboolean);
 
 /*
  * Class:     com_vuric_nativemusicsampler_nativeaudio_NativeWrapper
@@ -93,7 +85,23 @@ JNIEXPORT void JNICALL Java_com_vuric_nativemusicsampler_nativeaudio_NativeWrapp
  * Signature: (I)Z
  */
 JNIEXPORT jboolean JNICALL Java_com_vuric_nativemusicsampler_nativeaudio_NativeWrapper_isLooping
-  (JNIEnv *, jclass, jint);
+        (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     com_vuric_nativemusicsampler_nativeaudio_NativeWrapper
+ * Method:    initLinker
+ * Signature: (Ljava/lang/String;)V
+ */
+JNIEXPORT void JNICALL Java_com_vuric_nativemusicsampler_nativeaudio_NativeWrapper_initLinker
+(JNIEnv *, jclass, jstring);
+
+/*
+ * Class:     com_vuric_nativemusicsampler_nativeaudio_NativeWrapper
+ * Method:    linkCallbackFunction
+ * Signature: (Ljava/lang/String;Ljava/lang/String;)V
+ */
+JNIEXPORT void JNICALL Java_com_vuric_nativemusicsampler_nativeaudio_NativeWrapper_linkCallbackFunction
+(JNIEnv *, jclass, jstring, jstring);
 
 #ifdef __cplusplus
 }

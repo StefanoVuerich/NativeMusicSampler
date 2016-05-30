@@ -12,9 +12,9 @@ Console::Console(Options options) {
 
     for(int i = 0; i < options._playersNumber; ++i) {
         Logger::log("Try to create new player");
-        Player *tmp = new Player(*_engine->getEngine(), *_mixer->getMixer());
+        Player *tmp = new Player(*_engine->getEngine(), *_mixer->getMixer(), i);
         _players.push_back(tmp);
-        Logger::log("PlayerController pushed to vector");
+        Logger::log("Player pushed to vector");
     }
 }
 

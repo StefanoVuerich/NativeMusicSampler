@@ -24,7 +24,7 @@
 #include <assert.h>
 #include <jni.h>
 #include <string.h>
-#include "libmp3lame/lame.h"
+//#include "libmp3lame/lame.h"
 
 // for __android_log_print(ANDROID_LOG_INFO, "YourApp", "formatted message");
 // #include <android/log.h>
@@ -928,7 +928,7 @@ void Java_com_example_nativeaudio_NativeAudio_shutdown(JNIEnv* env, jclass clazz
 // shut down the native audio system
 void Java_com_example_nativeaudio_NativeAudio_initLame(JNIEnv* env, jclass clazz, jstring file)
 {
-    SLresult result;
+    /*SLresult result;
 
     // convert Java string to UTF-8
     const char *utf8 = (*env)->GetStringUTFChars(env, file, NULL);
@@ -963,11 +963,11 @@ void Java_com_example_nativeaudio_NativeAudio_initLame(JNIEnv* env, jclass clazz
             write = lame_encode_buffer_interleaved(lame, pcm_buffer, read, mp3_buffer, MP3_SIZE);
 
         fwrite(mp3_buffer, write, 1, mp3);*/
-        __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "reading %d", read);
+    /*    __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "reading %d", read);
     } while (read != 0);
 
     lame_close(lame);
     //fclose(mp3);
     fclose(pcm);
-    __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "End");
+    __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "End");*/
 }

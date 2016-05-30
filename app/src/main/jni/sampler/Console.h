@@ -15,6 +15,8 @@
 #include "Player.h"
 #include <vector>
 
+using namespace std;
+
 class Console : public IConsole {
 
 public:
@@ -26,7 +28,7 @@ public:
 private:
     IEngine *_engine;
     IMixer *_mixer;
-    std::vector<IPlayer*> _players;
+    vector<IPlayer*> _players;
 };
 
 #endif //JNIEXAMPLE_CONSOLE_H

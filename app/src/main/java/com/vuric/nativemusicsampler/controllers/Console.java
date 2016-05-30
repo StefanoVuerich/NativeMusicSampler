@@ -5,6 +5,7 @@ import com.vuric.nativemusicsampler.interfaces.IMixer;
 import com.vuric.nativemusicsampler.interfaces.IPlayer;
 import com.vuric.nativemusicsampler.models.MixerModel;
 import com.vuric.nativemusicsampler.models.PlayerModel;
+import com.vuric.nativemusicsampler.nativeaudio.NativeReceiver;
 import com.vuric.nativemusicsampler.nativeaudio.NativeWrapper;
 
 /**
@@ -50,7 +51,11 @@ public class Console implements IConsole {
 
     @Override
     public void init() {
+
         NativeWrapper.init(_slots, new int[] {0,0,0,0,0});
+
+        NativeWrapper.initLinker(NativeReceiver.class.getName().replace(".", "/"));
+        NativeWrapper.linkCallbackFunction("sampleLoaded", "(I)V");
     }
 
     @Override
