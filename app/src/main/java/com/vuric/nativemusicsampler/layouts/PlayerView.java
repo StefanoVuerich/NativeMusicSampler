@@ -11,7 +11,8 @@ import com.vuric.nativemusicsampler.BusStation;
 import com.vuric.nativemusicsampler.controllers.PlayerController;
 import com.vuric.nativemusicsampler.enums.AppLayoutState;
 import com.vuric.nativemusicsampler.enums.PlayState;
-import com.vuric.nativemusicsampler.events.SampleIsLoadedEvt;
+import com.vuric.nativemusicsampler.events.PlayerStatusUpdateEvt;
+import com.vuric.nativemusicsampler.events.SampleLoadedEvt;
 import com.vuric.nativemusicsampler.events.SampleSlotSelectedEvt;
 import com.vuric.nativemusicsampler.models.PlayerModel;
 
@@ -144,6 +145,40 @@ public class PlayerView extends RelativeLayout implements View.OnTouchListener {
         BusStation.getBus().unregister(this);
     }
 
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+
+        switch(event.getAction()) {
+
+            case MotionEvent.ACTION_UP:
+               if(_playerController.play()) {
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            _playerController.setColor("#FF0000", playView);
+                        }
+                    }).run();
+               };
+            break;
+        }
+
+        return _listener.onTouch(v,event);
+    }
+
+    // Events
+
+    @Subscribe
+    public void receiveMessage(PlayerStatusUpdateEvt evt) {
+        if(evt.getSlotID() == getModel().getID()) {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    _playerController.setColor(_playerController.getModel().isSelected() ? "#FFFFFF" : "#000000", playView);
+                }
+            }).run();
+        }
+    }
+
     @Subscribe
     public void receiveMessage(SampleSlotSelectedEvt evt) {
         if(evt.getPlayerModel().getID() == getModel().getID()) {
@@ -156,7 +191,7 @@ public class PlayerView extends RelativeLayout implements View.OnTouchListener {
     }
 
     @Subscribe
-    public void receiveMessage(SampleIsLoadedEvt evt) {
+    public void receiveMessage(SampleLoadedEvt evt) {
 
         if(evt.getSlotID() == getModel().getID()) {
 
@@ -180,17 +215,5 @@ public class PlayerView extends RelativeLayout implements View.OnTouchListener {
                 }
             }).run();
         }
-    }
-
-    @Override
-    public boolean onTouch(View v, MotionEvent event) {
-
-        switch(event.getAction()) {
-
-            case MotionEvent.ACTION_UP:
-                _playerController.play();
-        }
-
-        return _listener.onTouch(v,event);
     }
 }

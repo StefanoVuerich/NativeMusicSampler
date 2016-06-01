@@ -47,6 +47,7 @@ public class MainActivity extends Activity {
     private int _controlsContainerWidth, _controlsContainerHeight;
     private AppLayoutState _state = AppLayoutState.CLOSE;
     private IConsole _console;
+    private int selectedSlotId;
 
     @Override
     protected void onResume() {
@@ -84,6 +85,10 @@ public class MainActivity extends Activity {
 
     public IConsole getConsole() {
         return _console;
+    }
+
+    public int getSelectedSlotId() {
+        return selectedSlotId;
     }
 
     @Override
@@ -242,6 +247,8 @@ public class MainActivity extends Activity {
 
     @Subscribe
     public void receiveMessage(SampleSlotSelectedEvt evt) {
+
+        selectedSlotId = evt.getPlayerModel().getID();
 
         getFragmentManager()
                 .beginTransaction()

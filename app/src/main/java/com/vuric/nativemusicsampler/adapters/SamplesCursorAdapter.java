@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.vuric.nativemusicsampler.BusStation;
 import com.vuric.nativemusicsampler.R;
 import com.vuric.nativemusicsampler.database.helpers.SamplesHelper;
-import com.vuric.nativemusicsampler.events.SampleIsLoadedEvt;
+import com.vuric.nativemusicsampler.events.SampleLoadedEvt;
 import com.vuric.nativemusicsampler.models.SampleModel;
 import com.vuric.nativemusicsampler.nativeaudio.NativeWrapper;
 
@@ -81,7 +81,7 @@ public class SamplesCursorAdapter extends CursorAdapter {
                 String path = holder.samplePath.getText().toString();
 
                 if(NativeWrapper.loadSample(_currentSelectedSlotID, path)) {
-                    BusStation.getBus().post(new SampleIsLoadedEvt(_currentSelectedSlotID, getItem(holder.container.getId())));
+                    BusStation.getBus().post(new SampleLoadedEvt(_currentSelectedSlotID, getItem(holder.container.getId())));
                 }
             }
         });

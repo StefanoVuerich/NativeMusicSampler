@@ -5,22 +5,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.vuric.nativemusicsampler.fragments.SlotVolumeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/volume_fragment" />
-
-    <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper
+    <com.vuric.nativemusicsampler.layouts.VolumeSeekBar
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_gravity="center">
-        <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBar
-            android:id="@+id/mySeekBar"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:seekBarRotation="CW90" /> <!-- Rotation: CW90 or CW270 -->
-    </com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper>
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"/>
 
 </FrameLayout>

@@ -55,7 +55,7 @@ public class Console implements IConsole {
         NativeWrapper.init(_slots, new int[] {0,0,0,0,0});
 
         NativeWrapper.initLinker(NativeReceiver.class.getName().replace(".", "/"));
-        NativeWrapper.linkCallbackFunction("sampleLoaded", "(I)V");
+        NativeWrapper.linkCallbackFunction("playerStatusUpdate", "(I)V");
     }
 
     @Override

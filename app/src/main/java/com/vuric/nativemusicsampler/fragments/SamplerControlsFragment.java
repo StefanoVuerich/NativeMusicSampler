@@ -14,7 +14,7 @@ import com.squareup.otto.Subscribe;
 import com.vuric.nativemusicsampler.BusStation;
 import com.vuric.nativemusicsampler.R;
 import com.vuric.nativemusicsampler.enums.AppLayoutState;
-import com.vuric.nativemusicsampler.events.SampleIsLoadedEvt;
+import com.vuric.nativemusicsampler.events.SampleLoadedEvt;
 import com.vuric.nativemusicsampler.models.PlayerModel;
 
 public class SamplerControlsFragment extends Fragment implements View.OnClickListener {
@@ -80,7 +80,7 @@ public class SamplerControlsFragment extends Fragment implements View.OnClickLis
     }
 
     @Subscribe
-    public void receiveMessage(SampleIsLoadedEvt evt) {
+    public void receiveMessage(SampleLoadedEvt evt) {
 
         _playerModel.setSampleInfo(evt.getModel());
     }

@@ -7,7 +7,7 @@ import com.squareup.otto.Bus;
  */
 public class BusStation {
 
-    private static Bus _bus = new Bus();
+    private static Bus _bus = new MainThreadBus();
 
     public static Bus getBus() {
         return _bus;

@@ -15,6 +15,7 @@ public class NativeWrapper {
     static public native int[] getBandLevels();
     static public native void setLoop(int playerIndex, boolean loop);
     static public native boolean isLooping(int playerIndex);
+    static public native boolean setVolume(int playerIndex, int level);
 
     static public native void initLinker(String className);
     static public native void linkCallbackFunction(String name, String signature);

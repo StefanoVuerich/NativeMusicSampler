@@ -15,46 +15,9 @@ void playerReadyCallback(SLPrefetchStatusItf caller, void *settings, SLuint32 ev
 
 void playerStatusUpdate (SLPlayItf caller, void *pContext, SLuint32 event) {
 
-    SLresult result;
-    SLPlayItf playItf = (SLPlayItf)*(reinterpret_cast<SLPlayItf*>(pContext));
+    if(event & SL_PLAYEVENT_HEADATEND) {
 
-    SLmillisecond pMsec;
-    result = (*playItf)->GetMarkerPosition(playItf, &pMsec);
-    ErrorChecker::check(result);
-
-    SLmillisecond duration;
-    (*playItf)->GetDuration(playItf, &duration);
-    ErrorChecker::check(result);
-
-    SLmillisecond newPosition;
-
-    switch(event) {
-
-        case SL_PLAYEVENT_HEADATMARKER:
-            Logger::log("SL_PLAYEVENT_HEADATMARKER");
-
-            newPosition = (SLmillisecond)pMsec + 100;
-
-            result = (*playItf)->SetMarkerPosition(playItf, newPosition);
-            ErrorChecker::check(result);
-
-            if(newPosition >= duration - 100) {
-                result = (*playItf)->SetCallbackEventsMask(playItf, SL_PLAYEVENT_HEADATEND);
-                ErrorChecker::check(result);
-            }
-
-            break;
-
-        case SL_PLAYEVENT_HEADATEND:
-            Logger::log("SL_PLAYEVENT_HEADATEND");
-
-            result = (*playItf)->SetMarkerPosition(playItf, 100);
-            ErrorChecker::check(result);
-
-            result = (*playItf)->SetCallbackEventsMask(playItf, SL_PLAYEVENT_HEADATMARKER);
-            ErrorChecker::check(result);
-
-            break;
+        JavaLinker::getInstance()->invoceCallback("playerStatusUpdate", pContext);
     }
 }
 
@@ -70,44 +33,34 @@ Player::~Player() { }
 
 void Player::init() {}
 
-void Player::play() {
+bool Player::play() {
 
-    SLresult result;
-    if(state == 0 || state == 2) {
-        result = (*_playInterface)->SetPlayState(_playInterface,SL_PLAYSTATE_PLAYING);
-        ErrorChecker::check(result);
-    } else {
-        result = (*_playInterface)->SetPlayState(_playInterface,SL_PLAYSTATE_STOPPED);
-        ErrorChecker::check(result);
-        result = (*_playInterface)->SetPlayState(_playInterface,SL_PLAYSTATE_PLAYING);
-        ErrorChecker::check(result);
-    }
-    state = 1;
-    Logger::log("Sample played");
+    _result = (*_playInterface)->SetPlayState(_playInterface,SL_PLAYSTATE_PLAYING);
+    ErrorChecker::check(_result);
+
+    return true;
 }
 
-void Player::pause() {
+bool Player::pause() {
 
-    if(state == 1) {
-        (*_playInterface)->SetPlayState(_playInterface,SL_PLAYSTATE_PAUSED);
-        state = 2;
-    }
+    _result = (*_playInterface)->SetPlayState(_playInterface,SL_PLAYSTATE_PAUSED);
+    ErrorChecker::check(_result);
+
+    return true;
 }
 
-void Player::stop() {
+bool Player::stop() {
 
-    if(state == 1 || state == 2) {
-        (*_playInterface)->SetPlayState(_playInterface,SL_PLAYSTATE_STOPPED);
-        state = 0;
-    }
+    _result = (*_playInterface)->SetPlayState(_playInterface,SL_PLAYSTATE_STOPPED);
+    ErrorChecker::check(_result);
+
+    return true;
 }
 
 bool Player::load(string fileName) {
 
     Logger::log("Loading" + fileName);
     int settings[3];
-
-    SLresult result;
 
     SLDataLocator_URI fileLoc = { SL_DATALOCATOR_URI, (SLchar *)fileName.c_str() };
     SLDataFormat_MIME mime = { SL_DATAFORMAT_MIME, NULL, SL_CONTAINERTYPE_UNSPECIFIED };
@@ -117,49 +70,43 @@ bool Player::load(string fileName) {
     SLDataLocator_OutputMix loc_outmix = { SL_DATALOCATOR_OUTPUTMIX, _mixer};
     SLDataSink audioSnk = { &loc_outmix, NULL };
 
-    result = (*_engine)->CreateAudioPlayer(_engine, &_player, &audioSrcUri, &audioSnk, 3, ids, req);
-    ErrorChecker::check(result);
+    _result = (*_engine)->CreateAudioPlayer(_engine, &_player, &audioSrcUri, &audioSnk, 3, ids, req);
+    ErrorChecker::check(_result);
 
-    result = (*_player)->Realize(_player,SL_BOOLEAN_FALSE);
-    ErrorChecker::check(result);
+    _result = (*_player)->Realize(_player,SL_BOOLEAN_FALSE);
+    ErrorChecker::check(_result);
 
     // Seek Interface
 
-    result = (*_player)->GetInterface(_player,SL_IID_SEEK, (void*) &_seekInterface);
-    ErrorChecker::check(result);
+    _result = (*_player)->GetInterface(_player,SL_IID_SEEK, (void*) &_seekInterface);
+    ErrorChecker::check(_result);
 
     // Volume Interface
 
-    result = (*_player)->GetInterface(_player,SL_IID_VOLUME, (void*) &_volumeInterface);
-    ErrorChecker::check(result);
+    _result = (*_player)->GetInterface(_player,SL_IID_VOLUME, (void*) &_volumeInterface);
+    ErrorChecker::check(_result);
 
     // PrefetchStatus Interface
 
-    result = (*_player)->GetInterface(_player,SL_IID_PREFETCHSTATUS, (void*) &_prefetchStatusInterface);
-    ErrorChecker::check(result);
+    _result = (*_player)->GetInterface(_player,SL_IID_PREFETCHSTATUS, (void*) &_prefetchStatusInterface);
+    ErrorChecker::check(_result);
 
-    result = (*_prefetchStatusInterface)->SetCallbackEventsMask(_prefetchStatusInterface, SL_PREFETCHSTATUS_SUFFICIENTDATA);
-    ErrorChecker::check(result);
+    _result = (*_prefetchStatusInterface)->SetCallbackEventsMask(_prefetchStatusInterface, SL_PREFETCHSTATUS_SUFFICIENTDATA);
+    ErrorChecker::check(_result);
 
-    result = (*_prefetchStatusInterface)->RegisterCallback(_prefetchStatusInterface, playerReadyCallback, (void*) &_id);
-    ErrorChecker::check(result);
+    _result = (*_prefetchStatusInterface)->RegisterCallback(_prefetchStatusInterface, playerReadyCallback, (void*) &_id);
+    ErrorChecker::check(_result);
 
     // Play Interface
 
-    result = (*_player)->GetInterface(_player,SL_IID_PLAY, (void*) &_playInterface);
-    ErrorChecker::check(result);
+    _result = (*_player)->GetInterface(_player,SL_IID_PLAY, (void*) &_playInterface);
+    ErrorChecker::check(_result);
 
-    result = (*_playInterface)->RegisterCallback(_playInterface, playerStatusUpdate, reinterpret_cast<void*>(&_playInterface));
-    ErrorChecker::check(result);
+    _result = (*_playInterface)->RegisterCallback(_playInterface, playerStatusUpdate, reinterpret_cast<void*>(&_id));
+    ErrorChecker::check(_result);
 
-    result = (*_playInterface)->SetPositionUpdatePeriod(_playInterface,100);
-    ErrorChecker::check(result);
-
-    result = (*_playInterface)->SetMarkerPosition(_playInterface, 100);
-    ErrorChecker::check(result);
-
-    result = (*_playInterface)->SetCallbackEventsMask(_playInterface, SL_PLAYEVENT_HEADATMARKER);
-    ErrorChecker::check(result);
+    _result = (*_playInterface)->SetCallbackEventsMask(_playInterface, SL_PLAYEVENT_HEADATEND);
+    ErrorChecker::check(_result);
 
     /*if (FILE *file = fopen(fileName.c_str(), "r")) {
         fclose(file);
@@ -169,23 +116,43 @@ bool Player::load(string fileName) {
 
     Logger::log("Loaded");*/
 
-    loaded = true;
-
     return true;
+}
+
+bool Player::setVolume(int level) {
+
+    int attenuation = (100 - level);
+    SLmillibel nextLevel;
+
+    switch(attenuation) {
+
+        case 0: nextLevel = 0;
+            break;
+
+        case 100: nextLevel = SL_MILLIBEL_MIN;
+            break;
+
+        default: nextLevel = (SL_MILLIBEL_MIN / 100) * (attenuation /10);
+            break;
+    }
+
+    std::ostringstream filename;
+    filename << "Volume native: " << (int)nextLevel;
+
+    string s = filename.str();
+
+    Logger::log(s);
+
+    _result = (*_volumeInterface)->SetVolumeLevel(_volumeInterface, nextLevel);
 }
 
 void Player::unload() {
 
     //code to unload file
-    loaded = false;
 }
 
 bool Player::isLoaded() {
 
-    if(loaded) {
-        return true;
-    } else {
-        return false;
-    }
+    return true;
 }
 

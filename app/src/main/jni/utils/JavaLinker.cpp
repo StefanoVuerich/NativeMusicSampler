@@ -82,8 +82,8 @@ void JavaLinker::invoceCallback(string methodName, void *params) {
 
         jmethodID method = pos->second;
         if(method != NULL) {
-            if(methodName == "sampleLoaded") {
-                env->CallStaticVoidMethod(_globalJavaReceiver, method, reinterpret_cast<int>(params));
+            if(methodName == "playerStatusUpdate") {
+                env->CallStaticVoidMethod(_globalJavaReceiver, method, *(reinterpret_cast<int*>(params)));
             }
         }
     }

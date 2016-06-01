@@ -6,10 +6,10 @@ import com.vuric.nativemusicsampler.models.SampleModel;
 
 public interface IPlayer {
 
-    void play();
-    void pause();
-    void stop();
-    void load(String path);
+    boolean play();
+    boolean pause();
+    boolean stop();
+    boolean load(String path);
     void unload();
     PlayState getPlayState();
     void enableLoop();

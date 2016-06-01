@@ -5,6 +5,7 @@
 #ifndef JNIEXAMPLE_PLAYER_H
 #define JNIEXAMPLE_PLAYER_H
 
+#include <sstream>
 #include <string>
 #include <stdio.h>
 #include <SLES/OpenSLES.h>
@@ -21,17 +22,17 @@ public:
     Player(SLEngineItf &engine, SLObjectItf &mixer, int id);
     ~Player();
     void init();
-    void play();
-    void pause();
-    void stop();
+    bool play();
+    bool pause();
+    bool stop();
     bool load(string fileName);
+    bool setVolume(int level);
     void unload();
     bool isLoaded();
 
-protected:
+private:
+    SLresult _result;
     int _id;
-    bool loaded;
-    int state;
     SLEngineItf _engine;
     SLObjectItf _mixer;
     SLObjectItf _player;

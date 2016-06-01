@@ -1,18 +1,16 @@
 package com.vuric.nativemusicsampler.controllers;
 
 import android.graphics.Color;
-import android.util.Log;
 import android.view.View;
 
 import com.squareup.otto.Subscribe;
 import com.vuric.nativemusicsampler.BusStation;
 import com.vuric.nativemusicsampler.enums.PlayState;
-import com.vuric.nativemusicsampler.events.SampleIsLoadedEvt;
+import com.vuric.nativemusicsampler.events.SampleLoadedEvt;
 import com.vuric.nativemusicsampler.interfaces.IPlayer;
 import com.vuric.nativemusicsampler.models.PlayerModel;
 import com.vuric.nativemusicsampler.models.SampleModel;
 import com.vuric.nativemusicsampler.nativeaudio.NativeWrapper;
-import com.vuric.nativemusicsampler.utils.Constants;
 
 /**
  * Created by stefano on 4/6/2016.
@@ -44,7 +42,7 @@ public class PlayerController implements IPlayer {
     }
 
     @Subscribe
-    public void receiveMessage(SampleIsLoadedEvt evt) {
+    public void receiveMessage(SampleLoadedEvt evt) {
 
         if(evt.getSlotID() == _model.getID()) {
             _model.setSampleInfo(evt.getModel());
@@ -60,48 +58,57 @@ public class PlayerController implements IPlayer {
     }
 
     @Override
-    public void play() {
+    public boolean play() {
 
         if(!_model.isLoaded())
-            return;
+            return false;
 
         if(_model.getState() == PlayState.PLAY) {
             NativeWrapper.setPlayState(_model.getID(), PlayState.STOP.getValue());
             NativeWrapper.setPlayState(_model.getID(), PlayState.PLAY.getValue());
+            _model.setState(PlayState.PLAY);
+            return true;
         } else {
             NativeWrapper.setPlayState(2, PlayState.PLAY.getValue());
             _model.setState(PlayState.PLAY);
+            return true;
         }
     }
 
     @Override
-    public void pause() {
+    public boolean pause() {
 
         if(!_model.isLoaded())
-            return;
+            return false;
 
         if(_model.getState() == PlayState.PLAY) {
             NativeWrapper.setPlayState(_model.getID(), PlayState.PAUSE.getValue());
+            _model.setState(PlayState.PAUSE);
+            return true;
+        } else {
+            return false;
         }
-        Log.d(Constants.APP_TAG, "Pause");
     }
 
     @Override
-    public void stop() {
+    public boolean stop() {
 
         if(!_model.isLoaded())
-            return;
+            return false;
 
-        /*if(_model.getState() == PlayState.PLAY) {
-            NativeWrapper.setPlayState(_model.getIndex(), PlayState.STOP.value);
-        }*/
-        Log.d(Constants.APP_TAG, "Stop");
+        if(_model.getState() == PlayState.PLAY) {
+            NativeWrapper.setPlayState(_model.getID(), PlayState.STOP.getValue());
+            _model.setState(PlayState.PLAY);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
-    public void load(String path) {
+    public boolean load(String path) {
         //if(_model.isReady()) {
-            NativeWrapper.loadSample(_model.getID(), path);
+            return NativeWrapper.loadSample(_model.getID(), path);
         //}
     }
 

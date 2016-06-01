@@ -1,6 +1,7 @@
 package com.vuric.nativemusicsampler.nativeaudio;
 
 import com.vuric.nativemusicsampler.BusStation;
+import com.vuric.nativemusicsampler.events.PlayerStatusUpdateEvt;
 
 /**
  * Created by stefano on 5/1/2016.
@@ -28,8 +29,8 @@ public class NativeReceiver {
         BusStation.getBus().unregister(mInstance);
     }
 
-    public static void sampleLoaded(final int index) {
+    public static void playerStatusUpdate(int index) {
 
-
+        BusStation.getBus().post(new PlayerStatusUpdateEvt(index));
     }
 }

@@ -27,7 +27,7 @@ jint JNI_OnLoad(JavaVM* vm, void* reserved) {
     return JNI_VERSION_1_6;
 }
 
-JNIEXPORT void JNICALL Java_com_vuric_nativemusicsampler_nativeaudio_NativeWrapper_init
+void JNICALL Java_com_vuric_nativemusicsampler_nativeaudio_NativeWrapper_init
 (JNIEnv *env, jclass clazz, jint numberOfSlots, jintArray bands) {
 
     Options *options = new Options();
@@ -45,7 +45,7 @@ JNIEXPORT void JNICALL Java_com_vuric_nativemusicsampler_nativeaudio_NativeWrapp
     Logger::log("Init called");
 }
 
-JNIEXPORT jboolean JNICALL Java_com_vuric_nativemusicsampler_nativeaudio_NativeWrapper_loadSample
+jboolean JNICALL Java_com_vuric_nativemusicsampler_nativeaudio_NativeWrapper_loadSample
         (JNIEnv *env , jclass clazz, jint sloIndex, jstring path) {
 
     const char *cPath = env->GetStringUTFChars(path,NULL);
@@ -55,13 +55,28 @@ JNIEXPORT jboolean JNICALL Java_com_vuric_nativemusicsampler_nativeaudio_NativeW
     return loaded;
 }
 
-JNIEXPORT jint JNICALL Java_com_vuric_nativemusicsampler_nativeaudio_NativeWrapper_setPlayState
+jint JNICALL Java_com_vuric_nativemusicsampler_nativeaudio_NativeWrapper_setPlayState
         (JNIEnv *env , jclass clazz, jint slotIndex , jint state) {
 
-    console->getPlayer(slotIndex)->play();
+    switch(state) {
+
+        case 0:
+            console->getPlayer(slotIndex)->stop();
+            break;
+
+        case 1:
+            console->getPlayer(slotIndex)->play();
+            break;
+
+        case 2:
+            console->getPlayer(slotIndex)->pause();
+            break;
+    }
+
+    return state;
 }
 
-JNIEXPORT void JNICALL Java_com_vuric_nativemusicsampler_nativeaudio_NativeWrapper_initLinker
+void JNICALL Java_com_vuric_nativemusicsampler_nativeaudio_NativeWrapper_initLinker
 (JNIEnv *env, jclass clazz, jstring className) {
 
     const char *cName = env->GetStringUTFChars(className,NULL);
@@ -69,7 +84,7 @@ JNIEXPORT void JNICALL Java_com_vuric_nativemusicsampler_nativeaudio_NativeWrapp
     env->ReleaseStringUTFChars(className,cName);
 }
 
-JNIEXPORT void JNICALL Java_com_vuric_nativemusicsampler_nativeaudio_NativeWrapper_linkCallbackFunction
+void JNICALL Java_com_vuric_nativemusicsampler_nativeaudio_NativeWrapper_linkCallbackFunction
 (JNIEnv *env, jclass clazz, jstring methodName, jstring methodSignature) {
 
     if(javaLinker != NULL) {
@@ -82,4 +97,10 @@ JNIEXPORT void JNICALL Java_com_vuric_nativemusicsampler_nativeaudio_NativeWrapp
         env->ReleaseStringUTFChars(methodName,mName);
         env->ReleaseStringUTFChars(methodSignature,mSignature);
     }
+}
+
+jboolean JNICALL Java_com_vuric_nativemusicsampler_nativeaudio_NativeWrapper_setVolume
+        (JNIEnv *env, jclass clazz, jint selectedSlotID, jint volume) {
+
+    return console->getPlayer(selectedSlotID)->setVolume(volume);
 }
